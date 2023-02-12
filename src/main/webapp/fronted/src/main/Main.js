@@ -6,14 +6,14 @@ import Center from "./Center";
 function Main() {
   return (
     <Row>
-      <Col md={2} className="p-0">
+      <Col md={2} className="vh-100 p-0">
         <SideNav />
       </Col>
-      <Col md={10}>
-        <Row>
+      <Col md={10}  className="vh-100">
+        <Row className="vh-5">
           <TopNav />
         </Row>
-        <Row>
+        <Row className="vh-95">
           {/* 메인 컨텐츠 위치 */}
           <Center />
         </Row>

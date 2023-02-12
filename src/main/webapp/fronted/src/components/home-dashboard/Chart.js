@@ -8,3 +8,26 @@
  * -아랫줄은 한줄로 구성하여 월별 현황을 도식화
  * 
  */
+
+import { Line } from "react-chartjs-2";
+
+const data = {
+  labels: ["test1", "test2", "test3", "test4"],
+  dataset: [
+    {
+      type: "line",
+      label: "Dataset 1",
+      borderColor: "rgb(54, 162, 188)",
+      borderWidth: 2,
+      data: [1, 2, 4, 5],
+    },
+  ],
+};
+
+function Chart() {
+  return (
+    <Line type="line" data={data} />
+  )
+}
+
+export default Chart;
