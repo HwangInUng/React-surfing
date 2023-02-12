@@ -1,7 +1,8 @@
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
-import LineChart from "../components/home-dashboard/Chart";
-import Chart from "../components/home-dashboard/Chart";
+import DoughnutChart from "../components/home-dashboard/DoughnutChart";
+import LineChart from "../components/home-dashboard/LineChart";
+import Chart from "../components/home-dashboard/LineChart";
 /**
  * 실제로 보여지는 모든 결과는 해당 페이지에 출력되어야함
  * 사이드바의 링크와 매칭하여 해당 페이지에 출력되는 정보가 다르게 나타나야함
@@ -16,7 +17,6 @@ const Container = styled.div`
   height: 100%;
   margin: 0;
   padding: 20;
-  background: orange;
 `;
 
 const Row = styled.div`
@@ -30,8 +30,14 @@ function Center() {
     <Container>
       <Row>
         <Col md={4} className="border">종합현황</Col>
-        <Col md={4} className="border">강습</Col>
-        <Col md={4} className="border">상품</Col>
+        <Col md={4} className="border">
+          강습
+          <DoughnutChart />
+        </Col>
+        <Col md={4} className="border">
+          상품
+          <DoughnutChart />
+        </Col>
       </Row>
       <Row>
         <LineChart></LineChart>
