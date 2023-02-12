@@ -1,3 +1,7 @@
+import { Chart } from "chart.js";
+import { useEffect, useRef } from "react";
+import { Container } from "react-bootstrap";
+
 /**
  * 전체현황을 나타내는 차트를 구성해야함
  * 차트는 데이터가 넘어오면 섹션별로 색상이 구분되어야함
@@ -9,25 +13,30 @@
  * 
  */
 
-import { Line } from "react-chartjs-2";
 
-const data = {
-  labels: ["test1", "test2", "test3", "test4"],
-  dataset: [
-    {
+function TestChart(){
+  const canvasDom = useRef(null);
+  useEffect(() => {
+    const ctx = canvasDom.current.getContext("2d");
+
+    new Chart(ctx, {
       type: "line",
-      label: "Dataset 1",
-      borderColor: "rgb(54, 162, 188)",
-      borderWidth: 2,
-      data: [1, 2, 4, 5],
-    },
-  ],
-};
-
-function Chart() {
-  return (
-    <Line type="line" data={data} />
-  )
+      data: {
+        labels: ["조", "권", "김"],
+        datasets: [
+          {
+            label: "자금력",
+            data: [550, 30, 240],
+          }
+        ]
+      }
+    });
+  });
+  return(
+    <Container>
+      <canvas ref={TestChart}></canvas>
+    </Container>
+  );
 }
 
-export default Chart;
+export default TestChart;

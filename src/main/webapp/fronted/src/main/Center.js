@@ -1,5 +1,6 @@
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
+import LineChart from "../components/home-dashboard/Chart";
 import Chart from "../components/home-dashboard/Chart";
 /**
  * 실제로 보여지는 모든 결과는 해당 페이지에 출력되어야함
@@ -33,7 +34,7 @@ function Center() {
         <Col md={4} className="border">상품</Col>
       </Row>
       <Row>
-        <Chart></Chart>
+        <LineChart></LineChart>
       </Row>
     </Container>
   );
