@@ -6,7 +6,6 @@ import {
   LinearScale,
   PointElement
 } from 'chart.js';
-import { Container } from "react-bootstrap";
 
 // 차트구성에 필요한 요소들을 등록
 ChartJS.register(
@@ -16,58 +15,51 @@ ChartJS.register(
   PointElement
 );
 
-/**
- * 전체현황을 나타내는 차트를 구성해야함
- * 차트는 데이터가 넘어오면 섹션별로 색상이 구분되어야함
- * 차트의 섹션별 색상을 지정할 수 있어야함
- * 구성은 다음과 같음
- * 
- * -윗줄은 현황별 차트를 가시화 3열로 구성
- * -아랫줄은 한줄로 구성하여 월별 현황을 도식화
- * 
- */
-
+//멀티 차트에 대한 부분을 구성
 function TestChart(){
   const data = {
     type: 'line',
+    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
     datasets: [
       {
-        labels: 'Test',
-        data: {  //Object형태로 지정가능
-          test1: 10,
-          test2: 2,
-          test3: 8
-        },
+        label: 'Test Dataset',
+        data: [10, 10, 30, 40, 20, 50, 40, 20, 40, 10, 60, 20],
         backgroundColor: 'aqua',
         borderColor: 'black',
-        pointBorderColor: 'aqus',
-        tension: 0.4 //장력 추가
+        borderWidth: 1,
+        pointBorderColor: '#13e8a5',
+        tension: 0.2 //장력 추가
       }
     ]
   }
 
   const options = {
+    responsive: false,
     plugins: {
-      legend: true
+      legend: {
+      }
     },
     layout: {
       padding: 10
     },
     scales:{
       y: {
-        min: 1, //최소값
-        max: 15, //최대값
-      }
+        min: 0, //최소값
+        max: 70, //최대값
+      },
     }
   }
 
   return(
-    <Container>
       <Line
         data={data}
         options={options}
+        style={
+          {
+            width: '100%',
+          }
+        }
       ></Line>
-    </Container>
   );
 }
 

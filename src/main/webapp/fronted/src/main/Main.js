@@ -10,10 +10,10 @@ function Main() {
         <SideNav />
       </Col>
       <Col md={10}  className="vh-100">
-        <Row className="vh-5">
+        <Row>
           <TopNav />
         </Row>
-        <Row className="vh-95">
+        <Row>
           {/* 메인 컨텐츠 위치 */}
           <Center />
         </Row>
