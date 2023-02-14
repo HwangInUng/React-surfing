@@ -10,7 +10,7 @@ import Main from "./main/Main";
 
 function App() {
   return (
-    <Container fluid>
+    <Container fluid className="p-0">
       <Router>
         <Routes>
           <Route path="/main" element={<Main />}></Route>
