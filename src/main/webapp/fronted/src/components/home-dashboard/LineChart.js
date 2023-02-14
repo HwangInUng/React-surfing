@@ -4,7 +4,7 @@ import {
   LineElement,
   CategoryScale, //x축에 대한 설정
   LinearScale,
-  PointElement
+  PointElement,
 } from 'chart.js';
 
 // 차트구성에 필요한 요소들을 등록
@@ -12,7 +12,7 @@ ChartJS.register(
   LineElement,
   CategoryScale, //x축에 대한 설정
   LinearScale,
-  PointElement
+  PointElement,
 );
 
 //멀티 차트에 대한 부분을 구성
@@ -37,6 +37,10 @@ function TestChart(){
     responsive: false,
     plugins: {
       legend: {
+        display: true,
+        font:{
+          size: 10
+        }
       }
     },
     layout: {
