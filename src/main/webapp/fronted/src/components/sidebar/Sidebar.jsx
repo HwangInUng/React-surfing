@@ -35,7 +35,7 @@ const SideBarMenu = styled.div`
 
 //메뉴 타이틀
 const SideBarTitle = styled.h3`
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: rgb(197, 197, 197);
 `;
 
@@ -67,6 +67,11 @@ const SideBarItem = styled.li`
   &:hover {
     background-color: rgb(212, 209, 235);
   }
+
+  .sideicon{
+    margin-right: 10px;
+    font-size: 2rem !important;
+  }
 `;
 
 function Sidebar() {
@@ -82,19 +87,19 @@ function Sidebar() {
               className={clicked ? "active" : null}
               onClick={onClick}
             >
-              <HomeIcon />
+              <HomeIcon className="sideicon" />
               Menu1
             </SideBarItem>
             <SideBarItem>
-              <PersonIcon />
+              <PersonIcon className="sideicon" />
               Menu2
             </SideBarItem>
             <SideBarItem>
-              <SurfingIcon />
+              <SurfingIcon className="sideicon" />
               Menu3
             </SideBarItem>
             <SideBarItem>
-              <CalendarMonthIcon />
+              <CalendarMonthIcon className="sideicon" />
               Menu4
             </SideBarItem>
           </SideBarList>
@@ -103,19 +108,19 @@ function Sidebar() {
           <SideBarTitle>DashBoard</SideBarTitle>
           <SideBarList>
             <SideBarItem>
-              <HomeIcon />
+              <HomeIcon className="sideicon" />
               Menu1
             </SideBarItem>
             <SideBarItem>
-              <PersonIcon />
+              <PersonIcon className="sideicon" />
               Menu2
             </SideBarItem>
             <SideBarItem>
-              <SurfingIcon />
+              <SurfingIcon className="sideicon" />
               Menu3
             </SideBarItem>
             <SideBarItem>
-              <CalendarMonthIcon />
+              <CalendarMonthIcon className="sideicon" />
               Menu4
             </SideBarItem>
           </SideBarList>

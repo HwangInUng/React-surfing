@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import Sidebar from "../components/sidebar/Sidebar";
 import Topbar from "../components/topbar/Topbar";
+import Home from "../home/Home";
 
 const Container = styled.div`
   display: flex;
-`;
-
-const Others = styled.div`
-  flex: 4;
-  background-color: wheat;
 `;
 
 function Main() {
@@ -17,7 +13,7 @@ function Main() {
       <Topbar />
       <Container>
         <Sidebar />
-        <Others>test</Others>
+        <Home />
       </Container>
     </div>
   );

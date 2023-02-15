@@ -8,7 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 const TopbarDiv = styled.div`
   width: 100%;
   height: 50px;
-  background-color: white;
+  background-color: #d8dbd3;
 
   position: sticky;
   top: 0;
@@ -85,7 +85,7 @@ function Topbar() {
               width="40"
               height="35"
             />{' '}
-            TestAdmin
+            Surf-Admin
           </Logo>
         </div>
 
