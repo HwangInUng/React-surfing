@@ -8,7 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 const TopbarDiv = styled.div`
   width: 100%;
   height: 50px;
-  background-color: #d8dbd3;
+  background-color: white;
 
   position: sticky;
   top: 0;

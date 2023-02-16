@@ -23,8 +23,8 @@ const InfoItem = styled.div`
 
 //정보에 대한 타이틀
 const InfoTitle = styled.span`
-  font-size: 30px;
-  font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 800;
   padding-bottom: 5px;
   border-bottom: 1px solid #555;
 `;

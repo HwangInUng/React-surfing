@@ -20,6 +20,8 @@ const ChartContainer = styled.div`
 `;
 
 const ChartTitle = styled.h3`
+  font-size: 1.3rem;
+  font-weight: 800;
   margin-bottom: 30px;
 `;
 
@@ -36,7 +38,7 @@ const testdata = [
 function Chart({ title, data, datakey, grid }) {
   return (
     <ChartContainer>
-      <ChartTitle>2023년 매출분석</ChartTitle>
+      <ChartTitle>월별 매출현황</ChartTitle>
       {/* aspect : width / height의 비율 지정 */}
       <ResponsiveContainer width="100%" aspect={4 / 1}>
         <BarChart data={testdata}>

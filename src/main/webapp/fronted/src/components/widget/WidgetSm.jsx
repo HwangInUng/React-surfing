@@ -14,8 +14,8 @@ const WidgetSmContainer = styled.div`
 
 //타이틀 설정
 const WidgetSmTitle = styled.span`
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 800;
 `;
 
 //유저의 목록을 보여줄 리스트
@@ -78,7 +78,7 @@ const WidgetSmButton = styled.button`
 function WidgetSm() {
   return (
     <WidgetSmContainer>
-      <WidgetSmTitle>새로 가입한 회원</WidgetSmTitle>
+      <WidgetSmTitle>보드보관 만료예정 회원</WidgetSmTitle>
       <WidgetSmList>
         {/* 회원 한명에 대한 정보를 담을 컴포넌트 재사용필요 */}
         <WidgetSmItem>

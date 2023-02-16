@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const WidgetLgContainer = styled.div`
@@ -11,17 +13,22 @@ const WidgetLgContainer = styled.div`
 `;
 
 const WidgetLgTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 800;
 `;
 
-//table에 대한 세부 세팅은 차후 정리
-//클래스를 여러개 두어 각 컬럼에 적용
-//테이블에 대한 max-height를 지정하여 overflow시 scroll처리
+/*
+  -table에 대한 세부 세팅은 차후 정리
+  -클래스를 여러개 두어 각 컬럼에 적용
+  -테이블에 대한 max-height를 지정하여 overflow시 scroll처리
+  -border-collapse : 테이블의 셀 또는 행간의 간격을 설정
+*/
 const WidgetLgTable = styled.table`
   width: 100%;
   border-spacing: 20px;
   text-align: center;
+  border-collapse: separate;
+  border-spacing: 0px 10px;
 
   .widgetLgTh{
     text-align: left;
@@ -43,9 +50,21 @@ const WidgetLgTable = styled.table`
 */
 
 function WidgetLg() {
+  const dummyData = [
+    { name: '예약자1', time: 10, count: 4, phone: '01012345234', type: '일반' },
+    { name: '예약자2', time: 13, count: 2, phone: '01034532434', type: '커플' },
+    { name: '예약자3', time: 10, count: 5, phone: '01000100023', type: '일반' },
+    { name: '예약자4', time: 15, count: 1, phone: '01054744533', type: '개인' },
+    { name: '예약자5', time: 15, count: 6, phone: '01093458455', type: '일반' },
+  ];
+  //비동기 요청을 통해 넘겨받을 data state
+  const [data, setData] = useState(dummyData);
+  useEffect(() => {
+    // 생성 시 비동기통신을 실행할 함수 포함
+  }, []);
   return (
     <WidgetLgContainer>
-      <WidgetLgTitle>최근 처리내역</WidgetLgTitle>
+      <WidgetLgTitle>당일 예약현황</WidgetLgTitle>
       {/* 예약정보에 대한 props로부터 각 컬럼 정보 출력 */}
       <WidgetLgTable>
         <thead>
@@ -59,13 +78,17 @@ function WidgetLg() {
         </thead>
         {/* 예약시간에 대한 내용만 강조 */}
         <tbody>
-          <tr>
-            <td>황인웅</td>
-            <td className="widgetLgTime">12시</td>
-            <td>6</td>
-            <td>01091716860</td>
-            <td>일반</td>
-          </tr>
+          {data && data.map((data, index) => {
+            return (
+              <tr className="widgetLgTr" key={index}>
+                <td>{data.name}</td>
+                <td className="widgetLgTime">{data.time}시</td>
+                <td>{data.count}</td>
+                <td>{data.phone}</td>
+                <td>{data.type}</td>
+              </tr>
+            )
+          })}
         </tbody>
       </WidgetLgTable>
     </WidgetLgContainer>
