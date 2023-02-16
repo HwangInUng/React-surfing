@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Chart from "../components/dashboard/Chart";
 import Info from "../components/dashboard/Info";
-import WidgetLg from "../components/widgetlg/WidgetLg";
-import WidgetSm from "../components/widgetsm/WidgetSm";
+import WidgetSm from "../components/widget/WidgetSm";
+import WidgetLg from "../components/widget/WidgetLg";
 
 const HomeContainer = styled.div`
   flex: 5;
@@ -20,8 +20,8 @@ function Home() {
       <Info />
       <Chart />
       <WidgetContaiber>
-        <WidgetSm />
-        <WidgetLg />
+        <WidgetSm/>
+        <WidgetLg/>
       </WidgetContaiber>
     </HomeContainer>
   );
