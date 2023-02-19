@@ -7,6 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SurfingIcon from '@mui/icons-material/Surfing';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useState } from "react";
 
 /*
   TopBar와의 간격을 위해 상단에서 50px 조정
@@ -46,25 +47,31 @@ function Sidebar() {
   */
   const menu = [
     {
-      title : 'DashBoard',
+      title: 'DashBoard',
       sub: ['Home', '매출분석', '예약분석'],
       icon: [
-            <HomeIcon className="sideicon"/>,
-            <ShowChartIcon className="sideicon"/>,
-            <EventAvailableIcon className="sideicon"/>
-            ]
+        <HomeIcon className="sideicon" />,
+        <ShowChartIcon className="sideicon" />,
+        <EventAvailableIcon className="sideicon" />
+      ]
     },
     {
       title: 'Quick',
       sub: ['회원관리', '라이딩관리', '상품관리', '예약관리'],
       icon: [
-            <PersonIcon className="sideicon"/>,
-            <SurfingIcon className="sideicon"/>,
-            <LocalMallIcon className="sideicon"/>,
-            <CalendarMonthIcon className="sideicon"/>
-            ]
+        <PersonIcon className="sideicon" />,
+        <SurfingIcon className="sideicon" />,
+        <LocalMallIcon className="sideicon" />,
+        <CalendarMonthIcon className="sideicon" />
+      ]
     },
   ];
+  //item클릭 시 active 활성화 판단할 state
+  const [clicked, setClicked] = useState("");
+  const onClick = (sub) => {
+    console.log(sub);
+    setClicked((current) => current = sub); //현재 clicked state를 sub로 변경
+  };
   return (
     <SideBarContainer>
       <SideBarWrapper>
@@ -72,9 +79,11 @@ function Sidebar() {
         {menu && menu.map((menu, index) => {
           return (
             <SideBarMenu
-            menu={menu} //메뉴 객체 자체를 props로 전달
-            key={index}
-            /> 
+              onClick={onClick}
+              clicked={clicked}
+              menu={menu} //메뉴 객체 자체를 props로 전달
+              key={index}
+            />
           )
         })}
       </SideBarWrapper>

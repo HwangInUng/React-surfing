@@ -27,13 +27,8 @@ const SideItem = styled.li`
   }
 `;
 
-function SideBarItem({icon, title}) {
-  const [clicked, setClicked] = useState(false); //Active 활성화 판단 state
-  const onClick = () => { //클릭 시 active효과 처리를 위한 함수
-    //현재 논리값 반전
-    setClicked((current) => !current);
-  }
-  return <SideItem className={clicked ? "active" : null} onClick={onClick}>
+function SideBarItem({icon, title, clicked, onClick}) {
+  return <SideItem className={clicked == title ? "active" : null} onClick={onClick}>
           {icon}
           {title}
           </SideItem>

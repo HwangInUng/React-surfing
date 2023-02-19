@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import SideBarItem from "./SideBarItem";
 
@@ -24,9 +23,7 @@ const SideBarList = styled.ul`
   padding: 0.5rem;
 `;
 
-function SideBarMenu({menu}) {
-  //item클릭 시 active 활성화 판단할 state
-  const [] = useState(0);
+function SideBarMenu({menu, onClick, clicked}) {
   return (
     <MenuContainer>
       {/* 타이틀 : sidebar로 부터 props로 얻기 */}
@@ -41,6 +38,10 @@ function SideBarMenu({menu}) {
             key={index}
             icon={menu.icon[index]}
             title={sub}
+            // clicked : Item클릭 시 값이 변경될 조건 변수
+            // onClick : sub(Item명)을 매개변수로 전달받아 clicekd 값 변경
+            clicked={clicked}
+            onClick={() => onClick(sub)}
           />
           )
         })}
