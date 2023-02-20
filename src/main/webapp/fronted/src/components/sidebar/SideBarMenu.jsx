@@ -13,7 +13,8 @@ const SideBarTitle = styled.h3`
   align-items: center;
   font-size: 1.2rem;
   padding: 5px;
-  color: #555;
+  color: white;
+  border-bottom: 1px solid #76c9e8;
 `;
 
 //리스트의 스타일 미적용
@@ -23,7 +24,7 @@ const SideBarList = styled.ul`
   padding: 0.5rem;
 `;
 
-function SideBarMenu({menu, onClick, clicked}) {
+function SideBarMenu({ menu, onClick, clicked }) {
   return (
     <MenuContainer>
       {/* 타이틀 : sidebar로 부터 props로 얻기 */}
@@ -33,16 +34,16 @@ function SideBarMenu({menu, onClick, clicked}) {
       {/* 만약 title이 home이면 리스트 및 아이템 불필요 */}
       <SideBarList>
         {menu.sub.map((sub, index) => {
-          return(
-          <SideBarItem
-            key={index}
-            icon={menu.icon[index]}
-            title={sub}
-            // clicked : Item클릭 시 값이 변경될 조건 변수
-            // onClick : sub(Item명)을 매개변수로 전달받아 clicekd 값 변경
-            clicked={clicked}
-            onClick={() => onClick(sub)}
-          />
+          return (
+            <SideBarItem
+              key={index}
+              icon={menu.icon[index]}
+              title={sub}
+              // clicked : Item클릭 시 값이 변경될 조건 변수
+              // onClick : sub(Item명)을 매개변수로 전달받아 clicekd 값 변경
+              clicked={clicked}
+              onClick={() => onClick(sub)}
+            />
           )
         })}
       </SideBarList>

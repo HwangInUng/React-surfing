@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 /*
@@ -8,7 +7,7 @@ import styled from "styled-components";
 */
 const SideItem = styled.li`
   font-size: 1rem;
-  color: #555;
+  color: white;
   padding: 5px;
   margin-left: 10px;
   cursor: pointer;
@@ -23,12 +22,13 @@ const SideItem = styled.li`
 
   &.active,
   &:hover {
-    background-color: rgb(212, 209, 235);
+    color: black;
+    background-color: #76c9e8;
   }
 `;
 
 function SideBarItem({icon, title, clicked, onClick}) {
-  return <SideItem className={clicked == title ? "active" : null} onClick={onClick}>
+  return <SideItem className={clicked === title ? "active" : null} onClick={onClick}>
           {icon}
           {title}
           </SideItem>

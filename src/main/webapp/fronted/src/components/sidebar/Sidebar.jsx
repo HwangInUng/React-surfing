@@ -17,7 +17,10 @@ import { useState } from "react";
 const SideBarContainer = styled.div`
   flex: 1;
   height: calc(100vh - 50px);
-  background-color: rgb(240, 239, 239);
+  background-color: black;
+
+  -webkit-box-shadow: 0px 0px 5px 0px #000000; 
+  box-shadow: 0px 0px 5px 0px #000000;
 
   position: sticky;
   top: 50px;
@@ -29,7 +32,7 @@ const SideBarContainer = styled.div`
 */
 const SideBarWrapper = styled.div`
   padding: 20px;
-  color: #555;
+  color: #white;
 
   .sideicon{
     margin-right: 5px;
@@ -69,7 +72,6 @@ function Sidebar() {
   //item클릭 시 active 활성화 판단할 state
   const [clicked, setClicked] = useState("");
   const onClick = (sub) => {
-    console.log(sub);
     setClicked((current) => current = sub); //현재 clicked state를 sub로 변경
   };
   return (

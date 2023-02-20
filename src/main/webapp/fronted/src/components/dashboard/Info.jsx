@@ -17,8 +17,8 @@ const InfoItem = styled.div`
   border-radius: 10px;
   cursor: pointer;
 
-  -webkit-box-shadow: 0px 0px 15px -1px #000000; 
-  box-shadow: 0px 0px 15px -1px #000000;
+  -webkit-box-shadow: 0px 0px 12px -1px #000000; 
+  box-shadow: 0px 0px 12px -1px #000000;
 `;
 
 //정보에 대한 타이틀

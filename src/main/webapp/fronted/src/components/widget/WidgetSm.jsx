@@ -1,15 +1,20 @@
 import styled from "styled-components";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import WidgetSmItem from "./WidgetSmItem";
 
 const WidgetSmContainer = styled.div`
   flex: 1;
   border-radius: 10px;
 
-  -webkit-box-shadow: 0px 0px 15px -1px #000000; 
-  box-shadow: 0px 0px 15px -1px #000000;
+  -webkit-box-shadow: 0px 0px 12px -1px #000000; 
+  box-shadow: 0px 0px 12px -1px #000000;
 
   padding: 20px;
   margin-right: 20px;
+`;
+
+const WidgetSmWrapper = styled.div`
+  max-height: 200px;
+  overflow: scroll;
 `;
 
 //타이틀 설정
@@ -25,50 +30,6 @@ const WidgetSmList = styled.ul`
   list-style: none;
 `;
 
-//유저 1명을 담당할 링크
-const WidgetSmItem = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px 0px;
-
-  .widgetSmImg{
-    width: 40px;
-   height: 40px;
-   border-radius: 50%;
-   object-fit: cover;
-  }
-`;
-
-const WidgetSmUser = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const WidgetSmUserName = styled.span`
-  font-weight: 600;
-`;
-
-const WidgetSmUserTitle = styled.span`
-  font-weight: 300;
-`;
-
-const WidgetSmButton = styled.button`
-  display: flex;
-  align-items: center;
-  border: none;
-  border-radius: 10px;
-  padding: 7px 10px;
-  background-color: #eeeef7;
-  color: #555;
-  cursor: pointer;
-
-  .widgetIcon{
-    font-size: 1.5rem !important;
-    margin-right: 5px;
-  }
-`;
-
 /*
   해당 영역은 새로 가입한 회원에 대한 정보를 열람
   최대 10명까지 가장 최근에 등록한 회원만 출력
@@ -76,28 +37,28 @@ const WidgetSmButton = styled.button`
 */
 
 function WidgetSm() {
+  const datas = [
+    { name: "test", title: "delvop", src: "/img/profile.jpg" },
+    { name: "test", title: "delvop", src: "/img/profile.jpg" },
+    { name: "test", title: "delvop", src: "/img/profile.jpg" },
+    { name: "test", title: "delvop", src: "/img/profile.jpg" },
+  ];
   return (
     <WidgetSmContainer>
       <WidgetSmTitle>보드보관 만료예정 회원</WidgetSmTitle>
-      <WidgetSmList>
-        {/* 회원 한명에 대한 정보를 담을 컴포넌트 재사용필요 */}
-        <WidgetSmItem>
-          <img
-            className="widgetSmImg"
-            src="/img/profile.jpg"
-            alt="..."
-          />
-          <WidgetSmUser>
-            {/* props로 넘겨받은 데이터 표현범위 */}
-            <WidgetSmUserName>Test</WidgetSmUserName>
-            <WidgetSmUserTitle>back-end</WidgetSmUserTitle>
-          </WidgetSmUser>
-          <WidgetSmButton>
-            <VisibilityIcon className="widgetIcon"/>
-            보러가기
-          </WidgetSmButton>
-        </WidgetSmItem>
-      </WidgetSmList>
+      <WidgetSmWrapper>
+        <WidgetSmList>
+          {datas && datas.map((data, index) => {
+            return (
+              <WidgetSmItem
+                data={data}
+                key={index}
+              >
+              </WidgetSmItem>
+            )
+          })}
+        </WidgetSmList>
+      </WidgetSmWrapper>
     </WidgetSmContainer>
   );
 }

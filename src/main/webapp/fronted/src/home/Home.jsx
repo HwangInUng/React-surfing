@@ -7,6 +7,7 @@ import WidgetLg from "../components/widget/WidgetLg";
 const HomeContainer = styled.div`
   flex: 5;
   padding: 15px;
+  padding-top: 20px;
 `;
 
 const WidgetContaiber = styled.div`

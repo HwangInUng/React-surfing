@@ -10,6 +10,9 @@ const TopbarDiv = styled.div`
   height: 50px;
   background-color: white;
 
+  -webkit-box-shadow: 0px 0px 5px 0px #000000; 
+  box-shadow: 0px 0px 5px 0px #000000;
+
   position: sticky;
   top: 0;
   z-index: 999;

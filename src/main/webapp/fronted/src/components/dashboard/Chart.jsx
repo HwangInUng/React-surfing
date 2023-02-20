@@ -15,8 +15,8 @@ const ChartContainer = styled.div`
   padding: 20px;
   border-radius: 10px;
 
-  -webkit-box-shadow: 0px 0px 15px -1px #000000; 
-  box-shadow: 0px 0px 15px -1px #000000;
+  -webkit-box-shadow: 0px 0px 12px -1px #000000; 
+  box-shadow: 0px 0px 12px -1px #000000;
 `;
 
 const ChartTitle = styled.h3`
@@ -51,7 +51,7 @@ function Chart({ title, data, datakey, grid }) {
           <Bar dataKey="강습" stackId="a" fill="#82ca9d" />
           {/* <Line type="monotone" dataKey="test" /> */}
           {/* 마우스 이동 시 상세정보 확인 */}
-          <Tooltip />
+          <Tooltip cursor={{fill: 'transparent'}}/>
           <Legend />
           {/* 
             그래프의 격자를 표현할 때 사용
