@@ -65,9 +65,10 @@ function WidgetLg() {
     { name: '예약자5', time: 15, count: 6, phone: '01093458455', type: '일반' },
   ];
   //비동기 요청을 통해 넘겨받을 data state
-  const [data, setData] = useState(dummyData);
+  const [data, setData] = useState([]);
   useEffect(() => {
     // 생성 시 비동기통신을 실행할 함수 포함
+    setData((data) => data = dummyData);
   }, []);
   return (
     <WidgetLgContainer>

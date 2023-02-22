@@ -39,6 +39,7 @@ function SideBarMenu({ menu, onClick, clicked }) {
               key={index}
               icon={menu.icon[index]}
               title={sub}
+              link={menu.link[index]}
               // clicked : Item클릭 시 값이 변경될 조건 변수
               // onClick : sub(Item명)을 매개변수로 전달받아 clicekd 값 변경
               clicked={clicked}

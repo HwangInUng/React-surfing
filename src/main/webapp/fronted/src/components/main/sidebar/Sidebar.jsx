@@ -46,12 +46,14 @@ function Sidebar() {
     -사이드바 메뉴 구성을 위한 객체
     -title: 메뉴 상단 타이틀
     -sub : 상단 타이틀의 하위 메뉴
+    -link : 클릭 시 이동할 path 경로
     -icon : 하위 메뉴와 일치하는 아이콘 jsx
   */
   const menu = [
     {
       title: 'DashBoard',
-      sub: ['Home', '매출분석', '예약분석'],
+      sub: ['Home', '매출분석', '강습분석'],
+      link: ['/main/', '/main/sales', '/main/training'], //각 페이지별 to 속성의 경로를 지정
       icon: [
         <HomeIcon className="sideicon" />,
         <ShowChartIcon className="sideicon" />,
@@ -61,6 +63,7 @@ function Sidebar() {
     {
       title: 'Quick',
       sub: ['회원관리', '라이딩관리', '상품관리', '예약관리'],
+      link: ['/main/member', '/main/riding', '/main/product', '/main/reservation'], //각 페이지별 to 속성의 경로를 지정
       icon: [
         <PersonIcon className="sideicon" />,
         <SurfingIcon className="sideicon" />,

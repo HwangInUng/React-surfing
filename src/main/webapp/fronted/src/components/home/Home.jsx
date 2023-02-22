@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Chart from "../components/dashboard/Chart";
-import Info from "../components/dashboard/Info";
-import WidgetSm from "../components/widget/WidgetSm";
-import WidgetLg from "../components/widget/WidgetLg";
+import WidgetSm from "./widget/WidgetSm";
+import WidgetLg from "./widget/WidgetLg";
+import Info from "./dashboard/Info";
+import Chart from "./dashboard/Chart";
 
 const HomeContainer = styled.div`
   flex: 5;
@@ -10,7 +10,7 @@ const HomeContainer = styled.div`
   padding-top: 20px;
 `;
 
-const WidgetContaiber = styled.div`
+const WidgetContainer = styled.div`
   display: flex;
   margin: 20px;
 `;
@@ -20,10 +20,10 @@ function Home() {
     <HomeContainer>
       <Info />
       <Chart />
-      <WidgetContaiber>
+      <WidgetContainer>
         <WidgetSm/>
         <WidgetLg/>
-      </WidgetContaiber>
+      </WidgetContainer>
     </HomeContainer>
   );
 }
