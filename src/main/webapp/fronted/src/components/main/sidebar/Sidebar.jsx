@@ -17,7 +17,7 @@ import { useState } from "react";
 const SideBarContainer = styled.div`
   flex: 1;
   height: calc(100vh - 50px);
-  background-color: black;
+  background-color: #001b33;
 
   -webkit-box-shadow: 0px 0px 5px 0px #000000; 
   box-shadow: 0px 0px 5px 0px #000000;

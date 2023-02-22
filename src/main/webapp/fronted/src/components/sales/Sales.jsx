@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import SalesCategory from "./SalesCategory";
+import SalesChart from "./SalesChart";
 
 const SalesContainer = styled.div`
   flex: 5;
@@ -6,10 +8,11 @@ const SalesContainer = styled.div`
   padding-top: 20px;
 `;
 
-function Sales(){
+function Sales() {
   return (
     <SalesContainer>
-      세일즈 테스트
+      <SalesCategory />
+      <SalesChart />
     </SalesContainer>
   );
 }
