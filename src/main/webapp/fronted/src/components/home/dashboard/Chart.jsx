@@ -15,8 +15,8 @@ const ChartContainer = styled.div`
   padding: 20px;
   border-radius: 10px;
 
-  -webkit-box-shadow: 0px 0px 12px -1px #000000; 
-  box-shadow: 0px 0px 12px -1px #000000;
+  -webkit-box-shadow: 0px 0px 5px -1px #000000; 
+  box-shadow: 0px 0px 5px -1px #000000;
 `;
 
 const ChartTitle = styled.h3`
@@ -40,15 +40,15 @@ function Chart({ title, data, datakey, grid }) {
     <ChartContainer>
       <ChartTitle>월별 매출현황</ChartTitle>
       {/* aspect : width / height의 비율 지정 */}
-      <ResponsiveContainer width="100%" aspect={4 / 1}>
+      <ResponsiveContainer width="100%" aspect={5 / 1}>
         <BarChart data={testdata}>
           {/* datakey: 사용될 데이터, stroke: 색상 */}
-          <XAxis dataKey="month" stroke="#5550bd" />
+          <XAxis dataKey="month" stroke="gray" />
           {/* Y축에 대한지정, dataKey : 표현 내용 */}
-          <YAxis />
+          <YAxis stroke="gray"/>
           {/* stackedId가 동일해야지 쌓임 */}
-          <Bar dataKey="상품" stackId="a" fill="#5550bd" barSize={35} />
-          <Bar dataKey="강습" stackId="a" fill="#82ca9d" />
+          <Bar dataKey="상품" stackId="a" fill="#e5aa80" barSize={40} />
+          <Bar dataKey="강습" stackId="a" fill="#84a1e5" />
           {/* <Line type="monotone" dataKey="test" /> */}
           {/* 마우스 이동 시 상세정보 확인 */}
           <Tooltip cursor={{fill: 'transparent'}}/>

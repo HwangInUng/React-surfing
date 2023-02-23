@@ -13,12 +13,12 @@ const InfoContainer = styled.div`
 const InfoItem = styled.div`
   flex: 1;
   margin: 0px 20px;
-  padding: 20px 40px;
+  padding: 20px 30px;
   border-radius: 10px;
   cursor: pointer;
 
-  -webkit-box-shadow: 0px 0px 12px -1px #000000; 
-  box-shadow: 0px 0px 12px -1px #000000;
+  -webkit-box-shadow: 0px 0px 5px -1px #000000; 
+  box-shadow: 0px 0px 5px -1px #000000;
 `;
 
 //정보에 대한 타이틀

@@ -16,14 +16,14 @@ import {
 
 const ChartContainer = styled.div`
   margin: 20px;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
 
-  -webkit-box-shadow: 0px 0px 12px -1px #000000; 
-  box-shadow: 0px 0px 12px -1px #000000;
+  -webkit-box-shadow: 0px 0px 5px -1px #000000; 
+  box-shadow: 0px 0px 5px -1px #000000;
 `;
 
-const ChartTitle = styled.h2`
+const ChartTitle = styled.h3`
   margin-left: 20px;
   font-weight: 600;
 `;
@@ -35,7 +35,7 @@ const ChartWrapper = styled.div`
 `;
 
 const LineContainer = styled.div`
-  flex: 4;
+  flex: 3;
   margin: 0;
 `;
 
@@ -48,7 +48,7 @@ const PieContainer = styled.div`
 `;
 
 const PieContent = styled.span`
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   padding-bottom: 5px;
 `;
@@ -56,23 +56,23 @@ const PieContent = styled.span`
 
 function SalesChart() {
   const testdata = [
-    { date: '1일', 상품: 400, 강습: 100 }, { date: '2일', 상품: 800, 강습: 350 },
-    { date: '3일', 상품: 900, 강습: 200 }, { date: '4일', 상품: 500, 강습: 400 },
-    { date: '5일', 상품: 400, 강습: 150 }, { date: '6일', 상품: 300, 강습: 200 },
-    { date: '7일', 상품: 500, 강습: 500 }
+    { date: '1일', '매출': 400}, { date: '2일', '매출': 300},
+    { date: '3일', '매출': 550}, { date: '4일', '매출': 200},
+    { date: '5일', '매출': 600}, { date: '6일', '매출': 250},
+    { date: '7일', '매출': 300}
   ];
   const piedata = [
     { name: '상품', value: 400 },
     { name: '강습', value: 700 }
   ];
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#e5aa80', '#84a1e5'];
   return (
     <ChartContainer>
       <ChartTitle>총 매출 67,000,000원</ChartTitle>
       <ChartWrapper>
         <LineContainer>
           {/* aspect : 설정해주지 않을 경우 차트 미출력 */}
-          <ResponsiveContainer width="100%" aspect={4 / 1}>
+          <ResponsiveContainer width="100%" aspect={5 / 1}>
             <LineChart
               data={testdata}
             >
@@ -82,21 +82,20 @@ function SalesChart() {
               <YAxis />
               <Tooltip cursor={{ fill: 'transparent' }} />
               <Legend />
-              <Line type="monotone" dataKey="상품" stroke="#5550bd" />
-              <Line type="monotone" dataKey="강습" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="매출" stroke="#5550bd"/>
             </LineChart>
           </ResponsiveContainer>
         </LineContainer>
         {/* pie차트 영역 */}
         <PieContainer>
-          <ResponsiveContainer width="100%" className="p-0">
+          <ResponsiveContainer width="100%">
             <PieChart>
               <Pie
                 data={piedata} //차트에 넣을 데이터 셋
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                paddingAngle={5}
+                cx="50%"
+                cy="50%"
+                innerRadius={25}
+                outerRadius={50}
                 dataKey="value"
               >
                 {piedata.map((entry, index) => (

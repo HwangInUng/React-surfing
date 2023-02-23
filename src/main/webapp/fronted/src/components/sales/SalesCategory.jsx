@@ -8,7 +8,7 @@ const CategoryContainer = styled.div`
 
 const CategoryButton = styled.button`
   margin-right: 5px;
-  padding: 10px;
+  padding: 5px 10px;
   background-color: #76c9e8;
   font-size: 1rem;
   font-weight: 600;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SalesCategory from "./SalesCategory";
 import SalesChart from "./SalesChart";
+import SalesTable from "./SalesTable";
 
 const SalesContainer = styled.div`
   flex: 5;
@@ -13,6 +14,7 @@ function Sales() {
     <SalesContainer>
       <SalesCategory />
       <SalesChart />
+      <SalesTable />
     </SalesContainer>
   );
 }
