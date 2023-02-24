@@ -25,6 +25,19 @@ const Table = styled.table`
   }
 `;
 
+const ProgressBar = styled.div`
+  width: 70%;
+  height: 10px;
+  background-color: #e5aa80;
+  border-radius: 10px;
+
+  .progress{
+    width: 30%;
+    height: 100%;
+    background-color: #84a1e5;
+  }
+`;
+
 function SalesTable() {
   return (
     <TableContainer>
@@ -51,7 +64,13 @@ function SalesTable() {
             <td>9,000,000</td>
             <td>4,500,000</td>
             <td>4,500,000</td>
-            <td></td>
+            <td style={{height: "25px", display: "flex", justifyContent: "center", alignItems: "center"}}>
+              30%
+              <ProgressBar>
+                <div className="progress"/>
+              </ProgressBar>
+              70%
+            </td>
           </tr>
         </tbody>
       </Table>
