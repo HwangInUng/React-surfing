@@ -20,6 +20,10 @@ const WidgetLgTitle = styled.h3`
 const WidgetTableWrapper = styled.div`
   max-height: 200px;
   overflow: scroll;
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
 `;
 
 /*

@@ -23,6 +23,7 @@ const SideItem = styled.li`
 `;
 
 const SideLink = styled(Link)`
+  width: 100%;
   text-decoration: none;
   color: white
 `;

@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 const CategoryContainer = styled.div`
-  width: 100%;
   display: flex;
-  margin: 20px;
+  margin: 10px 20px;
+  margin-top: 0px;
 `;
 
 const CategoryButton = styled.button`
   margin-right: 5px;
   padding: 5px 10px;
-  background-color: #76c9e8;
+  background-color: #84a1e5;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 10px;

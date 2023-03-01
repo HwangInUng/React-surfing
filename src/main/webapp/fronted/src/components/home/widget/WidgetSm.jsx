@@ -15,6 +15,10 @@ const WidgetSmContainer = styled.div`
 const WidgetSmWrapper = styled.div`
   max-height: 200px;
   overflow: scroll;
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
 `;
 
 //타이틀 설정
