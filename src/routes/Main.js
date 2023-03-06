@@ -1,9 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import Home from "../components/home/Home";
+import DashBoardMain from "../components/home/DashBoardMain";
 import Sidebar from "../components/main/sidebar/Sidebar";
 import Topbar from "../components/main/topbar/Topbar";
-import Sales from "../components/sales/Sales";
+import Member from "../components/member/Member";
+import Menu from "../components/menu/Menu";
+import Shop from "../components/shop/Shop";
+import Trainer from "../components/trainer/Trainer";
 
 const Container = styled.div`
   display: flex;
@@ -17,8 +20,11 @@ function Main() {
         <Sidebar />
         {/* 해당 위치에 서브로 보여질 라우팅 대상 컴포넌트 등록 */}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/sales" element={<Sales />}></Route>
+          <Route path="/shop" element={<Shop />}></Route>
+          <Route path="/trainer" element={<Trainer />}></Route>
+          <Route path="/menu" element={<Menu />}></Route>
+          <Route path="/sales" element={<DashBoardMain />}></Route>
+          <Route path="/member" element={<Member />}></Route>
         </Routes>
       </Container>
     </div>

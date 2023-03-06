@@ -54,7 +54,7 @@ const PieContent = styled.span`
 `;
 
 
-function SalesChart() {
+function MemberChart() {
   const testdata = [
     { date: '1일', '매출': 400}, { date: '2일', '매출': 300},
     { date: '3일', '매출': 550}, { date: '4일', '매출': 200},
@@ -115,4 +115,4 @@ function SalesChart() {
   );
 }
 
-export default SalesChart;
+export default MemberChart;

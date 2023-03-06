@@ -2,7 +2,6 @@ import styled from "styled-components";
 import SideBarMenu from "./SideBarMenu";
 import HomeIcon from '@mui/icons-material/Home';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import PersonIcon from '@mui/icons-material/Person';
 import SurfingIcon from '@mui/icons-material/Surfing';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
@@ -51,23 +50,22 @@ function Sidebar() {
   */
   const menu = [
     {
-      title: 'DashBoard',
-      sub: ['Home', '매출분석', '강습분석'],
-      link: ['/main/', '/main/sales', '/main/training'], //각 페이지별 to 속성의 경로를 지정
+      title: 'Operate',
+      sub: ['매장등록', '강사등록', '메뉴등록'],
+      link: ['/main/shop', '/main/trainer', '/main/menu'], //각 페이지별 to 속성의 경로를 지정
       icon: [
         <HomeIcon className="sideicon" />,
-        <ShowChartIcon className="sideicon" />,
-        <EventAvailableIcon className="sideicon" />
+        <SurfingIcon className="sideicon" />,
+        <LocalMallIcon className="sideicon" />
       ]
     },
     {
-      title: 'Quick',
-      sub: ['회원관리', '라이딩관리', '상품관리', '예약관리'],
-      link: ['/main/member', '/main/riding', '/main/product', '/main/reservation'], //각 페이지별 to 속성의 경로를 지정
+      title: 'DashBoard',
+      sub: ['매출분석', '회원분석', '예약관리'],
+      link: ['/main/sales', '/main/member', '/main/reservation'], //각 페이지별 to 속성의 경로를 지정
       icon: [
+        <ShowChartIcon className="sideicon" />,
         <PersonIcon className="sideicon" />,
-        <SurfingIcon className="sideicon" />,
-        <LocalMallIcon className="sideicon" />,
         <CalendarMonthIcon className="sideicon" />
       ]
     },

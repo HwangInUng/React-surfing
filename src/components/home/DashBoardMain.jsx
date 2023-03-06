@@ -15,7 +15,7 @@ const WidgetContainer = styled.div`
   margin: 20px;
 `;
 
-function Home() {
+function DashBoardMain() {
   return (
     <HomeContainer>
       <Info />
@@ -28,4 +28,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default DashBoardMain;
