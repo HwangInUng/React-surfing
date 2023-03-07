@@ -8,8 +8,8 @@ function LoginForm(props) {
       <FormSet text="ID" ph="아이디를 입력하세요." type="text"></FormSet>
       <FormSet text="PASS" ph="비밀번호를 입력하세요." type="password"></FormSet>
       <Stack className="col-md-10 mx-auto mt-5" gap={2}>
-        <Bt btName="로그인" onClick={props.login} color="dark"></Bt>
-        <Bt btName="회원가입" onClick={props.switchForm} color="secondary"></Bt>
+        <Bt btName="로그인" onClick={props.login} />
+        <Bt btName="회원가입" onClick={props.switchForm} color="#636363" />
       </Stack>
     </Form>
   );
