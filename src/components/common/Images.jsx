@@ -47,6 +47,7 @@ const AddedImage = styled.div`
     left: 90px;
     background: white;
     color: #7ca2eb;
+    cursor: pointer;
   }
 `;
 
@@ -101,7 +102,7 @@ function Images(props) {
       <div>
         <ImageLabel htmlFor="inputFile" onChange={addImages}>
           <input className="image-input" type="file" id="inputFile" multiple />
-          <span>사진추가</span>
+          <span style={{fontSize: "0.7rem"}}>이미지 등록</span>
         </ImageLabel>
       </div>
       <div style={{ display: "flex" }}>

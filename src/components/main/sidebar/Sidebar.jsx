@@ -52,7 +52,7 @@ function Sidebar() {
     {
       title: 'Operate',
       sub: ['매장등록', '강사등록', '메뉴등록'],
-      link: ['/main/shop', '/main/trainer', '/main/menu'], //각 페이지별 to 속성의 경로를 지정
+      link: ['/main/', '/main/trainer', '/main/menu'], //각 페이지별 to 속성의 경로를 지정
       icon: [
         <HomeIcon className="sideicon" />,
         <SurfingIcon className="sideicon" />,

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Bt from "../common/Bt";
 import DaumPost from "../common/DaumPost";
 import Images from "../common/Images";
+import Input from "../common/Input";
 
 const ShopContainer = styled.div`
   flex: 5;
@@ -16,7 +17,7 @@ const ShopContainer = styled.div`
 
 const InputContainer = styled.div`
   width: 50%;
-  height: 90%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,28 +27,6 @@ const InputContainer = styled.div`
 
   -webkit-box-shadow: 0px 0px 5px -1px #000000; 
   box-shadow: 0px 0px 5px -1px #000000;
-`;
-
-const Input = styled.input`
-  width: 80%;
-  height: 40px;
-  padding: 10px;
-  margin-right: 5px;
-  margin-bottom: 20px;
-  border: 1px solid lightGray;
-  border-radius: 10px;
-
-  * {
-    transition: all ease-in 0.5s;
-  }
-
-  outline: none;
-
-  :focus{
-    box-shadow: 0px 0px 5px #7ca2eb;
-    background: none;
-    background-position: 2%;
-  }
 `;
 
 
@@ -100,18 +79,18 @@ function Shop() {
     formData.append("shopCall", shopCall);
     formData.append("shopStart", shopStart);
     formData.append("shopEnd", shopEnd);
-    
-    for(let i = 0; i < files.length; i++){
+
+    for (let i = 0; i < files.length; i++) {
       formData.append("images", files[i]);
     }
 
     //비동기 요청
     axios.post('/api/shop', formData, {
+      //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       alert(response.data.msg);
     }).catch((error) => {
       alert(error);
@@ -127,7 +106,7 @@ function Shop() {
             name="shopArea"
             // 도, 시, 군, 구에 대한 주소 출력
             value={addressObj.areaAddress}
-            readOnly
+            readOnly={true}
           />
           {/* Daum Post 컴포넌트의 결과를 적용할 state 함수 전달 */}
           <DaumPost setAddressObj={setAddressObj} setLocationObj={setLocationObj} />
@@ -137,41 +116,41 @@ function Shop() {
             name="shopTown"
             // 지역주소를 제외한 상세주소 출력
             value={addressObj.townAddress}
-            readOnly
+            readOnly={true}
           />
           <input type="hidden" name="shopLati" value={locationObj.locationY} />
           <input type="hidden" name="shopLongi" value={locationObj.locationX} />
         </div>
         <Input
+          type="text"
           placeholder="매장명"
           name="shopName"
           value={shopName}
           onChange={handleName}
         />
         <Input
+          type="number"
           placeholder="매장전화번호"
           name="shopCall"
           value={shopCall}
           onChange={handleCall}
         />
         <Input
-          placeholder="시작시간"
+          type="number"
+          placeholder="24시간 기준으로 작성해주세요.(ex: 오전 8시 = 08)"
           name="shopStart"
           value={shopStart}
           onChange={handleStart}
         />
         <Input
-          placeholder="종료시간"
+          type="number"
+          placeholder="24시간 기준으로 작성해주세요.(ex: 오후 8시 = 20)"
           name="shopEnd"
           value={shopEnd}
           onChange={handleEnd}
         />
         <Images setFiles={setFiles} />
-        <Bt
-          type="button"
-          btName="등록하기"
-          onClick={registShop}
-        />
+        <Bt type="button" btName="등록하기" onClick={registShop} />
       </InputContainer>
     </ShopContainer>
   );
