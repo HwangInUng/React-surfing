@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
 import Login from "./routes/Login";
 import Admin from "./routes/Admin";
+import Client from "./routes/Client";
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <Router>
         <Routes>
           {/* 중첩 라우팅을 위하여 와일드카드(*)명시 */}
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/admin/*" element={<Admin />}></Route>
-        </Routes>        
+          {/* <Route path="/" element={<Login />}></Route> */}
+          <Route path="/*" element={<Client />} />
+          <Route path="/admin/*" element={<Admin />} />
+        </Routes>
       </Router>
     </Container>
   );

@@ -32,10 +32,10 @@ const InputContainer = styled.div`
 
 function Shop() {
   //매장의 기본정보 state
-  const [shopName, setShopName] = useState('');
-  const [shopCall, setShopCall] = useState('');
-  const [shopStart, setShopStart] = useState('');
-  const [shopEnd, setShopEnd] = useState('');
+  const [shopName, setShopName] = useState("");
+  const [shopCall, setShopCall] = useState("");
+  const [shopStart, setShopStart] = useState("");
+  const [shopEnd, setShopEnd] = useState("");
 
   //기본정보 이벤트 핸들러
   const handleName = (e) => {

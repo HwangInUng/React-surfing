@@ -18,7 +18,7 @@ const Container = styled.div`
 */
 function Admin() {
   return (
-    <div className="Main">
+    <div>
       <Topbar />
       <Container>
         <Sidebar />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const RegistInput = styled.input`
@@ -23,11 +24,26 @@ const RegistInput = styled.input`
 `;
 
 function Input(props) {
+  // 숫자입력값에 한하여 자릿수 구분을 위한 state
+  // const [num, setNum] = useState(0);
+
+  // ,를 입력하기 위한 함수
+  // const inputPriceFormat = (inputValue) => {
+  //   const comma = (inputValue) => {
+  //     inputValue = String(inputValue);
+  //     return inputValue.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  //   };
+  //   const uncomma = (inputValue) => {
+  //     inputValue = String(inputValue);
+  //     return inputValue.replace(/[^\d]+/g, '');
+  //   }
+  //   return comma(uncomma(inputValue));
+  // }
+
   return <RegistInput
     type={props.type}
     placeholder={props.placeholder}
     name={props.name}
-    // 도, 시, 군, 구에 대한 주소 출력
     value={props.value}
     onChange={props.onChange}
     // readOnly가 적용된 태그에 한해서만 적용

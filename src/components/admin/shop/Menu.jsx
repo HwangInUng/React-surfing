@@ -31,7 +31,7 @@ const InputContainer = styled.div`
 function Menu() {
   //Input value state
   const [menuName, setMenuName] = useState("");
-  const [menuPrice, setMenuPrice] = useState(0);
+  const [menuPrice, setMenuPrice] = useState("");
   const [menuDesc, setMenuDesc] = useState("");
   //상품 대표 이미지
   const [file, setFile] = useState([]);
@@ -80,7 +80,7 @@ function Menu() {
           onChange={handleMenuName}
         />
         <Input
-          type="number"
+          type="text"
           placeholder="가격 입력(ex: 2만원 = 20000)"
           name="menuPrice"
           value={menuPrice}
