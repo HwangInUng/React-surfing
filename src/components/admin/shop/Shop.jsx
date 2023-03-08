@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
-import Bt from "../common/Bt";
-import DaumPost from "../common/DaumPost";
-import Images from "../common/Images";
-import Input from "../common/Input";
+import Bt from "../../common/Bt";
+import DaumPost from "../../common/DaumPost";
+import Images from "../../common/Images";
+import Input from "../../common/Input";
 
 const ShopContainer = styled.div`
   flex: 5;

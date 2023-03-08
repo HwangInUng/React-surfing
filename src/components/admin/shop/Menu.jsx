@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
-import Bt from "../common/Bt";
-import Input from "../common/Input";
-import ProfileImage from "../common/ProfileImage";
+import Bt from "../../common/Bt";
+import Input from "../../common/Input";
+import ProfileImage from "../../common/ProfileImage";
 
 const MenuContainer = styled.div`
   flex: 5;
@@ -93,7 +93,7 @@ function Menu() {
           value={menuDesc}
           onChange={handleMenuDesc}
         />
-        <Bt type="button" btName="등록하기" onClick={registTrainer} />
+        <Bt type="button" btName="등록하기" onClick={registMenu} />
       </InputContainer>
     </MenuContainer>
   );

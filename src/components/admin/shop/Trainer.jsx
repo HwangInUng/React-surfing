@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
-import Bt from "../common/Bt";
-import Input from "../common/Input";
-import ProfileImage from "../common/ProfileImage";
-import Select from "../common/Select";
+import Bt from "../../common/Bt";
+import Input from "../../common/Input";
+import ProfileImage from "../../common/ProfileImage";
+import Select from "../../common/Select";
 
 const TrainerContainer = styled.div`
   flex: 5;
@@ -37,7 +37,7 @@ function Trainer() {
   const [trainerType, setTrainerType] = useState("");
   const [trainerBoard, setTrainerBoard] = useState("");
   //강사 프로필 이미지
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState("");
 
   //유형 및 전문보드 선택 데이터 객체
   const typeData = [
@@ -74,8 +74,8 @@ function Trainer() {
     formData.append("trainerName", trainerName);
     formData.append("trainerCareer", trainerCareer);
     formData.append("trainerType", trainerType);
-    formData.append("trainerType", trainerBoard);
-    formData.append("image", file);
+    formData.append("trainerBoard", trainerBoard);
+    formData.append("profile", file);
 
     //비동기 요청
     axios.post('/api/trainer', formData, {

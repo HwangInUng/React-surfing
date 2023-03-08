@@ -6,7 +6,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
 import Login from "./routes/Login";
-import Main from "./routes/Main";
+import Admin from "./routes/Admin";
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
       <Router>
         <Routes>
           {/* 중첩 라우팅을 위하여 와일드카드(*)명시 */}
-          <Route path="/" element={<Login />}></Route>  
-          <Route path="/main/*" element={<Main />}></Route>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/admin/*" element={<Admin />}></Route>
         </Routes>        
       </Router>
     </Container>

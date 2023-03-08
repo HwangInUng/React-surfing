@@ -1,18 +1,22 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import DashBoardMain from "../components/home/DashBoardMain";
-import Sidebar from "../components/main/sidebar/Sidebar";
-import Topbar from "../components/main/topbar/Topbar";
-import Member from "../components/member/Member";
-import Menu from "../components/shop/Menu";
-import Shop from "../components/shop/Shop";
-import Trainer from "../components/shop/Trainer";
+import DashBoardMain from "../components/admin/home/DashBoardMain";
+import Sidebar from "../components/admin/main/sidebar/Sidebar";
+import Topbar from "../components/admin/main/topbar/Topbar";
+import Member from "../components/admin/member/Member";
+import Menu from "../components/admin/shop/Menu";
+import Shop from "../components/admin/shop/Shop";
+import Trainer from "../components/admin/shop/Trainer";
 
 const Container = styled.div`
   display: flex;
 `;
 
-function Main() {
+/*
+  -해당 페이지를 출력하기 위해서는 로그인이 완료된 상태여야함.
+  -로그인이 되지 않은 상태라면 로그인 화면으로 전환하는 기능 추가
+*/
+function Admin() {
   return (
     <div className="Main">
       <Topbar />
@@ -31,4 +35,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Admin;

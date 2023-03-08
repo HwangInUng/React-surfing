@@ -1,6 +1,6 @@
 import { Form, Stack } from "react-bootstrap";
-import Bt from "../common/Bt";
-import FormSet from "./FormSet";
+import Bt from "../../common/Bt";
+import FormSet from "../login/FormSet";
 
 function JoinForm(props) {
   return (

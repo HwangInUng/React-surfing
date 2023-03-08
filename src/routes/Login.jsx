@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import LoginForm from "../components/login/LoginForm"
-import JoinForm from "../components/login/JoinForm"
+import LoginForm from "../components/admin/login/LoginForm"
+import JoinForm from "../components/admin/login/JoinForm"
 
 //login 페이지
 function Login() {
