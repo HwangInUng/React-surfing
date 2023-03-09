@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import TopbarItem from "./TopbarItem";
 //사용할 아이콘들에 대한 import 진행
 import TopbarMenu from "./TopbarMenu";
+
+const ClientHeader = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 999;
+`;
 
 //상단 nav 요소들을 담을 div(항상 상단에 고정)
 const TopbarDiv = styled.div`
@@ -50,33 +58,61 @@ const TopRight = styled.div`
 
 
 function Topbar() {
+  /*
+    -location : route가 변경될때마다 해당 url을 획득
+    -clicked : nav 메뉴별 클릭 시 조건을 판단할 state
+    -Topbar 렌더링 시 해당 url을 획득하여 clicked와 비교
+    -link와 url이 일치할 경우 active 효과 적용
+  */
+  const location = useLocation();
+  const [clicked, setClicked] = useState("");
+  useEffect(() => {
+    setClicked(location.pathname);
+  }, [location]);
+  
+  // 상단 네비게이션 타이틀 및 링크url
+  const navData = [
+    { title: '홈', link: '/' },
+    { title: '서핑샵', link: '/shop' },
+    { title: '뽐내기', link: '/board' },
+    { title: '이슈', link: '/issue' },
+    { title: '마이', link: '/my' }
+  ];
+  const loginData = {title: 'Login', link: '/login'};
   return (
-    <TopbarDiv>
-      <TopbarWrapper>
-        <TopLeft>
-          <Logo>
-            <img  //Logo 이미지 추가
-              src="/img/logo.png"
-              alt="..."
-              width="40"
-              height="35"
-            />{' '}
-            Shaka
-          </Logo>
-        </TopLeft>
+    <ClientHeader>
+      <TopbarDiv>
+        <TopbarWrapper>
+          <TopLeft>
+            <Logo>
+              <img  //Logo 이미지 추가
+                src="/img/logo.png"
+                alt="..."
+                width="40"
+                height="35"
+              />{' '}
+              Shaka
+            </Logo>
+          </TopLeft>
 
-        {/* 해당 위치를 컴포넌트로 구분하여 사용 */}
-        <TopCenter>
-          <TopbarMenu />
-        </TopCenter>
+          {/* 해당 위치를 컴포넌트로 구분하여 사용 */}
+          <TopCenter>
+            <TopbarMenu
+              navData={navData}
+              clicked={clicked}
+            />
+          </TopCenter>
 
-        <TopRight>
-          <TopbarItem
-            title="login"
-          />
-        </TopRight>
-      </TopbarWrapper>
-    </TopbarDiv>
+          <TopRight>
+            {/* 클릭 시 로그인 페이지로 넘어가며 active 효과 불필요 */}
+            <TopbarItem
+              link={loginData.link}
+              title={loginData.title}
+            />
+          </TopRight>
+        </TopbarWrapper>
+      </TopbarDiv>
+    </ClientHeader>
   );
 }
 

@@ -13,32 +13,29 @@ const Item = styled.li`
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 20%;
 
   &.active,
   &:hover {
-    color: black;
-    background-color: #76c9e8;
+    border-bottom: 2px solid #7ca2eb;
   }
 `;
 
 const ItemLink = styled(Link)`
+color: black !important;
   width: 100%;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.2rem;
-  color: black
 `;
 
-function TopbarItem({ icon, title, link, clicked, onClick }) {
-  return <Item
-    className={clicked === title ? "active" : null} //클릭 여부에 따라 액티브 활성화
-    // 클릭 메서드 전달
-    onClick={onClick}> 
-    {/* 
-     -props로 전달받은 정보 주입
-     -link : route path 경로
-    */}
+/*
+  -title : item 타이틀
+  -link : to속성으로 전달될 url주소
+  -clicked : 클릭 시 active 부여를 위한 판단값
+*/
+function TopbarItem({ title, link, clicked }) {
+  return <Item className={clicked === link ? "active" : null}>
     <ItemLink to={link}>
       {title}
     </ItemLink>

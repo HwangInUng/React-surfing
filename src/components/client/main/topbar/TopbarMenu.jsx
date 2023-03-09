@@ -14,18 +14,23 @@ const TopbarList = styled.ul`
   padding: 0.5rem;
 `;
 
-function TopbarMenu({ menu, onClick, clicked }) {
+function TopbarMenu({ navData, clicked }) {
   return (
     <MenuContainer>
       <TopbarList>
         {/* // clicked : Item클릭 시 값이 변경될 조건 변수
         // onClick : sub(Item명)을 매개변수로 전달받아 clicekd 값 변경
         // clicked={clicked} */}
-        <TopbarItem title="홈" />
-        <TopbarItem title="서핑샵" />
-        <TopbarItem title="뽐내기" />
-        <TopbarItem title="이슈" />
-        <TopbarItem title="마이" />
+        {navData && navData.map((data, index) => {
+          return (
+            <TopbarItem
+              key={index}
+              title={data.title}
+              link={data.link}
+              clicked={clicked}
+            />
+          )
+        })}
       </TopbarList>
     </MenuContainer>
   );

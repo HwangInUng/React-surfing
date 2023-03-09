@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
-import Login from "./routes/Login";
 import Admin from "./routes/Admin";
 import Client from "./routes/Client";
 

@@ -2,24 +2,24 @@ import styled from "styled-components";
 import Add from "./content/Add";
 import PopularShop from "./content/PopularShop";
 import RecentBoard from "./content/RecentBoard";
-import Waether from "./content/Waether";
+import Waether from "./content/Weather";
 
 const ContentContainer = styled.div`
   position: relative;
-  top: 200px;
+  top: 150px;
   margin: auto;
   margin-bottom: 200px;
   width: 60%;
-  background: lightGray;
+  background: #eeeeee;
   border-radius: 20px;
 
   -webkit-box-shadow: 0px 0px 5px 0px #555; 
   box-shadow: 0px 0px 5px 0px #555;
+  }
 `;
 
 const ContentBox = styled.div`
   width: 100%;
-  border: 1px solid tomato;
   border-radius: 20px;
   padding: 10px;
   margin-bottom: 30px;

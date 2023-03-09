@@ -1,19 +1,10 @@
-import { Route, Router, Routes } from "react-router-dom";
-import styled from "styled-components";
+import { Route, Routes } from "react-router-dom";
 import Main from "../components/client/main/Main";
-import Topbar from "../components/client/main/topbar/Topbar";
-
-//전체를 감쌀 컨테이너
-const ClientHeader = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 999;
-`;
-
-const ClientFooter = styled.footer`
-  background: #dcdcdc;
-  height: 100px;
-`;
+import ClientShop from "../components/client/shop/ClientShop";
+import ClientBoard from "../components/client/board/ClientBoard";
+import ClientIssue from "../components/client/issue/ClientIssue";
+import ClientMy from "../components/client/my/ClientMy";
+import ClientLogin from "../components/client/login/ClientLogin";
 
 /*
   -client 화면을 구성할 대표 view
@@ -21,15 +12,14 @@ const ClientFooter = styled.footer`
 function Client() {
   return (
     <>
-      <ClientHeader>
-        <Topbar />
-      </ClientHeader>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/shop" element={<ClientShop />} />
+        <Route path="/board" element={<ClientBoard />} />
+        <Route path="/issue" element={<ClientIssue />} />
+        <Route path="/my" element={<ClientMy />} />
+        <Route path="/login" element={<ClientLogin />} />
       </Routes>
-      <ClientFooter>
-        hi
-      </ClientFooter>
     </>
   );
 }

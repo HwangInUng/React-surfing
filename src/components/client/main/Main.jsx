@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import MainContent from "./MainContent";
+import Topbar from "./topbar/Topbar";
+import Footer from "./Footer"
 
 const MainContainer = styled.div`
   position: relative;
@@ -22,12 +24,16 @@ const MainImageDiv = styled.div`
 
 function Main() {
   return (
+    <>
+    <Topbar />
     <MainContainer>
       <MainImageDiv>
         <img src="./img/main.jpg" className="main-image" />
       </MainImageDiv>
       <MainContent />
     </MainContainer>
+    <Footer/>
+    </>
   );
 }
 
