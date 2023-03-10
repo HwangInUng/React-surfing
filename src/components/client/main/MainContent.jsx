@@ -24,6 +24,7 @@ const ContentBox = styled.div`
   padding: 10px;
   margin-bottom: 30px;
   background: white;
+  box-shadow: 0px 0px 3px 0px #7ca2eb;
 `;
 
 function MainContent() {

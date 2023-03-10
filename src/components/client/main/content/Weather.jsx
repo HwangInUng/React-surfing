@@ -1,4 +1,3 @@
-import { BsFillCloudSunFill, BsPinMapFill } from "react-icons/bs";
 import styled from "styled-components";
 
 const WeatherContainer = styled.div`
@@ -12,14 +11,20 @@ const WeatherContainer = styled.div`
 const WeatherBox = styled.div`
   margin-bottom: 10px;
 
-& > label, svg{
+  & > label {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 
     font-size: 2rem;
     font-weight: bold;
+
+    & > img {
+      width: 2em;
+      height: 2em;
+    }
   }
+
 `;
 
 const Wrapper = styled.div`
@@ -31,8 +36,40 @@ const Wrapper = styled.div`
 const LeftBox = styled.div`
   width: 40%;
   margin-right: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px 0px #7ca2eb;
+  border-radius: 20px;
+  padding: 15px 10px;
+  box-shadow: 0px 0px 5px 0px #7ca2eb;
+
+  .left-inner{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    justify-content: center;
+    
+    .title{
+      border-bottom: 2px solid #7ca2eb;
+    }
+
+    .flex{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .around{
+    justify-content: space-around;
+  }
+  `;
+
+const InnerLabel = styled.label`
+  font-size: ${props => props.size || "2.3rem"};
+  font-weight: bold;
+  `;
+
+const InnerImg = styled.img`
+  width: ${props => props.size || "4em"};
+  height: ${props => props.size || "4em"};
+  margin-right: 10px;
 `;
 
 const RightBox = styled.div`
@@ -43,86 +80,82 @@ const RightBox = styled.div`
   justify-content: center;
 `;
 
-const Today = styled.div`
-  
-`;
-
 const Days = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 20px;
-  border: 1px solid #e5e5e5;
   border-radius: 20px;
-  box-shadow: 0px 0px 3px 0px #7ca2eb;
+  box-shadow: 0px 0px 5px 0px #7ca2eb;
 
-  & > label {
-    font-size: 1.1rem;
-    font-weight: bold;
+  
+  & > div {
+    width: 20%;
+    text-align: center;
+
+    & > label {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    & > img{
+      width: 1.5em;
+      height: 1.8em;
+    }
   }
 
-  & > svg{
-    width: 1.5em;
-    height: 1.5em;
-  }
 `;
 
 function Weather() {
+  //날씨 더미 데이터
+  const imgSrc = "./img/weather/";
+  const weatherData = [
+    { title: "월", img: "sunny.png", temp: "12", wave: "1.2", wind: "북동-3" },
+    { title: "화", img: "rain.png", temp: "18", wave: "0.6", wind: "남서-4" },
+    { title: "수", img: "wind.png", temp: "15", wave: "0.3", wind: "북-1" },
+    { title: "목", img: "sunny.png", temp: "14", wave: "0.5", wind: "동-2" },
+    { title: "금", img: "cloud.png", temp: "19", wave: "1.1", wind: "서-5" },
+    { title: "토", img: "rain.png", temp: "22", wave: "0.7", wind: "동-2" }
+  ];
   return (
     <WeatherContainer>
       <WeatherBox>
         <label>강원도 양양군
-          <BsPinMapFill />
+          <img src="./img/location/pin.png" className="inner-img" alt="..." />
         </label>
       </WeatherBox>
       <Wrapper>
         <LeftBox className="box-border">
-          <Today>테스트</Today>
+          <div className="left-inner">
+            <InnerLabel className="title">3월 3일 (일)</InnerLabel>
+          </div>
+          <div className="left-inner around">
+            <InnerImg src="./img/weather/storm.png" alt="..." />
+            <InnerLabel size={"3rem"}>23℃</InnerLabel>
+          </div>
+          <div className="left-inner around">
+            <div className="flex">
+              <InnerImg src="./img/weather/wave.png" size={"3em"} alt="..." />
+              <InnerLabel size={"1.7rem"}>1.2m</InnerLabel>
+            </div>
+            <div className="flex">
+              <InnerImg src="./img/weather/wind.png" size={"3em"} alt="..." />
+              <InnerLabel size={"1.7rem"}>북동-3m/s</InnerLabel>
+            </div>
+          </div>
         </LeftBox>
         <RightBox className="box-border">
-          <Days>
-            <label>월요일</label>
-            <BsFillCloudSunFill/>
-            <label>-1℃</label>
-            <label>1.2m</label>
-            <label>북/3kt</label>
-          </Days>
-          <Days>
-            <label>월요일</label>
-            <BsFillCloudSunFill/>
-            <label>-1℃</label>
-            <label>1.2m</label>
-            <label>북/3kt</label>
-          </Days>
-          <Days>
-            <label>월요일</label>
-            <BsFillCloudSunFill/>
-            <label>-1℃</label>
-            <label>1.2m</label>
-            <label>북/3kt</label>
-          </Days>
-          <Days>
-            <label>월요일</label>
-            <BsFillCloudSunFill/>
-            <label>-1℃</label>
-            <label>1.2m</label>
-            <label>북/3kt</label>
-          </Days>
-          <Days>
-            <label>월요일</label>
-            <BsFillCloudSunFill/>
-            <label>-1℃</label>
-            <label>1.2m</label>
-            <label>북/3kt</label>
-          </Days>
-          <Days>
-            <label>월요일</label>
-            <BsFillCloudSunFill/>
-            <label>-1℃</label>
-            <label>1.2m</label>
-            <label>북/3kt</label>
-          </Days>
+          {weatherData && weatherData.map((weather, index) => {
+            return (
+              <Days key={index}>
+                <div><label>3월 {4 + index}일 ({weather.title})</label></div>
+                <div><img src={imgSrc + weather.img} alt={weather.img + "-" + index} /></div>
+                <div><label>{weather.temp}℃</label></div>
+                <div><label>{weather.wave}m</label></div>
+                <div><label>{weather.wind}m/s</label></div>
+              </Days>
+            )
+          })}
         </RightBox>
       </Wrapper>
     </WeatherContainer>
