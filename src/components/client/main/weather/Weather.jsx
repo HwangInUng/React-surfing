@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import WeatherSearch from "./WeatherSearch";
 
 const WeatherContainer = styled.div`
   padding: 10px;
@@ -95,7 +97,7 @@ const Days = styled.div`
     text-align: center;
 
     & > label {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: bold;
     }
     & > img{
@@ -107,6 +109,17 @@ const Days = styled.div`
 `;
 
 function Weather() {
+  //title state
+  const [spotTitle, setSpotTitle] = useState({
+    spotIdx: 12,
+    localName: "강원도",
+    townName: "양양군",
+    spotName: "강현면",
+    spotLati: 38.147243,
+    spotLongi: 128.6098,
+  });
+  //타이틀에 출력할 조합 변수
+  const title = spotTitle.localName + " " + spotTitle.townName + " " + spotTitle.spotName;
   //날씨 더미 데이터
   const imgSrc = "./img/weather/";
   const weatherData = [
@@ -117,11 +130,26 @@ function Weather() {
     { title: "금", img: "cloud.png", temp: "19", wave: "1.1", wind: "서-5" },
     { title: "토", img: "rain.png", temp: "22", wave: "0.7", wind: "동-2" }
   ];
+  //검색 모달 클릭여부 state
+  const [open, setOpen] = useState(false);
   return (
     <WeatherContainer>
+      {open ?
+        <WeatherSearch
+          open={open}
+          setOpen={setOpen}
+          setSpotTitle={setSpotTitle}
+        />
+      : null}
       <WeatherBox>
-        <label>강원도 양양군
-          <img src="./img/location/pin.png" className="inner-img" alt="..." />
+        <label>
+          {title}
+          <img
+            src="./img/location/pin.png"
+            className="inner-img"
+            alt="..."
+            onClick={() => setOpen((current) => !current)}
+          />
         </label>
       </WeatherBox>
       <Wrapper>

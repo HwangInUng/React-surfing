@@ -58,14 +58,6 @@ function Trainer() {
   const handleTrainerCareer = (e) => {
     setTrainerCareer(e.target.value);
   }
-  const handleTrainerType = (e) => {
-    console.log(e.target.value);
-    setTrainerType(e.target.value);
-  }
-  const handleTrainerBoard = (e) => {
-    console.log(e.target.value);
-    setTrainerBoard(e.target.value);
-  }
 
   //강사 등록 요청 함수
   const registTrainer = () => {
@@ -108,8 +100,8 @@ function Trainer() {
           onChange={handleTrainerCareer}
         />
         <div style={{ width: "80%" }}>
-          <Select data={typeData} onChange={handleTrainerType} />
-          <Select data={boardData} onChange={handleTrainerBoard} />
+          <Select data={typeData} onChange={setTrainerType} />
+          <Select data={boardData} onChange={setTrainerBoard} />
         </div>
         <Bt type="button" btName="등록하기" onClick={registTrainer} />
       </InputContainer>

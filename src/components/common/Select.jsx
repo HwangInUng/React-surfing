@@ -18,13 +18,13 @@ const RegistSelect = styled.select`
   }
 `;
 
-function Select(props) {
+function Select({data, onChange}) {
   return (
-    <RegistSelect onChange={props.onChange}>
+    <RegistSelect onChange={(e) => onChange(e.target.value)}>
       <option>선택하세요.</option>
-      {props.data && props.data.map((data, index) => {
+      {data && data.map((item, index) => {
         return (
-          <option key={index} value={data.value}>{data.option}</option>
+          <option key={index} value={item}>{item}</option>
         )
       })}
     </RegistSelect>

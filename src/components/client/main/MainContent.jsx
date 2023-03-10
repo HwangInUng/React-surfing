@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Add from "./content/Add";
 import PopularShop from "./content/PopularShop";
 import RecentBoard from "./content/RecentBoard";
-import Waether from "./content/Weather";
+import Waether from "./weather/Weather";
 
 const ContentContainer = styled.div`
   position: relative;
