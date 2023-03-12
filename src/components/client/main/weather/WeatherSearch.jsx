@@ -8,9 +8,11 @@ const SpotBt = styled.button`
   border: 1px solid #7ca2eb;
   border-radius: 10px;
   padding: 5px 10px;
+  font-size: 1.1rem;
   color: #7ca2eb;
   background: white;
-  margin-right: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 
   &:hover{
     color: white;
@@ -18,7 +20,7 @@ const SpotBt = styled.button`
   }
 `;
 
-function WeatherSearch({ open, setOpen, setSpotTitle }) {
+function WeatherSearch({ open, setOpen, setSelectSpot }) {
   //로드시 최초로 요청될 지역리스트를 담을 state
   const [localList, setLocalList] = useState([]);
   //local 선택시 동네리스트를 담을 state
@@ -59,17 +61,12 @@ function WeatherSearch({ open, setOpen, setSpotTitle }) {
     }
     getSpotList();
   }, [town]);
-  const getWeather = async (spot) => {
-    const response = await axios.post("/api/client/weather", spot);
-    console.log(response.data);
-  }
   //spotBt 클릭 시 모달창이 닫히고, 해당 정보 전달
   const selectSpot = (spot) => {
     console.log(spot);
     setSpot(spot);
-    setSpotTitle(spot);
+    setSelectSpot(spot);
     setOpen((current) => !current);
-    getWeather(spot);
   }
 
   return (
@@ -77,17 +74,18 @@ function WeatherSearch({ open, setOpen, setSpotTitle }) {
       <Modal
         isOpen={open}
         appElement={document.getElementById('root')}
+        onRequestClose={ () => setOpen((current) => !current)}
         style={{
           overlay: {
             boxShadow: "0px 0px 3px 0px #7ca2eb",
             padding: 10,
             borderRadius: 20,
             position: 'fixed',
-            width: "50%",
+            width: "30%",
             transition: "opacity 200ms ease-in-out",
-            height: "50%",
-            top: 100,
-            left: "25%",
+            height: "40%",
+            top: 200,
+            left: "35%",
             backgroundColor: "white"
           },
           content: {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Loading from "../../../common/Loading";
 import WeatherSearch from "./WeatherSearch";
 
 const WeatherContainer = styled.div`
@@ -76,6 +77,9 @@ const InnerImg = styled.img`
 `;
 
 function Weather() {
+  // api처리 로딩 state
+  const [loading, setLoading] = useState(true);
+
   // 이미지 변수
   const imgSrc = "./img/weather/";
   const ext = ".png";
@@ -84,7 +88,7 @@ function Weather() {
   const [weatherData, setWeatherData] = useState([]);
 
   // 로드 시 api에 요청할 지역 state
-  const [spotTitle, setSpotTitle] = useState({
+  const [selectSpot, setSelectSpot] = useState({
     spotIdx: 12,
     localName: "강원도",
     townName: "양양군",
@@ -92,18 +96,20 @@ function Weather() {
     spotLati: 38.147243,
     spotLongi: 128.6098,
   });
+  const getWeather = async () => {
+    const response = await axios.post("/api/client/weather", selectSpot);
+    handleWeatherData(response.data);
+    setLoading(false);
+  }
 
   //로드 시 기본설정 지역에 대한 기상정보 획득
   useEffect(() => {
-    const getWeather = async () => {
-      const response = await axios.post("/api/client/weather", spotTitle);
-      handleWeatherData(response.data);
-    }
+    setLoading(true);
     getWeather();
-  }, []);
+  }, [selectSpot]);
 
   //타이틀에 출력할 조합 변수
-  const title = spotTitle.localName + " " + spotTitle.townName + " " + spotTitle.spotName;
+  const title = selectSpot.localName + " " + selectSpot.townName + " " + selectSpot.spotName;
 
   //API 반환결과 가공 함수
   const handleWeatherData = (weatherList) => {
@@ -199,11 +205,12 @@ function Weather() {
   const [open, setOpen] = useState(false);
   return (
     <WeatherContainer>
+      {loading ? <Loading open={loading}/> : null}
       {open ?
         <WeatherSearch
           open={open}
           setOpen={setOpen}
-          setSpotTitle={setSpotTitle}
+          setSelectSpot={setSelectSpot}
         />
         : null}
       <WeatherBox>
@@ -225,7 +232,7 @@ function Weather() {
                 <InnerLabel className="title">{weather.day}</InnerLabel>
               </div>
               <div className="left-inner around">
-                <InnerImg src={imgSrc + weather.sky + ext} alt={weather.sky + ".png"} />
+                <InnerImg src={imgSrc + weather.sky + ext} alt={weather.sky + ext} />
                 <InnerLabel size={"3rem"}>{weather.tmp + "℃"}</InnerLabel>
               </div>
               <div className="left-inner around">
