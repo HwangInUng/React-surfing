@@ -30,34 +30,46 @@ function WeatherSearch({ open, setOpen, setSpotTitle }) {
   //townselect에서 담은 town value를 저장할 state
   const [town, setTown] = useState("");
   //spot을 담을 state
-  const [spot, setSpot] = useState("");
+  const [spot, setSpot] = useState({
+    spotIdx: 12,
+    localName: "강원도",
+    townName: "양양군",
+    spotName: "강현면",
+    spotLati: 38.147243,
+    spotLongi: 128.6098,
+  });
   useEffect(() => { //로드 시 localList 초기화
     const getLocalList = async () => {
-      const response = await axios.get("/api/spot-local");
+      const response = await axios.get("/api/client/spot-local");
       setLocalList(response.data);
     }
     getLocalList();
   }, []);
   useEffect(() => { //local을 선택 시 townList 호출
     const getTownList = async () => {
-      const response = await axios.get("/api/spot-town?localName=" + local);
+      const response = await axios.get("/api/client/spot-town?localName=" + local);
       setTownList(response.data);
     }
     getTownList(local);
   }, [local]);
   useEffect(() => { //town을 선택 시 spotList 호출
     const getSpotList = async () => {
-      const response = await axios.get("/api/spot?townName=" + town);
+      const response = await axios.get("/api/client/spot?townName=" + town);
       setSpotList(response.data);
     }
     getSpotList();
   }, [town]);
+  const getWeather = async (spot) => {
+    const response = await axios.post("/api/client/weather", spot);
+    console.log(response.data);
+  }
   //spotBt 클릭 시 모달창이 닫히고, 해당 정보 전달
   const selectSpot = (spot) => {
     console.log(spot);
     setSpot(spot);
     setSpotTitle(spot);
     setOpen((current) => !current);
+    getWeather(spot);
   }
 
   return (
