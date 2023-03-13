@@ -24,7 +24,7 @@ const TopbarDiv = styled.div`
 
 //요소들의 배치를 담당할 div
 const TopbarWrapper = styled.div`
-  width: 60%;
+  width: 50%;
   height: 100%;
   padding: 0px 20px;
   display: flex;

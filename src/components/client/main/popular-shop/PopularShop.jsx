@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import styled from "styled-components";
+import ShopItem from "./ShopItem";
 
 const PopularDiv = styled.div`
-  height: 300px;
+  height: 350px;
 
   .popular-title{
     font-size: 1.7rem;
@@ -16,14 +16,6 @@ const ShopWrapper = styled.div`
   width: 100%;
   height: 85%;
   align-items: center;
-
-  .shop-item{
-    position: absolute;
-    width: 30%;
-    height: 100%;
-    margin-right: 10px;
-    background: tomato;
-  }
 `;
 
 function PopularShop() {
@@ -39,9 +31,7 @@ function PopularShop() {
       <ShopWrapper id="wrapper">
         {testData && testData.map((data, index) => {
           return (
-            <div className="shop-item" style={{ left: `${31 * (index)}%` }} key={index}>
-              
-            </div>
+            <ShopItem key={index} data={data} index={index}/>
           )
         })}
       </ShopWrapper>
