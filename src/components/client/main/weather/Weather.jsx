@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 
 const LeftBox = styled.div`
   width: 40%;
-  margin-right: 20px;
+  margin: 0px 3px;
   border-radius: 20px;
   padding: 15px 10px;
   box-shadow: 0px 0px 5px 0px #7ca2eb;
@@ -77,9 +77,6 @@ const InnerImg = styled.img`
 `;
 
 function Weather() {
-  // api처리 로딩 state
-  const [loading, setLoading] = useState(true);
-
   // 이미지 변수
   const imgSrc = "./img/weather/";
   const ext = ".png";
@@ -96,15 +93,14 @@ function Weather() {
     spotLati: 38.147243,
     spotLongi: 128.6098,
   });
+  
   const getWeather = async () => {
     const response = await axios.post("/api/client/weather", selectSpot);
+    console.log(response.data);
     handleWeatherData(response.data);
-    setLoading(false);
   }
-
   //로드 시 기본설정 지역에 대한 기상정보 획득
   useEffect(() => {
-    setLoading(true);
     getWeather();
   }, [selectSpot]);
 
@@ -118,10 +114,10 @@ function Weather() {
     let preDay = 0;
     weatherList.map((weather, index) => {
       // 당일에 해당하는 요일 세팅
-      if (index == 0) {
+      if (index === 0) {
         preDay = Number(weather.day);
       } else { //당일을 기준으로 1일씩 증가
-        if (preDay == 7) { //당일이 토요일인 경우 일요일로 초기화
+        if (preDay === 7) { //당일이 토요일인 경우 일요일로 초기화
           preDay = 1;
         }
         preDay = preDay + 1;
@@ -167,15 +163,15 @@ function Weather() {
   }
   const handleSky = (sky, pty) => {
     let result = "";
-    if (sky <= 5 && pty == 0) {
+    if (sky <= 5 && pty === 0) {
       result = "sunny";
-    } else if ((sky >= 6 && sky <= 8) && pty == 0) {
+    } else if ((sky >= 6 && sky <= 8) && pty === 0) {
       result = "cloud";
-    } else if (sky > 8 && pty == 0) {
+    } else if (sky > 8 && pty === 0) {
       result = "cloud";
     } else if (pty > 0 && pty < 3) {
       result = "rain";
-    } else if (pty == 3) {
+    } else if (pty === 3) {
       result = "snow";
     }
     return result;
@@ -183,21 +179,21 @@ function Weather() {
   const handleWindDirection = (vec) => {
     let result = "";
     if (vec >= 0 && vec <= 45) {
-      result = "북-북동";
+      result = "북동";
     } else if (vec > 45 && vec <= 90) {
-      result = "북동-동";
+      result = "동";
     } else if (vec > 90 && vec <= 135) {
-      result = "동-남동";
+      result = "남동";
     } else if (vec > 135 && vec <= 180) {
-      result = "남동-남";
+      result = "남";
     } else if (vec > 180 && vec <= 225) {
-      result = "남-남서";
+      result = "남서";
     } else if (vec > 225 && vec <= 270) {
-      result = "남서-서";
+      result = "서";
     } else if (vec > 270 && vec <= 315) {
-      result = "서-북서";
+      result = "북서";
     } else if (vec > 315 && vec <= 359) {
-      result = "북서-북";
+      result = "북";
     }
     return result;
   }
@@ -205,7 +201,6 @@ function Weather() {
   const [open, setOpen] = useState(false);
   return (
     <WeatherContainer>
-      {loading ? <Loading open={loading}/> : null}
       {open ?
         <WeatherSearch
           open={open}
@@ -238,11 +233,11 @@ function Weather() {
               <div className="left-inner around">
                 <div className="flex">
                   <InnerImg src="./img/weather/wave.png" size={"3em"} alt="..." />
-                  <InnerLabel size={"1.7rem"}>{weather.wav + "m"}</InnerLabel>
+                  <InnerLabel size={"1.5rem"}>{weather.wav + "m"}</InnerLabel>
                 </div>
                 <div className="flex">
                   <InnerImg src="./img/weather/wind.png" size={"3em"} alt="..." />
-                  <InnerLabel size={"1.7rem"}>{weather.vec + " " + weather.wsd + "m/s"}</InnerLabel>
+                  <InnerLabel size={"1.5rem"}>{weather.vec + " " + weather.wsd + "m/s"}</InnerLabel>
                 </div>
               </div>
             </LeftBox>
