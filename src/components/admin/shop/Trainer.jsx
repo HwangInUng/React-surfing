@@ -40,16 +40,8 @@ function Trainer() {
   const [file, setFile] = useState("");
 
   //유형 및 전문보드 선택 데이터 객체
-  const typeData = [
-    { option: "퍼포먼스", value: "퍼포먼스" },
-    { option: "클래식", value: "클래식" },
-    { option: "올라운드", value: "올라운드" },
-  ];
-  const boardData = [
-    { option: "롱보드", value: "롱보드" },
-    { option: "숏보드", value: "숏보드" },
-    { option: "미드렝스", value: "미드렝스" },
-  ];
+  const typeData = ["퍼포먼스", "클래식", "올라운드"];
+  const boardData = ["롱보드", "숏보드", "미드렝스"];
 
   //onChange 이벤트 핸들러
   const handleTrainerName = (e) => {

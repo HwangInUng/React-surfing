@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Add from "./content/Add";
-import PopularShop from "./content/PopularShop";
+import Add from "./add/Add";
+import PopularShop from "./popular-shop/PopularShop";
 import RecentBoard from "./content/RecentBoard";
 import Waether from "./weather/Weather";
 
@@ -9,7 +9,7 @@ const ContentContainer = styled.div`
   top: 150px;
   margin: auto;
   margin-bottom: 200px;
-  width: 60%;
+  width: 50%;
   background: #eeeeee;
   border-radius: 20px;
 
@@ -22,9 +22,8 @@ const ContentBox = styled.div`
   width: 100%;
   border-radius: 20px;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   background: white;
-  box-shadow: 0px 0px 3px 0px #7ca2eb;
 `;
 
 function MainContent() {

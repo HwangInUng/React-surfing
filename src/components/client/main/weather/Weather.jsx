@@ -42,7 +42,7 @@ const LeftBox = styled.div`
   margin: 0px 3px;
   border-radius: 20px;
   padding: 15px 10px;
-  box-shadow: 0px 0px 5px 0px #7ca2eb;
+  box-shadow: 0px 0px 3px 0px #7ca2eb;
 
   .left-inner{
     display: flex;

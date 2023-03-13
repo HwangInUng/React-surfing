@@ -1,13 +1,15 @@
 import styled from "styled-components";
+import AddSlider from "./AddSlider";
 
 const AddDiv = styled.div`
-  height: 150px;
+  height: 200px;
+  margin: -10px;
 `;
 
 function Add(){
   return (
     <AddDiv>
-      광고이미지
+      <AddSlider></AddSlider>
     </AddDiv>
   );
 }
