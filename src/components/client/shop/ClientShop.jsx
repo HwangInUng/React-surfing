@@ -49,14 +49,12 @@ function ClientShop() {
     },
   ];
 
-  //타이틀 icon
-  const icon = [<BsPinMapFill />, <BsFillMapFill />];
   return (
     <>
       <Topbar />
       <ClientContainer>
         {/* 상단 지역명 */}
-        <ShopTitle icon={icon} />
+        <ShopTitle />
         {/* 카테고리 영역 */}
         <ShopCategory data={buttonData} clicked={clicked} onClick={handleClicked} />
         {/* 서핑샵 리스트 영역 */}

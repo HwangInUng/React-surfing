@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Loading from "../../../common/Loading";
 import WeatherSearch from "./WeatherSearch";
 
 const WeatherContainer = styled.div`
   padding: 10px;
 
   .box-border{
-    height: 250px;
+    height: 35vh;
   }
 `;
 
@@ -24,8 +23,8 @@ const WeatherBox = styled.div`
     font-weight: bold;
 
     & > img {
-      width: 2em;
-      height: 2em;
+      width: 3em;
+      height: 3em;
     }
   }
 
@@ -37,21 +36,21 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const LeftBox = styled.div`
-  width: 40%;
+const DayBox = styled.div`
+  width: 33%;
   margin: 0px 3px;
   border-radius: 20px;
-  padding: 15px 10px;
+  padding: 1.2rem 1rem;
   box-shadow: 0px 0px 3px 0px #7ca2eb;
 
   .left-inner{
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
     justify-content: center;
+    margin-bottom: 10px;
     
     .title{
-      border-bottom: 2px solid #7ca2eb;
+      border-bottom: 1px solid #7ca2eb;
     }
 
     .flex{
@@ -66,13 +65,13 @@ const LeftBox = styled.div`
   `;
 
 const InnerLabel = styled.label`
-  font-size: ${props => props.size || "2.3rem"};
+  font-size: ${props => props.size || "2.0rem"};
   font-weight: bold;
   `;
 
 const InnerImg = styled.img`
-  width: ${props => props.size || "4em"};
-  height: ${props => props.size || "4em"};
+  width: ${props => props.width || "4rem"};
+  height: ${props => props.height || "4rem"};
   margin-right: 10px;
 `;
 
@@ -222,25 +221,25 @@ function Weather() {
       <Wrapper>
         {weatherData && weatherData.map((weather, index) => {
           return (
-            <LeftBox className="box-border" key={index}>
+            <DayBox className="box-border" key={index}>
               <div className="left-inner">
                 <InnerLabel className="title">{weather.day}</InnerLabel>
               </div>
               <div className="left-inner around">
-                <InnerImg src={imgSrc + weather.sky + ext} alt={weather.sky + ext} />
-                <InnerLabel size={"3rem"}>{weather.tmp + "℃"}</InnerLabel>
+                <InnerImg src={imgSrc + weather.sky + ext} width={"4rem"} height={"4rem"} alt={weather.sky + ext} />
+                <InnerLabel size={"2.5rem"}>{weather.tmp + "℃"}</InnerLabel>
               </div>
-              <div className="left-inner around">
-                <div className="flex">
-                  <InnerImg src="./img/weather/wave.png" size={"3em"} alt="..." />
+              <div>
+                <div className="left-inner around">
+                  <InnerImg src="./img/weather/wave.png" width={"3rem"} height={"3rem"} alt="..." />
                   <InnerLabel size={"1.5rem"}>{weather.wav + "m"}</InnerLabel>
                 </div>
-                <div className="flex">
-                  <InnerImg src="./img/weather/wind.png" size={"3em"} alt="..." />
+                <div className="left-inner around">
+                  <InnerImg src="./img/weather/wind.png" width={"3rem"} height={"3rem"} alt="..." />
                   <InnerLabel size={"1.5rem"}>{weather.vec + " " + weather.wsd + "m/s"}</InnerLabel>
                 </div>
               </div>
-            </LeftBox>
+            </DayBox>
           )
         })}
       </Wrapper>

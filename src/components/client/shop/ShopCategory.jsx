@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const CategoryBox = styled.div`
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 const CategoryBt = styled.button`

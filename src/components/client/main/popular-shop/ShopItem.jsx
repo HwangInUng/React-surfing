@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Item = styled.div`
   position: absolute;
-  width: 30%;
+  width: 35%;
   height: 100%;
   margin-right: 10px;
   padding: 5px;
@@ -29,6 +29,7 @@ const BottomBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 0.4rem;
   }
   .shop-label{
     font-size: 1.2rem;
@@ -43,9 +44,9 @@ const BottomBox = styled.div`
 `;
 
 function ShopItem({ data, index }) {
-  return <Item style={{ left: `${31 * (index)}% ` }}>
+  return <Item style={{ left: `${36 * (index)}% ` }}>
     <TopBox>
-      <img className="shop-img" src="./img/test.jpg" alt="..." />
+      <a href="/shop"><img className="shop-img" src="./img/test.jpg" alt="..." /></a>
     </TopBox>
     <BottomBox>
       <div className="info-box">

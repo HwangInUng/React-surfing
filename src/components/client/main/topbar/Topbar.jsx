@@ -38,6 +38,10 @@ const Logo = styled.span`
   font-size: 30px;
   color: darkblue;
   cursor: pointer;
+  .home-img{
+    width: 20vh;
+    height: 50px;
+  }
 `;
 
 //Nav의 왼쪽 영역
@@ -69,7 +73,7 @@ function Topbar() {
   useEffect(() => {
     setClicked(location.pathname);
   }, [location]);
-  
+
   // 상단 네비게이션 타이틀 및 링크url
   const navData = [
     { title: '홈', link: '/' },
@@ -78,20 +82,20 @@ function Topbar() {
     { title: '이슈', link: '/issue' },
     { title: '마이', link: '/my' }
   ];
-  const loginData = {title: 'Login', link: '/login'};
+  const loginData = { title: 'Login', link: '/login' };
   return (
     <ClientHeader>
       <TopbarDiv>
         <TopbarWrapper>
           <TopLeft>
             <Logo>
-              <img  //Logo 이미지 추가
-                src="/img/logo.png"
-                alt="..."
-                width="40"
-                height="35"
-              />{' '}
-              Shaka
+              <a href="/">
+                <img  //Logo 이미지 추가
+                  src="/img/home.png"
+                  alt="..."
+                  className="home-img"
+                />
+              </a>
             </Logo>
           </TopLeft>
 

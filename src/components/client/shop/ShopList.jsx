@@ -9,7 +9,7 @@ const ListContainer = styled.div`
 
 const ListImageBox = styled.div`
   display: flex;
-  height: 250px;
+  height: 30vh;
   margin-bottom: 10px;
 
   .shop-img{
@@ -32,8 +32,14 @@ const ListLabel = styled.label`
 
   &.title{
     margin-bottom: 5px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
+  }
+  &.score{
+    color: #f0a779;
+  }
+  &.info{
+    color: #555;
   }
 `;
 
@@ -46,13 +52,13 @@ function ShopList({ shop, src }) {
       </ListImageBox>
       <div>
         <ListLabel className="title">{shop.title}</ListLabel>
-        <ListLabel>
+        <ListLabel className="score">
           ★
           {shop.score}
           {' '}
           ({shop.count})
         </ListLabel>
-        <ListLabel>
+        <ListLabel className="info">
           {shop.time}{' / '}
           {shop.rest}{' / '}
           {shop.location}

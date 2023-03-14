@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const TitleContainer = styled.div`
@@ -7,7 +8,7 @@ const TitleContainer = styled.div`
 `;
 
 const TitleBox = styled.div`
-& > label, svg{
+& > label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,20 +16,34 @@ const TitleBox = styled.div`
     font-size: 2rem;
     font-weight: bold;
   }
+  .title-img {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+  }
 `;
 
-function ShopTitle({ icon }) {
+function ShopTitle() {
+  const [openPost, setOpenPost] = useState(false);
+  const [openMap, setOpenMap] = useState(false);
   return (
     <TitleContainer>
       <TitleBox>
         <label>
-        강원도 양양군
-        {Array.isArray(icon) ? icon[0] : icon}
+          강원도 양양군
+          <img
+            className="title-img"
+            src="./img/location/pin.png"
+            onClick={() => setOpenPost((current) => !current)}
+          />
         </label>
       </TitleBox>
       <TitleBox>
-          {/* 넘어온 icon이 배열이 아닌경우 표시 x */}
-          {Array.isArray(icon) ? icon[1] : null}
+        <img
+          className="title-img"
+          src="./img/location/map.png"
+          onClick={() => setOpenMap((current) => !current)}
+        />
       </TitleBox>
     </TitleContainer>
   );

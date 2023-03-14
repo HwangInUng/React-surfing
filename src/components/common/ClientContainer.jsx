@@ -5,7 +5,7 @@ const CenterContainer = styled.div`
   top: 0px;
   margin: auto;
   padding: 30px 30px;
-  width: 60%;
+  width: 50%;
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
 `;

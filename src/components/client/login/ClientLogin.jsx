@@ -1,13 +1,16 @@
 import ClientContainer from "../../common/ClientContainer";
 import Footer from "../main/Footer";
 import Topbar from "../main/topbar/Topbar";
+import LoginContainer from "./LoginContainer";
+import SNSContainer from "./SNSContainer";
 
 function ClientLogin() {
   return (
     <>
       <Topbar />
       <ClientContainer>
-        로그인 페이지
+        <LoginContainer></LoginContainer>
+        <SNSContainer></SNSContainer>
       </ClientContainer>
       <Footer />
     </>
