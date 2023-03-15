@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const RegistInput = styled.input`
@@ -30,6 +29,7 @@ function Input(props) {
     name={props.name}
     value={props.value}
     onChange={props.onChange}
+    onBlur={props.onBlur}
     // readOnly가 적용된 태그에 한해서만 적용
     readOnly={props.readOnly !== undefined ? props.readOnly : null}
     width={props.width}

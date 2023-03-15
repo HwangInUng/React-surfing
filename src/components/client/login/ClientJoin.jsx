@@ -9,10 +9,6 @@ import { useEffect } from "react";
 import Bt from "../../common/Bt";
 import axios from "axios";
 
-const Wrapper = styled.div`
-
-`;
-
 const InputBox = styled.div`
   width: 60%;
   margin: auto;
@@ -20,11 +16,14 @@ const InputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
+  
   .title{
     font-size: 2rem;
     font-weight: bold;
     border-bottom: 2px solid #7ca2eb;
+  }
+  &.center{
+    justify-content: center;
   }
 `;
 
@@ -55,29 +54,34 @@ function ClientJoin() {
   // 회원가입 서버 요청 시 전달할 회원 정보------------------------------------------------------------
   const [memberId, setMemberId] = useState("");
   const [memberPass, setMemberPass] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  const [memberName, setMemberName] = useState("");
+  const [image, setImage] = useState("");
   const [addressObj, setAddressObj] = useState({
     areaAddress: "",
     townAddress: "",
   });
-  const [locationObj, setLocationObj] = useState({
-    locationX: "",
-    locationY: ""
-  });
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   /*정규식 및 유효성 검증을 위한 state-----------------------------------------------------------------
-    -idCheck, passCheck : 아이디 및 비밀번호 정규식 통과 여부
-    -idInfo, passInfo : 정규식 여부에 따른 안내 메세지
+    -xxCheck : 아이디 및 비밀번호 등 정규식 통과 여부
+    -xxInfo : 정규식 여부에 따른 안내 메세지
     -confirmPass : 비밀번호 재확인 state
   */
-  const [idCheck, setIdCheck] = useState("");
-  const [passCheck, setPassCheck] = useState("");
-  const [emailCheck, setEmailCheck] = useState(false);
+  const [idCheck, setIdCheck] = useState(""); //아이디
+  const [passCheck, setPassCheck] = useState(""); //비밀번호
+  const [phoneNoCheck, setPhoneNoCheck] = useState(false); //휴대폰번호
+  const [emailCheck, setEmailCheck] = useState(false); //이메일인증
+  const [phoneCheck, setPhoneCheck] = useState(false); //휴대폰인증
+  const [totalCheck, setTotalCheck] = useState(true); //위 모든 사항에 대한 논리값
   const [idInfo, setIdInfo] = useState("");
   const [passInfo, setPassInfo] = useState("");
+  const [smsInfo, setSmsInfo] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  // 메일, 문자 인증코드
   const [emailCode, setEmailCode] = useState("");
+  const [smsCode, setSmsCode] = useState("");
 
   // ID 입력에 따른 정규식 검증------------------------------------------------------------------------
   const handleMemberId = (e) => {
@@ -122,21 +126,118 @@ function ClientJoin() {
     }
     setConfirmPass(currentConfirm);
   }
-  
+
+  // 휴대폰 번호 입력 일치 여부 검사--------------------------------------------------------------------
+  const handlePhone = (e) => {
+    const currentPhone = e.target.value;
+    const phoneRegExp = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+
+    if (!phoneRegExp.test(currentPhone)) {
+      setSmsInfo("올바른 형식이 아닙니다!");
+      setPhoneNoCheck(false);
+    } else {
+      setSmsInfo("올바르게 입력되었습니다.");
+      setPhoneNoCheck(true);
+    }
+    setPhone(currentPhone);
+  };
+
   // 인증 이메일 발송 요청------------------------------------------------------------------------------
   const sendEmail = async () => {
+    if (email === "") {
+      alert("이메일을 입력하세요.");
+      return;
+    }
     const response = await axios.get('/api/client/email?email=' + email);
     alert(response.data.msg);
   }
 
   // 인증번호 확인 요청---------------------------------------------------------------------------------
   const checkEmail = async () => {
+    if (emailCode === "") {
+      alert("인증번호를 입력하세요.");
+      return;
+    }
+
     const response = await axios.get('/api/client/email-auth?userCode=' + emailCode);
     alert(response.data.msg);
-    if(response.data.code === 1){
+    if (response.data.code === 1) {
       setEmailCheck(true);
     }
   }
+
+  // 인증문자 발송 요청
+  const sendSms = async () => {
+    if (phone === "") {
+      alert("휴대폰 번호를 입력하세요.");
+      return;
+    }
+
+    const response = await axios.get('/api/client/sms?phoneNo=' + phone);
+    alert(response.data.msg);
+    setSmsInfo("");
+  }
+
+  // 문자 인증번호 확인
+  const checkSms = async () => {
+    if (smsCode === "") {
+      alert("인증번호를 입력하세요.");
+      return;
+    }
+
+    const response = await axios.get('/api/client/sms-auth?userCode=' + smsCode);
+    alert(response.data.msg);
+    if (response.data.code === 1) {
+      setPhoneCheck(true);
+    }
+  }
+
+  //아이디 중복검사
+  const checkId = async () => {
+    const response = await axios.get('/api/client/member-id?memberId=' + memberId)
+
+    if (response.data.code === 1) {
+      setIdInfo("사용가능한 아이디입니다.");
+      setIdCheck(true);
+    } else {
+      setIdInfo("이미 사용중인 아이디입니다.");
+      setIdCheck(false);
+    }
+  }
+
+  //회원등록
+  const registMember = () => {
+    let formData = new FormData();
+    formData.append("memberId", memberId);
+    formData.append("memberPass", memberPass);
+    formData.append("memberName", memberName);
+    formData.append("localAddress", addressObj.areaAddress);
+    formData.append("detailAddress", addressObj.townAddress);
+    formData.append("phoneNo", phone);
+    formData.append("email", email);
+    console.log(image);
+    formData.append("image", image);
+
+
+    //비동기 요청
+    axios.post('/api/client/member', formData, {
+      //multipart 데이터 전달 시 설정
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then((response) => {
+      alert(response.data.msg);
+    }).catch((error) => {
+      alert(error);
+    }).finally(() => setImage(""));
+  }
+
+  //모든 논리값이 true라면 최종 인증 확인
+  useEffect(() => {
+    if (idCheck && passCheck && emailCheck && phoneCheck && phoneNoCheck) {
+      setTotalCheck(false);
+    }
+  }, [idCheck, passCheck, emailCheck, phoneCheck, phoneNoCheck]);
   return (
     <>
       <Topbar />
@@ -153,12 +254,13 @@ function ClientJoin() {
             onChange={handleMemberId}
             width="70%"
             mb="0px"
+            onBlur={checkId}
           />
           <ImageLabel>
             이미지등록
             <input
               type="file"
-              onChange={(e) => setProfileImage(e.target.files[0])}
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </ImageLabel>
         </InputBox>
@@ -209,7 +311,6 @@ function ClientJoin() {
           />
           <DaumPost
             setAddressObj={setAddressObj}
-            setLocationObj={setLocationObj}
           />
         </InputBox>
         <InputBox>
@@ -258,6 +359,69 @@ function ClientJoin() {
         </InputBox>
         {/* /.이메일 인증 영역 */}
 
+        {/* 핸드폰 인증 영역 */}
+        <InputBox>
+          <Input
+            type="text"
+            placeholder="이름을 입력해주세요."
+            value={memberName}
+            onChange={(e) => setMemberName(e.target.value)}
+            width="40%"
+            mb="0px"
+          />
+        </InputBox>
+        <InputBox>
+          <Input
+            type="text"
+            placeholder="'-'을 제외하고 입력해주세요."
+            value={phone}
+            onChange={handlePhone}
+            mb="0px"
+            dis={phoneCheck}
+          />
+          <Bt
+            btName="문자발송"
+            onClick={sendSms}
+            dis={phoneCheck}
+            color={phoneCheck ? "#7e8080" : trueColor}
+          />
+        </InputBox>
+        <InputBox>
+          <InfoLabel color={phoneNoCheck ? trueColor : falseColor}>
+            {smsInfo}
+          </InfoLabel>
+        </InputBox>
+        <InputBox>
+          <Input
+            type="text"
+            placeholder="인증번호를 입력해주세요."
+            value={smsCode}
+            onChange={(e) => setSmsCode(e.target.value)}
+            mb="0px"
+            dis={phoneCheck}
+          />
+          <Bt
+            btName="인증하기"
+            onClick={checkSms}
+            dis={phoneCheck}
+            color={phoneCheck ? "#7e8080" : trueColor}
+          />
+        </InputBox>
+        {/* /.핸드폰 인증 영역 */}
+
+        <InputBox className="center">
+          <Bt
+            btName="회원가입"
+            onClick={registMember}
+            dis={totalCheck}
+            color={totalCheck ? "#7e8080" : trueColor}
+          />
+          <Bt
+            btName="뒤로가기"
+            onClick={() => window.history.back()}
+            color={falseColor}
+          />
+        </InputBox>
       </ClientContainer>
       <Footer />
     </>

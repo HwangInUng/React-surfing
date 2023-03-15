@@ -26,7 +26,9 @@ function DaumPost(props) {
         townAddress: fullAddress += (extraAddress !== '' ? `(${extraAddress})` : '')
       });
       //주소 검색이 완료된 후 결과를 매개변수로 전달
-      getLocation(data.address);
+      if(props.setLocationObj){
+        getLocation(data.address);
+      }
     }
   }
   //클릭 시 발생할 이벤트

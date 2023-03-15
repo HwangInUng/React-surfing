@@ -8,6 +8,7 @@ const Button = styled.button`
   font-size: 1rem;
   background: ${props => props.color || '#7ca2eb'};
   color: white;
+  margin-right: 5px;
 `;
 
 function Bt(props) {
