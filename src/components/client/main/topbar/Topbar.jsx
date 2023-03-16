@@ -83,9 +83,9 @@ function Topbar() {
     setClicked(location.pathname);
   }, [location]);
   useEffect(() => {
-    const currentMember = localStorage.getItem("member");
-    console.log(currentMember);
-    if (currentMember !== null) {
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
+    if (accessToken !== null) {
       setAuth(true);
     } else {
       setAuth(false);

@@ -148,7 +148,7 @@ function ClientJoin() {
       alert("이메일을 입력하세요.");
       return;
     }
-    const response = await axios.get('/api/client/email?email=' + email);
+    const response = await axios.get('/api/client/join/email?email=' + email);
     alert(response.data.msg);
   }
 
@@ -159,7 +159,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await axios.get('/api/client/email-auth?userCode=' + emailCode);
+    const response = await axios.get('/api/client/join/email-auth?userCode=' + emailCode);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setEmailCheck(true);
@@ -173,7 +173,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await axios.get('/api/client/sms?phoneNo=' + phone);
+    const response = await axios.get('/api/client/join/sms?phoneNo=' + phone);
     alert(response.data.msg);
     setSmsInfo("");
   }
@@ -185,7 +185,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await axios.get('/api/client/sms-auth?userCode=' + smsCode);
+    const response = await axios.get('/api/client/join/sms-auth?userCode=' + smsCode);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setPhoneCheck(true);
@@ -195,7 +195,7 @@ function ClientJoin() {
   //아이디 중복검사
   const checkId = async () => {
     if (memberId !== "") {
-      await axios.get('/api/client/member-id?memberId=' + memberId)
+      await axios.get('/api/client/join/member-id?memberId=' + memberId)
         .then((response) => {
           setIdInfo(response.data.msg);
           setIdCheck(true);
@@ -223,7 +223,7 @@ function ClientJoin() {
 
 
     //비동기 요청
-    await axios.post('/api/client/member', formData, {
+    await axios.post('/api/client/join/member', formData, {
       //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'

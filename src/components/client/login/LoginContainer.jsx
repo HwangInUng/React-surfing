@@ -42,13 +42,13 @@ function LoginContainer() {
 
   const handleLogin = async () => {
     if(memberId !== "" && memberPass !== ""){
-      await axios.post('/api/client/user', {
+      await axios.post('/api/client/login/member', {
         memberId: memberId,
         memberPass: memberPass
       }).then((response) => {
         alert("로그인 성공");
         console.log(response.data);
-        localStorage.setItem("member", response.data);
+        localStorage.setItem("accessToken", response.data);
 
         window.location.href="/";
       }).catch((err) => {
