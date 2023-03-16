@@ -9,6 +9,7 @@ const SNSBox = styled.div`
   align-items: center;
   padding: 5px;
   background: ${props => props.back};
+  overflow: hidden;
 
   .sns-img {
     width: 15%;

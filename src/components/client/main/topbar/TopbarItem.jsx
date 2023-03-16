@@ -34,9 +34,9 @@ color: black !important;
   -link : to속성으로 전달될 url주소
   -clicked : 클릭 시 active 부여를 위한 판단값
 */
-function TopbarItem({ title, link, clicked }) {
+function TopbarItem({ title, link, clicked, onClick }) {
   return <Item className={clicked === link ? "active" : null}>
-    <ItemLink to={link}>
+    <ItemLink to={link} onClick={onClick}>
       {title}
     </ItemLink>
   </Item>

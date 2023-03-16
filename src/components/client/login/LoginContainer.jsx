@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Input from "../../common/Input";
 import Bt from "../../common/Bt";
 import { useState } from "react";
+import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
@@ -39,6 +40,24 @@ function LoginContainer() {
   const [memberId, setMemberId] = useState("");
   const [memberPass, setMemberPass] = useState("");
 
+  const handleLogin = async () => {
+    if(memberId !== "" && memberPass !== ""){
+      await axios.post('/api/client/user', {
+        memberId: memberId,
+        memberPass: memberPass
+      }).then((response) => {
+        alert("로그인 성공");
+        console.log(response.data);
+        localStorage.setItem("member", response.data);
+
+        window.location.href="/";
+      }).catch((err) => {
+        alert(err.response.data.detail);
+      });
+    } else{
+      alert("ID 혹은 비밀번호를 입력하세요.");
+    }
+  }
   return (
     <Container>
       <div className="wrapper">
@@ -46,7 +65,6 @@ function LoginContainer() {
           <Input
             type="text"
             placeholder="ID입력"
-            name="memberId"
             value={memberId}
             onChange={(e) => setMemberId(e.target.value)}
             width="50%"
@@ -56,7 +74,6 @@ function LoginContainer() {
           <Input
             type="password"
             placeholder="비밀번호 입력"
-            name="memberPass"
             value={memberPass}
             onChange={(e) => setMemberPass(e.target.value)}
             width="50%"
@@ -66,6 +83,7 @@ function LoginContainer() {
           <Bt
             btName="로그인"
             width="30%"
+            onClick={handleLogin}
           />
         </div>
         <div className="input-box evenly">

@@ -194,19 +194,22 @@ function ClientJoin() {
 
   //아이디 중복검사
   const checkId = async () => {
-    const response = await axios.get('/api/client/member-id?memberId=' + memberId)
-
-    if (response.data.code === 1) {
-      setIdInfo("사용가능한 아이디입니다.");
-      setIdCheck(true);
-    } else {
-      setIdInfo("이미 사용중인 아이디입니다.");
-      setIdCheck(false);
+    if (memberId !== "") {
+      await axios.get('/api/client/member-id?memberId=' + memberId)
+        .then((response) => {
+          setIdInfo(response.data.msg);
+          setIdCheck(true);
+        })
+        .catch((err) => {
+          setIdInfo(err.response.data.detail);
+          setIdCheck(false);
+          return;
+        });
     }
   }
 
   //회원등록
-  const registMember = () => {
+  const registMember = async () => {
     let formData = new FormData();
     formData.append("memberId", memberId);
     formData.append("memberPass", memberPass);
@@ -220,15 +223,16 @@ function ClientJoin() {
 
 
     //비동기 요청
-    axios.post('/api/client/member', formData, {
+    await axios.post('/api/client/member', formData, {
       //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }).then((response) => {
       alert(response.data.msg);
+      window.location.href = "/login";
     }).catch((error) => {
-      alert(error);
+      alert(error.response.data.detail);
     }).finally(() => setImage(""));
   }
 

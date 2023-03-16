@@ -69,11 +69,6 @@ function Topbar() {
     -link와 url이 일치할 경우 active 효과 적용
   */
   const location = useLocation();
-  const [clicked, setClicked] = useState("");
-  useEffect(() => {
-    setClicked(location.pathname);
-  }, [location]);
-
   // 상단 네비게이션 타이틀 및 링크url
   const navData = [
     { title: '홈', link: '/' },
@@ -82,7 +77,29 @@ function Topbar() {
     { title: '이슈', link: '/issue' },
     { title: '마이', link: '/my' }
   ];
-  const loginData = { title: 'Login', link: '/login' };
+  const [clicked, setClicked] = useState("");
+  const [auth, setAuth] = useState(false);
+  useEffect(() => {
+    setClicked(location.pathname);
+  }, [location]);
+  useEffect(() => {
+    const currentMember = localStorage.getItem("member");
+    console.log(currentMember);
+    if (currentMember !== null) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  }, []);
+
+  //로그아웃 함수
+  const handleLogout = () => {
+    localStorage.clear();
+    setAuth(false);
+
+    alert("로그아웃 되었습니다.");
+  }
+
   return (
     <ClientHeader>
       <TopbarDiv>
@@ -109,10 +126,17 @@ function Topbar() {
 
           <TopRight>
             {/* 클릭 시 로그인 페이지로 넘어가며 active 효과 불필요 */}
-            <TopbarItem
-              link={loginData.link}
-              title={loginData.title}
-            />
+            {!auth ?
+              <TopbarItem
+                link={'/login'}
+                title={'login'}
+              /> :
+              <TopbarItem
+                link={'/'}
+                title={'logout'}
+                onClick={handleLogout}
+              />
+            }
           </TopRight>
         </TopbarWrapper>
       </TopbarDiv>
