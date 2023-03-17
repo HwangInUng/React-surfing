@@ -47,8 +47,12 @@ function LoginContainer() {
         memberPass: memberPass
       }).then((response) => {
         alert("로그인 성공");
-        console.log(response.data);
-        localStorage.setItem("accessToken", response.data);
+        /* 발급받은 토큰을 헤더에 담아 서버로 전송할 경우 다음과 같은 사항을 준수
+          -Authorization: 'Bearer ${accessToken}'의 형식으로 전송
+          -인증 스키마를 붙여 서버에서는 해당 인증요청을 인식, 토큰만 추출하여 인증처리
+        */
+        console.log(response.headers.accesstoken);
+        localStorage.setItem("accessToken", response.headers.accesstoken);
 
         window.location.href="/";
       }).catch((err) => {

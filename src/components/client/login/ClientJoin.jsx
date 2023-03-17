@@ -172,7 +172,7 @@ function ClientJoin() {
       alert("휴대폰 번호를 입력하세요.");
       return;
     }
-
+    console.log(phone);
     const response = await axios.get('/api/client/join/sms?phoneNo=' + phone);
     alert(response.data.msg);
     setSmsInfo("");

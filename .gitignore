@@ -1,3 +1,5 @@
 #제외할 파일
 *.pack
 node_modules/
+
+.env

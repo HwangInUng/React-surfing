@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LoginGoogle from "./LoginGoogle";
 
 const SNSBox = styled.div`
   width: 60%;
@@ -39,6 +40,7 @@ function SNSLink({name, img, back}) {
         <img className="sns-img" src={img} alt="..." />
         <span className="sns-text" >{name}</span>
       </li>
+      {name === "구글 로그인" ? <LoginGoogle/> : null}
     </SNSBox>
   )
 }
