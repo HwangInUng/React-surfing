@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleLogin, GoogleOAuthProvider, hasGrantedAnyScopeGoogle } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 

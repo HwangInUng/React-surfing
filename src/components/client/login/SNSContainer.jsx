@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import KakaoLogin from "./KaKaoLogin";
 import LoginGoogle from "./LoginGoogle";
+import SNSLink from "./SNSLink";
 
 const Container = styled.div`
   width: 100%;
@@ -12,7 +14,8 @@ const Container = styled.div`
 function SNSContainer() {
   return (
     <Container>
-      <LoginGoogle />
+      {/* <LoginGoogle /> */}
+      <KakaoLogin />
     </Container>
   )
 }
