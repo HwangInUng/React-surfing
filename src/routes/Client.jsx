@@ -6,6 +6,8 @@ import ClientIssue from "../components/client/issue/ClientIssue";
 import ClientMy from "../components/client/my/ClientMy";
 import ClientLogin from "../components/client/login/ClientLogin";
 import ClientJoin from "../components/client/login/ClientJoin";
+import KakaoCallback from "../components/client/login/KakaoCallback";
+import NaverCallback from "../components/client/login/NaverCallback";
 
 /*
   -client 화면을 구성할 대표 view
@@ -21,6 +23,9 @@ function Client() {
         <Route path="/my" element={<ClientMy />} />
         <Route path="/login" element={<ClientLogin />} />
         <Route path="/join" element={<ClientJoin />} />
+
+        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+        <Route path="/auth/naver/callback" element={<NaverCallback />} />
       </Routes>
     </>
   );
