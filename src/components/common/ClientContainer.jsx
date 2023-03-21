@@ -8,6 +8,12 @@ const CenterContainer = styled.div`
   width: 50%;
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
+
+  .flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 /*
   -클라이언트가 사용하는 페이지의 중앙 영역을 담당할 컨테이너

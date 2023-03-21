@@ -9,7 +9,7 @@ import styled from "styled-components";
 const Item = styled.li`
   font-size: 1rem;
   padding: 5px;
-  margin-left: 10px;
+  margin: 0px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;

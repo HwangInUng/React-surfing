@@ -3,7 +3,7 @@ import VerticalWrapper from "../../../common/VerticalWrapper";
 import BoardItem from "./BoardItem";
 
 const RecentDiv = styled.div`
-  height: 40vh;
+  height: 300px;
   
   .board-title{
     font-size: 1.7rem;

@@ -9,7 +9,7 @@ const ListContainer = styled.div`
 
 const ListImageBox = styled.div`
   display: flex;
-  height: 30vh;
+  height: 250px;
   margin-bottom: 10px;
 
   .shop-img{
@@ -44,10 +44,14 @@ const ListLabel = styled.label`
 `;
 
 function ShopList({ shop, src }) {
+  //서핑샵에 대한 개인정보를 획득하고 있어야하는 컴포넌트
+  const onClick = () => {
+    window.location.href="/shop/detail";
+  }
   return (
     <ListContainer>
       <ListImageBox>
-        <img src={shop.src} alt=".." className="shop-img" />
+        <img src={shop.src} alt=".." className="shop-img" onClick={onClick}/>
         <img src={src} alt=".." className="review-img" />
       </ListImageBox>
       <div>

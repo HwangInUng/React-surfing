@@ -5,7 +5,7 @@ const Button = styled.button`
   border: none;
   border-radius: 10px;
   padding: 10px;
-  font-size: 1rem;
+  font-size: ${props => props.font || '1rem'};
   background: ${props => props.color || '#7ca2eb'};
   color: white;
   margin-right: 5px;
@@ -18,6 +18,7 @@ function Bt(props) {
       type="button"
       width={props.width}
       disabled={props.dis}
+      font={props.font}
     >
       {props.btName}
     </Button>

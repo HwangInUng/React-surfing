@@ -3,7 +3,7 @@ import VerticalWrapper from "../../../common/VerticalWrapper";
 import ShopItem from "./ShopItem";
 
 const PopularDiv = styled.div`
-  height: 40vh;
+  height: 300px;
 
   .popular-title{
     font-size: 1.7rem;

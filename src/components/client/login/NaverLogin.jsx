@@ -1,4 +1,3 @@
-import axios from "axios";
 import SNSLink from "./SNSLink";
 
 function NaverLogin() {

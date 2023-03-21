@@ -7,7 +7,7 @@ const WeatherContainer = styled.div`
   padding: 10px;
 
   .box-border{
-    height: 35vh;
+    height: 250px;
   }
 `;
 
@@ -134,7 +134,7 @@ function Weather() {
     setWeatherData(resultList);
   }
   const handleDay = (day) => {
-    let result = 0;
+    let result = "";
     switch (day) {
       case 1:
         result = "일요일";

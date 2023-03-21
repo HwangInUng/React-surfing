@@ -39,7 +39,7 @@ const Logo = styled.span`
   color: darkblue;
   cursor: pointer;
   .home-img{
-    width: 20vh;
+    width: 100%;
     height: 50px;
   }
 `;

@@ -1,7 +1,6 @@
 import ClientContainer from "../../common/ClientContainer";
 import Footer from "../main/Footer";
 import Topbar from "../main/topbar/Topbar";
-import { BsPinMapFill, BsFillMapFill } from "react-icons/bs";
 import ShopTitle from "./ShopTitle";
 import ShopCategory from "./ShopCategory";
 import { useEffect, useState } from "react";

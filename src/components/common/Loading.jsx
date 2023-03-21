@@ -21,18 +21,18 @@ const LoadingImg = styled.img`
 
 function Loading() {
   const [opacity, setOpacity] = useState(0);
-  const handleOpacity = () => {
-    setOpacity((current) => current + 0.05);
-    if (opacity > 1) {
-      setOpacity(0);
-    }
-  }
   useEffect(() => {
+    const handleOpacity = () => {
+      setOpacity((current) => current + 0.05);
+      if (opacity > 1) {
+        setOpacity(0);
+      }
+    }
     setTimeout(() => handleOpacity(), 50);
   }, [opacity]);
   return (
     <LoadingContainer>
-      <LoadingImg src="./img/login/loading.png" alt=".." opacity={opacity} />
+      <LoadingImg src="../img/login/loading.png" alt=".." opacity={opacity} />
     </LoadingContainer>
   )
 }

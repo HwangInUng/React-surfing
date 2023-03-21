@@ -46,7 +46,7 @@ const BottomBox = styled.div`
 function ShopItem({ data, index }) {
   return <Item style={{ left: `${36 * (index)}% ` }}>
     <TopBox>
-      <a href="/shop"><img className="shop-img" src="./img/test.jpg" alt="..." /></a>
+      <a href="/shop/detail"><img className="shop-img" src="./img/test.jpg" alt="..." /></a>
     </TopBox>
     <BottomBox>
       <div className="info-box">

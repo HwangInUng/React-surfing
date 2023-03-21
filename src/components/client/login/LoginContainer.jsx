@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;

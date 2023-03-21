@@ -9,36 +9,25 @@ import styled from "styled-components";
 const SideItem = styled.li`
   font-size: 1rem;
   padding: 5px;
-  margin-left: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 10px;
 
-  &.active,
   &:hover {
-    color: black;
-    background-color: #76c9e8;
+    color: #7ca2eb;
   }
 `;
 
 const SideLink = styled(Link)`
-  width: 100%;
+  font-size: 1.3rem;
+  font-weight: bold;
   text-decoration: none;
-  color: white
+  color: black;
 `;
 
-function SideBarItem({ icon, title, link, clicked, onClick }) {
-  return <SideItem
-    className={clicked === title ? "active" : null} //클릭 여부에 따라 액티브 활성화
-    // 클릭 메서드 전달
-    onClick={onClick}> 
-    {/* 
-     -props로 전달받은 정보 주입
-     -link : route path 경로
-    */}
+function SideBarItem({ title, link, }) {
+  return <SideItem>
     <SideLink to={link}>
-      {icon}
       {title}
     </SideLink>
   </SideItem>
