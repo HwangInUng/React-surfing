@@ -1,4 +1,4 @@
-import { addDays, endOfMonth, endOfWeek, format, isSameDay, isSameMonth, parse, startOfMonth, startOfWeek } from "date-fns";
+import { addDays, endOfMonth, endOfWeek, format, isSameDay, isSameMonth, startOfMonth, startOfWeek } from "date-fns";
 import styled from "styled-components";
 
 const CellContainer = styled.div`
@@ -9,8 +9,34 @@ const CellContainer = styled.div`
   }
   .cell{
     width: 14%;
+    text-align:center;
+    font-weight: 600;
+    font-size: 0.7rem;
     height: 70px;
     padding: 5px;
+    border: 1px solid #cecece;
+    border-radius: 10px;
+    margin: 3px;
+    cursor: pointer;
+  }
+  .valid{
+    &:hover{
+      transform: scale(1.1);
+      border: none;
+      background: #7ca2eb;
+      color: white;
+      opacity: 0.7;
+    }
+  }
+  .not-valid{
+    color: #cecece;
+  }
+  .selected{
+    transform: scale(1.02);
+    background: #7ca2eb;
+    border: none;
+    color: white;
+    font-weight: 600;
   }
 `;
 
@@ -31,21 +57,22 @@ function CalendarCells({ currentMonth, selectedDate, onDateClick }) {
       const cloneDay = day;
       days.push(
         <div
-          className={`cell ${!isSameMonth(day, monthStart)
-            ? 'disabled'
-            : isSameDay(day, selectedDate)
-              ? 'selected'
-              : format(currentMonth, 'M') !== format(day, 'M')
-                ? 'not-valid'
-                : 'valid'
+          className={`cell ${
+              !isSameMonth(day, monthStart)
+              ? 'disabled'
+              : isSameDay(day, selectedDate) || isSameDay(day, new Date())
+                ? 'selected'
+                : format(currentMonth, 'M') !== format(day, 'M')
+                  ? 'not-valid'
+                  : 'valid'
             }`}
           key={day}
-          onClick={() => onDateClick(parse(cloneDay))}
+          onClick={() => onDateClick(cloneDay)}
         >
           <span
             className={format(currentMonth, 'M') !== format(day, 'M')
-              ? 'text not-valid'
-              : null}
+              ? 'not-valid'
+              : ''}
           >
             {formattedDate}
           </span>

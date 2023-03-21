@@ -22,6 +22,7 @@ function ReservCalendar() {
   }
   const onDateClick = (day) => {
     setSelectedDate(day);
+    console.log(day);
   }
   return (
     <CalendarBox>

@@ -1,25 +1,28 @@
 import styled from "styled-components";
 
 const DaysContainer = styled.div`
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #7e8080;
+  border-bottom: 1px solid #cecece;
   padding: 0px 5px;
+  background: #f0a779;
+  opacity: 0.6;
   
   .box{
     width: 14%;
+    text-align: center;
   }
   .day{
     font-size: 1.1rem;
     font-weight: bold;
-    color: black;
+    color: white;
   }
 `;
 
 function CalendarDays() {
-  const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+  const days = ['Sun', 'Mon', 'Tus', 'Wed', 'Thr', 'Fri', 'Sat'];
 
   return (
     <DaysContainer>

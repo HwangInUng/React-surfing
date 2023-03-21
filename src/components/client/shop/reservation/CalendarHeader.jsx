@@ -8,13 +8,13 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #7e8080;
+  border-bottom: 1px solid #cecece;
   padding: 5px;
 
   .title{
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #7ca2eb;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: black;
   }
   .icon{
     width: 20px;
