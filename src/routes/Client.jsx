@@ -11,6 +11,8 @@ import NaverCallback from "../components/client/login/NaverCallback";
 import ShopDetail from "../components/client/shop/detail/ShopDetail";
 import MemberProfile from "../components/client/my/MemberProfile";
 import Reservation from "../components/client/shop/reservation/Reservation";
+import Payment from "../components/client/shop/payment/Payment";
+import TossCallback from "../components/client/shop/payment/TossCallback";
 
 /*
   -client 화면을 구성할 대표 view
@@ -26,6 +28,8 @@ function Client() {
         <Route path="/shop" element={<ClientShop />} />
         <Route path="/shop/detail" element={<ShopDetail />} />
         <Route path="/shop/reservation" element={<Reservation />} />
+        <Route path="/shop/payment" element={<Payment />} />
+        <Route path="/shop/payment/success" element={<TossCallback />} />
 
         {/* 게시물 페이지 */}
         <Route path="/board" element={<ClientBoard />} />

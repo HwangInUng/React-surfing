@@ -21,6 +21,7 @@ const HeaderContainer = styled.div`
     height: 20px;
     margin: 0px 5px;
     cursor: pointer;
+    color: gray;
   }
 `;
 

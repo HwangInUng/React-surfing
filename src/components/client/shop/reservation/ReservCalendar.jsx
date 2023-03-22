@@ -10,19 +10,14 @@ const CalendarBox = styled.div`
   margin: 10px 0px;
 `;
 
-function ReservCalendar() {
+function ReservCalendar({onDateClick, selectedDate}) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const preMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
   }
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
-  }
-  const onDateClick = (day) => {
-    setSelectedDate(day);
-    console.log(day);
   }
   return (
     <CalendarBox>

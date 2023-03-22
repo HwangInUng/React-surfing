@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SideBarMenu from "./BottomList";
-function Sidebar() {
+function BottomMenu() {
   /*
     -사이드바 메뉴 구성을 위한 객체
     -title: 메뉴 상단 타이틀
@@ -36,4 +36,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default BottomMenu;

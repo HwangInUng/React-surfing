@@ -7,8 +7,15 @@ const Button = styled.button`
   padding: 10px;
   font-size: ${props => props.font || '1rem'};
   background: ${props => props.color || '#7ca2eb'};
+  opacity: 0.7;
   color: white;
   margin-right: 5px;
+
+  &:hover{
+    opacity: 1;
+    transform: scale(1.02);
+    transition: 0.7s;
+  }
 `;
 
 function Bt(props) {

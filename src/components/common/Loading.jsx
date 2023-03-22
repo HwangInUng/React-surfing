@@ -32,7 +32,7 @@ function Loading() {
   }, [opacity]);
   return (
     <LoadingContainer>
-      <LoadingImg src="../img/login/loading.png" alt=".." opacity={opacity} />
+      <LoadingImg src=".././img/login/loading.png" alt=".." opacity={opacity} />
     </LoadingContainer>
   )
 }

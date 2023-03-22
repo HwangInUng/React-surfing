@@ -26,7 +26,6 @@ function Input(props) {
   return <RegistInput
     type={props.type}
     placeholder={props.placeholder}
-    name={props.name}
     value={props.value}
     onChange={props.onChange}
     onBlur={props.onBlur}

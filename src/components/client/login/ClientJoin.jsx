@@ -417,7 +417,7 @@ function ClientJoin() {
           <Bt
             btName="회원가입"
             onClick={registMember}
-            dis={totalCheck}
+            // dis={totalCheck}
             color={totalCheck ? "#7e8080" : trueColor}
           />
           <Bt
