@@ -41,24 +41,25 @@ function LoginContainer() {
   const [memberPass, setMemberPass] = useState("");
 
   const handleLogin = async () => {
-    if(memberId !== "" && memberPass !== ""){
+    if (memberId !== "" && memberPass !== "") {
       await axios.post('/api/client/login/member', {
         memberId: memberId,
         memberPass: memberPass
       }).then((response) => {
         alert("로그인 성공");
+        const accessToken = response.headers.accesstoken;
         /* 발급받은 토큰을 헤더에 담아 서버로 전송할 경우 다음과 같은 사항을 준수
           -Authorization: 'Bearer ${accessToken}'의 형식으로 전송
           -인증 스키마를 붙여 서버에서는 해당 인증요청을 인식, 토큰만 추출하여 인증처리
+          -로그인한 시점부터는 axios의 응답헤더에 jwt를 달아서 이동
         */
-        console.log(response.headers.accesstoken);
-        localStorage.setItem("accessToken", response.headers.accesstoken);
+        localStorage.setItem("accessToken", accessToken);
 
-        window.location.href="/";
+        window.location.href = "/";
       }).catch((err) => {
         alert(err.response.data.detail);
       });
-    } else{
+    } else {
       alert("ID 혹은 비밀번호를 입력하세요.");
     }
   }
@@ -92,12 +93,12 @@ function LoginContainer() {
         </div>
         <div className="input-box evenly">
           <span>
-            <a href="/join"className="login-a">회원가입</a>
+            <a href="/join" className="login-a">회원가입</a>
           </span>
           <span>
-            <a href="#"className="login-a">ID찾기</a>
+            <a href="#" className="login-a">ID찾기</a>
             /
-            <a href="#"className="login-a">비밀번호 찾기</a>
+            <a href="#" className="login-a">비밀번호 찾기</a>
           </span>
         </div>
       </div>

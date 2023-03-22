@@ -43,13 +43,14 @@ const MemberBox = styled.div`
   }
 `;
 
-function MemberCard() {
+function MemberCard({member}) {
+  const profileImage = member.profileImage;
   return (
     <MemberBox className="flex">
       <div className="member flex">
-        <img src="../../img/profile.jpg" alt=".." className="profile-img" />
+        <img src={"http://localhost:7777/resources/data/" + profileImage} alt=".." className="profile-img" />
           <div>
-            <label className="name">회원아이디</label>
+            <label className="name">{member.memberName}</label>
           </div>
       </div>
       <div className="edit flex">

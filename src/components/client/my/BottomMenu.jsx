@@ -1,6 +1,5 @@
-import styled from "styled-components";
 import SideBarMenu from "./BottomList";
-function BottomMenu() {
+function BottomMenu({adminPage}) {
   /*
     -사이드바 메뉴 구성을 위한 객체
     -title: 메뉴 상단 타이틀
@@ -20,7 +19,6 @@ function BottomMenu() {
       link: ['...', '/admin', '...'] //각 페이지별 to 속성의 경로를 지정
     },
   ];
-  //item클릭 시 active 활성화 판단할 state
   return (
     <div>
       {/* 객체의 길이만큼 반복문 실행 */}
@@ -29,6 +27,7 @@ function BottomMenu() {
           <SideBarMenu
             menu={menu} //메뉴 객체 자체를 props로 전달
             key={index}
+            adminPage={adminPage}
           />
         )
       })}

@@ -84,7 +84,6 @@ function Topbar() {
   }, [location]);
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    console.log(accessToken);
     if (accessToken !== null) {
       setAuth(true);
     } else {

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { accessClient } from "../../..";
 import ClientContainer from "../../common/ClientContainer";
 import Footer from "../main/Footer";
 import Topbar from "../main/topbar/Topbar";
@@ -8,14 +8,20 @@ import MemberCard from "./MemberCard";
 import MemberInfo from "./MemberInfo";
 
 function ClientMy() {
+  const [adminPage, setAdminPage] = useState(false);
+  const [member, setMember] = useState({});
+
   useEffect(() => {
-    axios.get('/api/client/token/my',{
-      headers:{
-        "Authorization": "Bearer " + localStorage.getItem("accessToken"),
-        "Content-Type" : "application/json"
+    accessClient.get('/api/client/token/mypage')
+    .then((res) => {
+      const accessMember = res.data;
+
+      console.log(accessMember);
+      setMember(accessMember);
+      //사업자 회원인 경우 매장관리 페이지 권한부여
+      if(accessMember.businessMember !== null){
+        setAdminPage(true);
       }
-    }).then((res) => {
-      console.log(res.data);
     }).catch((err) => {
       alert(err.response.data.detail)
       window.history.back();
@@ -25,9 +31,11 @@ function ClientMy() {
     <>
       <Topbar />
       <ClientContainer>
-        <MemberCard />
+        <MemberCard member={member}/>
         <MemberInfo />
-        <BottomMenu />
+        <BottomMenu
+          adminPage={adminPage}
+        />
       </ClientContainer>
       <Footer />
     </>

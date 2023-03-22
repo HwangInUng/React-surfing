@@ -21,7 +21,7 @@ const SideBarList = styled.ul`
   padding: 0.5rem;
 `;
 
-function SideBarMenu({ menu, onClick, clicked }) {
+function SideBarMenu({ menu, adminPage }) {
   return (
     <MenuContainer>
       {/* 타이틀 : sidebar로 부터 props로 얻기 */}
@@ -31,13 +31,13 @@ function SideBarMenu({ menu, onClick, clicked }) {
       {/* 만약 title이 home이면 리스트 및 아이템 불필요 */}
       <SideBarList>
         {menu.sub.map((sub, index) => {
-          return (
+          //매장관리 아이템이 생성될 때 사업자 회원이 아닌 경우 미출력
+          return (sub === '매장관리' && !adminPage ?
+            null :
             <SideBarItem
               key={index}
               title={sub}
               link={menu.link[index]}
-              // clicked : Item클릭 시 값이 변경될 조건 변수
-              // onClick : sub(Item명)을 매개변수로 전달받아 clicekd 값 변경
             />
           )
         })}

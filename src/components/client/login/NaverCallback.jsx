@@ -13,11 +13,9 @@ function NaverCallback() {
       authorizationCode: code,
       state: state
     }).then((response) => {
-      //spring에서 발급된 jwt 반환
-      console.log(response.headers.accesstoken);
-
+      const accessToken = response.headers.accesstoken;
       //localStorage 저장
-      localStorage.setItem("accessToken", response.headers.accesstoken);
+      localStorage.setItem("accessToken", accessToken);
 
       //메인 페이지로 이동
       window.location.href = "/";

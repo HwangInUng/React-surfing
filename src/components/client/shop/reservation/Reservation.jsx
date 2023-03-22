@@ -9,6 +9,7 @@ import ReservMenu from "./ReservMenu";
 import ReservTrainer from "./ReservTrainer";
 import ReservTime from "./ReservTime";
 import { format } from "date-fns";
+import { accessClient } from "../../../..";
 
 const ContentBox = styled.div`
   border-bottom: 1px solid #7ca2eb;
@@ -51,7 +52,12 @@ function Reservation() {
   }
 
   const movePayment = () => {
-    window.location.href="/shop/payment";
+    accessClient.get('/api/client/token/reserv/payment')
+    .then(() => {
+      window.location.href="/shop/payment";
+    }).catch((err) => {
+      alert(err.response.data.detail);
+    });
   }
 
   useEffect(() => {

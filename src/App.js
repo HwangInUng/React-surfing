@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
 import Admin from "./routes/Admin";
 import Client from "./routes/Client";
+import axios from "axios";
 
 
 function App() {
