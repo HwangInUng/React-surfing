@@ -7,7 +7,7 @@ import DaumPost from "../../common/DaumPost";
 import { useState } from "react";
 import { useEffect } from "react";
 import Bt from "../../common/Bt";
-import axios from "axios";
+import { client } from "../../../App";
 
 const InputBox = styled.div`
   width: 60%;
@@ -148,7 +148,7 @@ function ClientJoin() {
       alert("이메일을 입력하세요.");
       return;
     }
-    const response = await axios.get('/api/client/join/email?email=' + email);
+    const response = await client.get(`/api/client/join/email/${email}/`);
     alert(response.data.msg);
   }
 
@@ -159,7 +159,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await axios.get('/api/client/join/email-auth?userCode=' + emailCode);
+    const response = await client.get(`/api/client/join/email-auth/${emailCode}`);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setEmailCheck(true);
@@ -173,7 +173,7 @@ function ClientJoin() {
       return;
     }
     console.log(phone);
-    const response = await axios.get('/api/client/join/sms?phoneNo=' + phone);
+    const response = await client.get(`/api/client/join/sms/${phone}`);
     alert(response.data.msg);
     setSmsInfo("");
   }
@@ -185,7 +185,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await axios.get('/api/client/join/sms-auth?userCode=' + smsCode);
+    const response = await client.get(`/api/client/join/sms-auth/${smsCode}`);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setPhoneCheck(true);
@@ -193,9 +193,9 @@ function ClientJoin() {
   }
 
   //아이디 중복검사
-  const checkId = async () => {
+  const checkId = () => {
     if (memberId !== "") {
-      await axios.get('/api/client/join/member-id?memberId=' + memberId)
+      client.get(`/api/client/join/${memberId}`)
         .then((response) => {
           setIdInfo(response.data.msg);
           setIdCheck(true);
@@ -223,7 +223,7 @@ function ClientJoin() {
 
 
     //비동기 요청
-    await axios.post('/api/client/join/member', formData, {
+    await client.post('/api/client/join/member', formData, {
       //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'

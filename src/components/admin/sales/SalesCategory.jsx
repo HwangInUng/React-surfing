@@ -17,7 +17,7 @@ const CategoryButton = styled.button`
   color: white;
 `;
 
-function MemberCategory(){
+function SalesCategory(){
   return (
     <CategoryContainer>
       <CategoryButton>주간</CategoryButton>
@@ -27,4 +27,4 @@ function MemberCategory(){
   );
 }
 
-export default MemberCategory;
+export default SalesCategory;

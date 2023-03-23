@@ -73,12 +73,12 @@ function Info() {
       rate: -10.3,
     },
     {
-      title: '상품',
+      title: '강습',
       money: 1100,
       rate: -20.2,
     },
     {
-      title: '강습',
+      title: '렌탈',
       money: 1400,
       rate: +9.9,
     },

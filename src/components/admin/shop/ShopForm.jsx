@@ -8,6 +8,7 @@ import Input from "../../common/Input";
 
 const InputContainer = styled.div`
   width: 50%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,35 +20,34 @@ const InputContainer = styled.div`
   box-shadow: 0px 0px 5px -1px #000000;
 `;
 
-function Shop({ shop }) {
+
+function ShopForm() {
   //매장의 기본정보 state
-  const [shopName, setShopName] = useState(shop.shopName);
-  const [shopCall, setShopCall] = useState(shop.shopCall);
-  const [shopStart, setShopStart] = useState(shop.shopStart);
-  const [shopEnd, setShopEnd] = useState(shop.shopEnd);
-  const [changeImg, setChangeImg] = useState(false);
+  const [shopName, setShopName] = useState("");
+  const [shopCall, setShopCall] = useState("");
+  const [shopStart, setShopStart] = useState("");
+  const [shopEnd, setShopEnd] = useState("");
 
   //매장의 주소 state
   const [addressObj, setAddressObj] = useState({
-    areaAddress: shop.shopArea,
-    townAddress: shop.shopTown
+    areaAddress: '',
+    townAddress: ''
   });
 
   //좌표 state
   const [locationObj, setLocationObj] = useState({
-    locationX: shop.shopLati,
-    locationY: shop.shopLongi
+    locationX: 0,
+    locationY: 0
   });
 
   //매장 대표이미지 state : images.jsx의 선택이미지가 달라질 경우에 상태 갱신
   const [files, setFiles] = useState([]);
 
   //매장등록 요청 함수
-  const updateShop = () => {
-    if (window.confirm("수정하시겠습니까?")) {
+  const registShop = () => {
+    if (window.confirm("등록하시겠습니까?")) {
       //파라미터 세팅
       let formData = new FormData();
-      formData.append("shopIdx", shop.shopIdx);
       formData.append("businessIdx", localStorage.getItem("businessIdx"));
       formData.append("shopArea", addressObj.areaAddress);
       formData.append("shopTown", addressObj.townAddress);
@@ -63,14 +63,14 @@ function Shop({ shop }) {
       }
 
       //비동기 요청
-      axios.post('/api/shop-edit', formData, {
+      axios.post('/api/shop', formData, {
         //multipart 데이터 전달 시 설정
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
         alert(response.data.msg);
-        window.location.href = "/admin/shop";
+        window.location.href = "/admin";
       }).catch((error) => {
         alert(error);
       }).finally(() => setFiles([]));
@@ -128,17 +128,10 @@ function Shop({ shop }) {
         value={shopEnd}
         onChange={(e) => setShopEnd(e.target.value)}
       />
-      {!changeImg ?
-        <div>
-          <label>이미지 재등록을 원하시면 클릭하세요. 재등록시 기존 이미지는 <b>삭제</b>됩니다.</label>
-          <Bt btName="재등록" mb="5px" onClick={() => setChangeImg(true)} />
-        </div>
-        :
-        <Images setFiles={setFiles} />
-      }
-      <Bt type="button" btName="수정하기" onClick={updateShop} />
+      <Images setFiles={setFiles} />
+      <Bt type="button" btName="등록하기" onClick={registShop} />
     </InputContainer>
-  )
+  );
 }
 
-export default Shop;
+export default ShopForm;

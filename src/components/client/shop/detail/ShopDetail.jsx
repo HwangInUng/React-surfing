@@ -9,7 +9,7 @@ import ShopSlider from "./ShopSlider";
 import ShopTrainer from "./ShopTrainer";
 import ShopMenu from "./ShopMenu";
 import ShopReview from "./ShopReview";
-import { accessClient } from "../../../..";
+import { accessClient } from "../../../../App";
 
 const ImgBox = styled.div`
   width: 100%;
@@ -72,9 +72,7 @@ function ShopDetail() {
 
   const moveReservation = () => {
     accessClient.get('/api/client/token/reserv')
-    .then((res) => {
-      localStorage.setItem("member", res.data);
-
+    .then(() => {
       window.location.href="/shop/reservation"
     }).catch((err) => {
       alert(err.response.data.detail);

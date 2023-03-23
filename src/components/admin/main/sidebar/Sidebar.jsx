@@ -51,8 +51,8 @@ function Sidebar() {
   const menu = [
     {
       title: 'DashBoard',
-      sub: ['매출분석', '회원분석', '예약관리'],
-      link: ['/admin/sales', '/admin/member', '/admin/reservation'], //각 페이지별 to 속성의 경로를 지정
+      sub: ['메인', '매출분석', '예약분석'],
+      link: ['/admin', '/admin/sales', '/admin/reservation'], //각 페이지별 to 속성의 경로를 지정
       icon: [
         <ShowChartIcon className="sideicon" />,
         <PersonIcon className="sideicon" />,
@@ -61,8 +61,8 @@ function Sidebar() {
     },
     {
       title: '매장관리',
-      sub: ['매장등록', '강사등록', '메뉴등록'],
-      link: ['/admin/', '/admin/trainer', '/admin/menu'], //각 페이지별 to 속성의 경로를 지정
+      sub: ['매장관리', '강사관리', '메뉴관리'],
+      link: ['/admin/shop', '/admin/trainer', '/admin/menu'], //각 페이지별 to 속성의 경로를 지정
       icon: [
         <HomeIcon className="sideicon" />,
         <SurfingIcon className="sideicon" />,

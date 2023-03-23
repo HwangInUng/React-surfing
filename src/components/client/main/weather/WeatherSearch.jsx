@@ -1,4 +1,4 @@
-import axios from "axios";
+import {client} from "../../../../App";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
@@ -42,21 +42,21 @@ function WeatherSearch({ open, setOpen, setSelectSpot }) {
   });
   useEffect(() => { //로드 시 localList 초기화
     const getLocalList = async () => {
-      const response = await axios.get("/api/client/spot-local");
+      const response = await client.get(`/api/client/spot-local`);
       setLocalList(response.data);
     }
     getLocalList();
   }, []);
   useEffect(() => { //local을 선택 시 townList 호출
     const getTownList = async () => {
-      const response = await axios.get("/api/client/spot-town?localName=" + local);
+      const response = await client.get(`/api/client/spot-town/${local}`);
       setTownList(response.data);
     }
     getTownList(local);
   }, [local]);
   useEffect(() => { //town을 선택 시 spotList 호출
     const getSpotList = async () => {
-      const response = await axios.get("/api/client/spot?townName=" + town);
+      const response = await client.get(`/api/client/spot/${town}`);
       setSpotList(response.data);
     }
     getSpotList();

@@ -7,8 +7,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 //상단 nav 요소들을 담을 div(항상 상단에 고정)
 const TopbarDiv = styled.div`
   width: 100%;
-  height: 50px;
+  height: 60px;
   background-color: white;
+  padding: 0;
 
   -webkit-box-shadow: 0px 0px 5px 0px #000000; 
   box-shadow: 0px 0px 5px 0px #000000;
@@ -83,12 +84,12 @@ function Topbar() {
         <div className="topLeft">
           <Logo>
             <img  //Logo 이미지 추가
-              src="/img/logo.png"
+              src="/img/home.png"
               alt="..."
-              width="40"
-              height="35"
-            />{' '}
-            Surf-Admin
+              width="200px"
+              height="50px"
+              onClick={() => window.location.href="/"}
+            />
           </Logo>
         </div>
 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import {client} from "../../../../App";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import WeatherSearch from "./WeatherSearch";
@@ -94,7 +94,7 @@ function Weather() {
   });
   
   const getWeather = async () => {
-    const response = await axios.post("/api/client/weather", selectSpot);
+    const response = await client.post("/api/client/weather", selectSpot);
     console.log(response.data);
     handleWeatherData(response.data);
   }

@@ -9,7 +9,7 @@ import ReservMenu from "./ReservMenu";
 import ReservTrainer from "./ReservTrainer";
 import ReservTime from "./ReservTime";
 import { format } from "date-fns";
-import { accessClient } from "../../../..";
+import { accessClient } from "../../../../App";
 
 const ContentBox = styled.div`
   border-bottom: 1px solid #7ca2eb;

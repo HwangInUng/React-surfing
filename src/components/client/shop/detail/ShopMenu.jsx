@@ -35,7 +35,7 @@ const MenuBox = styled.div`
   }
 `;
 
-function MenuTrainer() {
+function ShopMenu() {
   return (
     <MenuBox>
       <div className="info-box">
@@ -56,4 +56,4 @@ function MenuTrainer() {
   )
 }
 
-export default MenuTrainer;
+export default ShopMenu;

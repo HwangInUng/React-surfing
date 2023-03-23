@@ -38,7 +38,7 @@ const ProgressBar = styled.div`
   }
 `;
 
-function MemberTable() {
+function SalesTable() {
   return (
     <TableContainer>
       <Table>
@@ -84,4 +84,4 @@ function MemberTable() {
   );
 }
 
-export default MemberTable;
+export default SalesTable;

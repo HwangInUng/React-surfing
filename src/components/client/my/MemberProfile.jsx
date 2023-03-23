@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Bt from "../../common/Bt";
 import axios from "axios";
+import {accessClient} from "../../../App";
 
 const InputBox = styled.div`
   width: 60%;
@@ -132,7 +133,7 @@ function MemberProfile() {
       alert("이메일을 입력하세요.");
       return;
     }
-    const response = await axios.get('/api/client/join/email?email=' + email);
+    const response = await accessClient.get(`/api/client/join/email${email}/`);
     alert(response.data.msg);
   }
 
@@ -143,7 +144,7 @@ function MemberProfile() {
       return;
     }
 
-    const response = await axios.get('/api/client/join/email-auth?userCode=' + emailCode);
+    const response = await accessClient.get(`/api/client/join/email-auth/${emailCode}`);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setEmailCheck(true);
@@ -157,7 +158,7 @@ function MemberProfile() {
       return;
     }
     console.log(phone);
-    const response = await axios.get('/api/client/join/sms?phoneNo=' + phone);
+    const response = await accessClient.get(`/api/client/join/sms/${phone}`);
     alert(response.data.msg);
     setSmsInfo("");
   }
@@ -169,7 +170,7 @@ function MemberProfile() {
       return;
     }
 
-    const response = await axios.get('/api/client/join/sms-auth?userCode=' + smsCode);
+    const response = await accessClient.get(`/api/client/join/sms-auth/${smsCode}`);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setPhoneCheck(true);
@@ -190,7 +191,7 @@ function MemberProfile() {
 
 
     //비동기 요청
-    await axios.post('/api/client/member', formData, {
+    await accessClient.post('/api/client/member', formData, {
       //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'

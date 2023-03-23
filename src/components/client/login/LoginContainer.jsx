@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Input from "../../common/Input";
 import Bt from "../../common/Bt";
 import { useState } from "react";
-import axios from "axios";
+import {client} from "../../../App";
 
 const Container = styled.div`
   width: 100%;
@@ -40,9 +40,9 @@ function LoginContainer() {
   const [memberId, setMemberId] = useState("");
   const [memberPass, setMemberPass] = useState("");
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     if (memberId !== "" && memberPass !== "") {
-      await axios.post('/api/client/login/member', {
+      client.post('/api/client/login/member', {
         memberId: memberId,
         memberPass: memberPass
       }).then((response) => {
