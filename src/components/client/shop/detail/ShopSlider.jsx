@@ -14,7 +14,7 @@ const SliderDiv = styled.div`
   }
 `;
 
-function AddSlider() {
+function ShopSlider({ images }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -25,18 +25,21 @@ function AddSlider() {
   return (
     <>
       <Slider {...settings}>
-        <SliderDiv>
-          <img className="slider-img" src="../../img/logo.png" alt="..." />
-        </SliderDiv>
-        <SliderDiv>
-          <img className="slider-img" src="../../img/profile.jpg" alt="..." />
-        </SliderDiv>
-        <SliderDiv>
-          <img className="slider-img" src="../../img/test.jpg" alt="..." />
-        </SliderDiv>
+        {images && images.map((image, index) => {
+          return (
+            <SliderDiv>
+              <img
+                key={index}
+                className="slider-img"
+                src={`http://localhost:7777/resources/data/${image}`}
+                alt="..."
+              />
+            </SliderDiv>
+          )
+        })}
       </Slider>
     </>
   );
 }
 
-export default AddSlider;
+export default ShopSlider;

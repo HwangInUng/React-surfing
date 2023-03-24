@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import VerticalWrapper from "../../../common/VerticalWrapper";
 import ShopItem from "./ShopItem";
@@ -12,20 +15,30 @@ const PopularDiv = styled.div`
 `;
 
 function PopularShop() {
-  const testData = [
-    { name: "서핑샵1", score: "4.5", time: "10:00~18:00", location: "물치해변" },
-    { name: "서핑샵2", score: "4.4", time: "10:00~18:00", location: "물치해변" },
-    { name: "서핑샵3", score: "4.2", time: "10:00~18:00", location: "물치해변" },
-    { name: "서핑샵4", score: "4.1", time: "10:00~18:00", location: "물치해변" },
-    { name: "서핑샵5", score: "4.1", time: "10:00~18:00", location: "물치해변" },
-  ];
+  //인기서핑샵 리스트 state 선언
+  const [shops, setShops] = useState([]);
+  //로드 시 서버로 인기서핑샵 정보 요청
+  const getPopularShop = () => {
+    axios.get(`/api/client/main/popular`)
+    .then((res) => {
+      //반환된 인기서핑샵 정보 세팅
+      setShops(res.data);
+      console.log(res.data);
+    }).catch((err) => {
+      alert(err.response.data.detail);
+    })
+  }
+
+  useEffect(() => {
+    getPopularShop();
+  }, []);
   return (
     <PopularDiv>
       <label className="popular-title">인기 서핑샵</label>
       <VerticalWrapper>
-        {testData && testData.map((data, index) => {
+        {shops && shops.map((shop, index) => {
           return (
-            <ShopItem key={index} data={data} index={index}/>
+            <ShopItem key={index} shop={shop} index={index}/>
           )
         })}
       </VerticalWrapper>

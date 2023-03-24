@@ -35,22 +35,22 @@ const MenuBox = styled.div`
   }
 `;
 
-function ShopMenu() {
+function ShopMenu({menu}) {
   return (
     <MenuBox>
       <div className="info-box">
-        <img src="../../img/test.jpg" alt=".." className="menu-img" />
+        <img src={`http://localhost:7777/resources/data/${menu.menuImage}`} alt=".." className="menu-img" />
         <div>
           <div>
-            <label className="name">메뉴명</label>
+            <label className="name">{menu.menuName}</label>
           </div>
           <div>
-            <label className="menu-info">메뉴 설명에 대한 내용이 들어갈 영역</label>
+            <label className="menu-info">{menu.menuDesc}</label>
           </div>
         </div>
       </div>
       <div className="price-box">
-        <label className="name">35,000원</label>
+        <label className="name">{menu.menuPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</label>
       </div>
     </MenuBox>
   )

@@ -10,6 +10,9 @@ import ShopTrainer from "./ShopTrainer";
 import ShopMenu from "./ShopMenu";
 import ShopReview from "./ShopReview";
 import { accessClient } from "../../../../App";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const ImgBox = styled.div`
   width: 100%;
@@ -63,34 +66,57 @@ const ContentBox = styled.div`
 `;
 
 function ShopDetail() {
+  //샵 세부정보 state
+  const [shop, setShop] = useState({});
+  //클릭 시 논리값
   const [clicked, setClieckd] = useState("");
+
+  //버튼 클릭 시 기능 데이터 변수
   const categoryData = [
     { value: "test1", title: "♡" },
     { value: "test2", title: "☏" },
     { value: "test3", title: "⚯" },
   ];
 
+  //예약페이지 이동 메소드(로그인한 상태여야 접근가능)
   const moveReservation = () => {
     accessClient.get('/api/client/token/reserv')
-    .then(() => {
-      window.location.href="/shop/reservation"
-    }).catch((err) => {
-      alert(err.response.data.detail);
-    });
+      .then(() => {
+        window.location.href = "/shop/reservation"
+      }).catch((err) => {
+        alert(err.response.data.detail);
+      });
   }
+
+  //세부정보 요청 메소드
+  const getShopInfo = (shopIdx) => {
+    axios.get(`/api/client/shop/${shopIdx}`)
+      .then((res) => {
+        setShop(res.data);
+        console.log(res.data);
+      }).catch((err) => {
+        alert(err.response.data.detail);
+      });
+  }
+
+  //로드 시 샵의 세부정보 세팅
+  useEffect(() => {
+    const shopIdx = new URL(window.location.href).searchParams.get("shopIdx");
+    getShopInfo(shopIdx);
+  }, []);
   return (
     <>
       <Topbar />
       <ClientContainer>
         <ImgBox>
-          <ShopSlider />
+          <ShopSlider images={shop.imageList}/>
         </ImgBox>
 
         <DetailBox>
           <div>
             <div>
               <span className="title-box">
-                <label className="shop-title">서핑샵 이름</label>
+                <label className="shop-title">{shop.shopName}</label>
                 <img src="../../img/location/pin.png" alt="..." className="shop-pin" />
               </span>
             </div>
@@ -98,10 +124,10 @@ function ShopDetail() {
               <label className="shop-score">★ 4.7</label>
             </div>
             <div>
-              <label className="shop-info">영업시간 : 10:00 ~ 18:00</label>
+              <label className="shop-info">영업시간 : {shop.shopStart + ':00 ~ ' + shop.shopEnd + ':00'}</label>
             </div>
             <div>
-              <label className="shop-info">주소 : 강원도 양양군 강현면 물치리</label>
+              <label className="shop-info">주소 : {shop.shopArea + shop.shopTown}</label>
             </div>
           </div>
           <div className="icon-box">
@@ -116,25 +142,38 @@ function ShopDetail() {
         {/* 강사 영역 */}
         <ContentBox>
           <label className="content-title">강사</label>
-          <ShopTrainer />
-          <ShopTrainer />
-          <ShopTrainer />
+          {shop.trainerList && shop.trainerList.map((trainer, index) => {
+            return (
+              <ShopTrainer
+                key={index}
+                trainer={trainer}
+              />
+            )
+          })}
         </ContentBox>
         {/* /.강사 영역 */}
 
         {/* 상품 영역 */}
         <ContentBox>
           <label className="content-title">강습</label>
-          <ShopMenu />
-          <ShopMenu />
-          <ShopMenu />
+          {shop.menuList && shop.menuList.map((menu, index) => {
+            return (
+              <ShopMenu
+                key={index}
+                menu={menu} />
+            )
+          })}
         </ContentBox>
 
         <ContentBox>
           <label className="content-title">렌탈</label>
-          <ShopMenu />
-          <ShopMenu />
-          <ShopMenu />
+          {shop.menuList && shop.menuList.map((menu, index) => {
+            return (
+              <ShopMenu
+                key={index}
+                menu={menu} />
+            )
+          })}
         </ContentBox>
         {/* /.상품 영역 */}
 

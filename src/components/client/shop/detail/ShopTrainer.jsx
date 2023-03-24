@@ -24,16 +24,19 @@ const TrainerBox = styled.div`
   }
 `;
 
-function ShopTrainer() {
+function ShopTrainer({ trainer }) {
   return (
     <TrainerBox>
-      <img src="../../img/test.jpg" alt=".." className="profile-img" />
+      <img src={`http://localhost:7777/resources/data/${trainer.trainerImage}`} alt=".." className="profile-img" />
       <div>
         <div>
-          <label className="name">강사명</label>
+          <label className="name">{trainer.trainerName}</label>
         </div>
         <div>
-          <label className="trainer-info">롱보드-클래식  전문 / 경력 2년</label>
+          <label className="trainer-info">
+            {trainer.trainerType + " - " + trainer.trainerBoard + "전문 / "}
+            {"경력 " + trainer.trainerCareer}
+          </label>
         </div>
       </div>
     </TrainerBox>

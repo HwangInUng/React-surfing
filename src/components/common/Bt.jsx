@@ -6,6 +6,7 @@ const Button = styled.button`
   border-radius: 10px;
   padding: 10px;
   font-size: ${props => props.font || '1rem'};
+  font-weight: 500;
   background: ${props => props.color || '#7ca2eb'};
   opacity: 0.7;
   color: white;

@@ -5,16 +5,26 @@ import ShopTitle from "./ShopTitle";
 import ShopCategory from "./ShopCategory";
 import { useEffect, useState } from "react";
 import ShopList from "./ShopList";
+import axios from "axios";
 
 function ClientShop() {
+  //매장 리스트 정보
+  const [shops, setShops] = useState([]);
   //버튼 클릭 여부를 판단할 state
   const [clicked, setClicked] = useState("");
-  //클릭 시 state 값 변경
-  const handleClicked = (e) => {
-    setClicked(e.target.value);
+
+  const getShopList = () => {
+    axios.get('/api/client/shops')
+    .then((res) => {
+      setShops(res.data);
+      console.log(res.data);
+    }).catch((err) => {
+      alert(err.response.data.detail);
+    })
   }
-  //로드와 동시에 등록일순으로 정렬
+  //로드와 동시에 전체리스트 출력
   useEffect(() => {
+    getShopList();
     setClicked("regdate");
   }, []);
 
@@ -24,30 +34,6 @@ function ClientShop() {
     { title: "평점순", value: "shopScore" },
     { title: "영업상태", value: "status" },
   ];
-
-  //임시 매장 데이터 객체
-  const shops = [
-    {
-      title: "서핑샵1",
-      src: "./img/profile.jpg",
-      //평점 및 카운트는 review 테이블에서 계산하여 출력
-      score: "4.6",
-      count: 200,
-      time: "10:00 ~ 18:00",
-      rest: "매주 화요일 휴무",
-      location: "물치해변"
-    },
-    {
-      title: "서핑샵2",
-      src: "./img/profile.jpg",
-      score: "4.4",
-      count: 113,
-      time: "10:00 ~ 18:00",
-      rest: "매주 화요일 휴무",
-      location: "물치해변"
-    },
-  ];
-
   return (
     <>
       <Topbar />
@@ -55,11 +41,11 @@ function ClientShop() {
         {/* 상단 지역명 */}
         <ShopTitle />
         {/* 카테고리 영역 */}
-        <ShopCategory data={buttonData} clicked={clicked} onClick={handleClicked} />
+        <ShopCategory data={buttonData} clicked={clicked} onClick={(e) => setClicked(e.target.value)} />
         {/* 서핑샵 리스트 영역 */}
         {shops && shops.map((shop, index) => {
           return (
-            <ShopList key={index} shop={shop} src={"./img/test.jpg"} />
+            <ShopList key={index} shop={shop}/>
           )
         })}
       </ClientContainer>

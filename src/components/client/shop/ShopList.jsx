@@ -15,8 +15,13 @@ const ListImageBox = styled.div`
   .shop-img{
     width: 60%;
     height: 100%;
-    border-radius: 10px;
     margin-right: 10px;
+    
+    > img{
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
   }
   
   .review-img{
@@ -45,27 +50,22 @@ const ListLabel = styled.label`
 
 function ShopList({ shop, src }) {
   //서핑샵에 대한 개인정보를 획득하고 있어야하는 컴포넌트
-  const onClick = () => {
-    window.location.href="/shop/detail";
-  }
   return (
     <ListContainer>
       <ListImageBox>
-        <img src={shop.src} alt=".." className="shop-img" onClick={onClick}/>
-        <img src={src} alt=".." className="review-img" />
+        <a href={`/shop/detail?shopIdx=${shop.shopIdx}`} className="shop-img">
+          <img src={`http://localhost:7777/resources/data/${shop.shopImage}`} alt=".." className="shop-img" />
+        </a>
+        <img src="./img/profile.jpg" alt=".." className="review-img" />
       </ListImageBox>
       <div>
-        <ListLabel className="title">{shop.title}</ListLabel>
+        <ListLabel className="title">{shop.shopName}</ListLabel>
         <ListLabel className="score">
-          ★
-          {shop.score}
-          {' '}
-          ({shop.count})
+          {'★ 4.5'}
         </ListLabel>
         <ListLabel className="info">
-          {shop.time}{' / '}
-          {shop.rest}{' / '}
-          {shop.location}
+          {shop.shopStart + ":00 ~ " + shop.shopEnd + ":00 / "}
+          {shop.shopTown}
         </ListLabel>
       </div>
     </ListContainer>

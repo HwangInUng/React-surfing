@@ -28,7 +28,7 @@ function ShopCategory({ data, clicked, onClick }) {
             key={index}
             className={clicked === obj.value ? "click" : null}
             value={obj.value}
-            onClick={(e) => onClick(e)}
+            onClick={onClick}
           >
             {obj.title}
           </CategoryBt>

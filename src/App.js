@@ -16,7 +16,6 @@ export const accessClient = axios.create({
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`
   }
 });
-//인증 불필요 클라이언트
 export const client = axios.create({
   headers:{
     "Content-Type": "application/json",

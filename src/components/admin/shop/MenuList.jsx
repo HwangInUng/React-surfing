@@ -2,14 +2,13 @@ import styled from "styled-components";
 import MenuItem from "./MenuItem";
 import Bt from "../../common/Bt";
 import { useState } from "react";
-import { useEffect } from "react";
 import MenuForm from "./MenuForm";
-import axios from "axios";
 
 const ListContainer = styled.div`
   width: 70%;
   border-radius: 10px;
   padding: 10px 15px;
+  margin: 10px auto;
   
   .flex{
     display: flex;

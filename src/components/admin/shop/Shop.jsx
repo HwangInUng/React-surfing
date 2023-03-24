@@ -7,7 +7,7 @@ import Images from "../../common/Images";
 import Input from "../../common/Input";
 
 const InputContainer = styled.div`
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;

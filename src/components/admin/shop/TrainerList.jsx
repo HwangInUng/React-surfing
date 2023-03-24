@@ -5,9 +5,10 @@ import TrainerItem from "./TrainerItem";
 import TrainerForm from "./TrainerForm";
 
 const ListContainer = styled.div`
-  width: 50%;
+  width: 70%;
   border-radius: 10px;
   padding: 10px 15px;
+  margin: 10px auto;
   
   .flex{
     display: flex;

@@ -43,17 +43,20 @@ const BottomBox = styled.div`
   }
 `;
 
-function ShopItem({ data, index }) {
+function ShopItem({ shop, index }) {
   return <Item style={{ left: `${36 * (index)}% ` }}>
     <TopBox>
-      <a href="/shop/detail"><img className="shop-img" src="./img/test.jpg" alt="..." /></a>
+      <a href="/shop/detail"><img className="shop-img" src={`http://localhost:7777/resources/data/${shop.shopImage}`} alt="..." /></a>
     </TopBox>
     <BottomBox>
       <div className="info-box">
-        <label className="shop-label">{data.name}</label>
-        <label className="score-label">{"★ " + data.score}</label>
+        <label className="shop-label">{shop.shopName}</label>
+        <label className="score-label">★ 4.7</label>
       </div>
-      <label className="bottom-label">{data.time + " / " + data.location}</label>
+      <label className="bottom-label">
+        {shop.shopStart + ":00 ~ " + shop.shopEnd + ":00 / "}
+        {shop.shopTown}
+      </label>
     </BottomBox>
   </Item>
 }
