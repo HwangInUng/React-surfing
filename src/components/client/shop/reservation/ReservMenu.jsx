@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ShopMenu from "../detail/ShopMenu";
 
@@ -30,17 +30,34 @@ const MenuBox = styled.div`
   }
 `;
 
-function ReservMenu() {
+function ReservMenu({ menu, handleMenu, handleAmonut }) {
+  //선택한 상품의 수
   const [count, setCount] = useState(0);
+
+  //각 메뉴별 count가 1이되는 시점에 한번만 rsvName에 메뉴명 추가
+  const handlePrice = (plus) => {
+    if (plus) {
+      setCount((current) => current + 1);
+      handleAmonut(plus, menu.menuPrice);
+    } else {
+      setCount((current) => current - 1);
+      handleAmonut(plus, menu.menuPrice);
+    }
+  }
+  
+  useEffect(() => {
+    handleMenu(menu.menuName, count);
+  }, [count]);
+
   return (
     <MenuBox>
       <div className="menu-box">
-        <ShopMenu />
+        <ShopMenu menu={menu} />
       </div>
       <div className="count-box flex">
-        <button onClick={count > 0 ? () => setCount((current) => current - 1) : null}>-</button>
+        <button onClick={count > 0 ? () => handlePrice(false) : null}>-</button>
         <input type="text" value={count} readOnly />
-        <button onClick={() => setCount((current) => current + 1)} id="plus">+</button>
+        <button onClick={() => handlePrice(true)}>+</button>
       </div>
     </MenuBox>
   )

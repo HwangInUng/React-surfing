@@ -9,14 +9,10 @@ const LoadingContainer = styled.div`
   align-items: center;
 
   .loading-img{
-    
+    width: 400px;
+    height: 400px;
+    opacity: ${props => props.opacity};
   }
-`;
-
-const LoadingImg = styled.img`
-  width: 400px;
-  height: 400px;
-  opacity: ${props => props.opacity};
 `;
 
 function Loading() {
@@ -32,7 +28,7 @@ function Loading() {
   }, [opacity]);
   return (
     <LoadingContainer>
-      <LoadingImg src=".././img/login/loading.png" alt=".." opacity={opacity} />
+      <img className="loading-img" src="./img/loading.png" alt=".." opacity={opacity}/>
     </LoadingContainer>
   )
 }

@@ -27,9 +27,8 @@ function ShopSlider({ images }) {
       <Slider {...settings}>
         {images && images.map((image, index) => {
           return (
-            <SliderDiv>
+            <SliderDiv key={index}>
               <img
-                key={index}
                 className="slider-img"
                 src={`http://localhost:7777/resources/data/${image}`}
                 alt="..."

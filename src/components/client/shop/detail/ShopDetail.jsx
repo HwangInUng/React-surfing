@@ -10,7 +10,7 @@ import ShopTrainer from "./ShopTrainer";
 import ShopMenu from "./ShopMenu";
 import ShopReview from "./ShopReview";
 import { accessClient } from "../../../../App";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -66,6 +66,7 @@ const ContentBox = styled.div`
 `;
 
 function ShopDetail() {
+  let navigate = useNavigate();
   //샵 세부정보 state
   const [shop, setShop] = useState({});
   //클릭 시 논리값
@@ -82,7 +83,7 @@ function ShopDetail() {
   const moveReservation = () => {
     accessClient.get('/api/client/token/reserv')
       .then(() => {
-        window.location.href = "/shop/reservation"
+        navigate('/shop/reservation', { state: shop });
       }).catch((err) => {
         alert(err.response.data.detail);
       });
@@ -109,7 +110,7 @@ function ShopDetail() {
       <Topbar />
       <ClientContainer>
         <ImgBox>
-          <ShopSlider images={shop.imageList}/>
+          <ShopSlider images={shop.imageList} />
         </ImgBox>
 
         <DetailBox>
@@ -155,18 +156,7 @@ function ShopDetail() {
 
         {/* 상품 영역 */}
         <ContentBox>
-          <label className="content-title">강습</label>
-          {shop.menuList && shop.menuList.map((menu, index) => {
-            return (
-              <ShopMenu
-                key={index}
-                menu={menu} />
-            )
-          })}
-        </ContentBox>
-
-        <ContentBox>
-          <label className="content-title">렌탈</label>
+          <label className="content-title">강습 및 렌탈</label>
           {shop.menuList && shop.menuList.map((menu, index) => {
             return (
               <ShopMenu

@@ -9,7 +9,7 @@ function TossCallback() {
     const amount = new URL(window.location.href).searchParams.get("amount");
 
     //spring 서버로 인증키를 통해 유저정보를 획득하고 로그인 처리 요청
-    accessClient.post('/api/client/token/reserv/payment', {
+    accessClient.post('/api/client/token/payment', {
       //spring 서버로 전달할 요청 params
       paymentKey: paymentKey,
       orderId: orderId,
