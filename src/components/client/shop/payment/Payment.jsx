@@ -1,5 +1,6 @@
 import { loadTossPayments } from "@tosspayments/payment-sdk";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Bt from "../../../common/Bt";
 import ClientContainer from "../../../common/ClientContainer";
@@ -47,17 +48,11 @@ const PriceLabel = styled.label`
 function Payment() {
   //페이 연동 client_key
   const client_id = process.env.REACT_APP_TOSS_CLIENT_ID;
+  const location = useLocation();
+  //요청메세지 state
   const [rsvMsg, setRsvMsg] = useState("");
-  const [reservation, setReservation] = useState({
-    rsvDate: "",
-    rsvTime: "",
-    rsvMsg: "",
-    rsvName: "",
-    rsvPhone: "",
-    member: "",
-    shop: "",
-    trainer: "",
-  });
+  //예약정보 state
+  const [reservation, setReservation] = useState(location.state);
 
   //페이호출 메서드
   const handlePayment = (subject) => {
@@ -66,7 +61,7 @@ function Payment() {
     console.log(randomId);
 
     //시간판단 후 가능하면 가상계좌도 연동 필요
-    if(subject === "카드"){ //간편결제 함수 실행
+    if (subject === "카드") { //간편결제 함수 실행
       loadTossPayments(client_id).then(tossPayments => {
         tossPayments.requestPayment(subject, {
           amount: 1000,
@@ -80,6 +75,7 @@ function Payment() {
     }
   }
 
+  //요청 메세지 허용범위 초과 시 경고메세지 출력
   useEffect(() => {
     if (rsvMsg.length >= 50) {
       alert("50자 이내로 입력해주세요.");
@@ -133,15 +129,24 @@ function Payment() {
           <div className="info-input">
             <div>
               <label className="info-label">날짜/시간</label>
-              <label className="info-point">2023-03-22 / 10:00</label>
+              <label className="info-point">
+                {reservation.rsvDate + " / " + reservation.rsvTime + ":00"}
+              </label>
             </div>
             <div>
               <label className="info-label">서핑샵/강사</label>
-              <label className="info-point">서핑샵1 / 강사1</label>
+              <label className="info-point">
+                {reservation.shopName + " / " + reservation.trainerName}
+              </label>
             </div>
             <div>
               <label className="info-label">선택상품</label>
-              <label className="info-point">입문강습, 보드렌탈</label>
+              <label className="info-point">
+                {reservation.menu.length === 1 ?
+                  reservation.menu[0] :
+                  reservation.menu[0] + " 외 " + reservation.length + "건"
+                }
+              </label>
             </div>
           </div>
         </ContentBox>
@@ -149,7 +154,9 @@ function Payment() {
 
         <div className="flex">
           {/* 강습 및 상품의 금액 x count */}
-          <PriceLabel>총 금액 : 00000원</PriceLabel>
+          <PriceLabel>
+            총 금액 : {reservation.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          </PriceLabel>
           <div>
             <Bt
               btName="간편결제"

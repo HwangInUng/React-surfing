@@ -46,7 +46,9 @@ function Reservation() {
     rsvTime: "", //예약시간
     menu: menuNames, //예약 상품명
     trainerIdx: 0, //선택된 강사번호
-    shopIdx: location.state.shopIdx, //매장 번호
+    trainerName: "",
+    shopName: shop.shopName, //매장이름
+    shopIdx: shop.shopIdx, //매장 번호
     amount: price, //총금액
   });
 
@@ -63,6 +65,12 @@ function Reservation() {
   const onDateClick = (day) => {
     setSelectedDate(day);
     setReserv({ ...reserv, rsvDate: format(day, "yyyyMMdd") });
+  }
+
+  //강사 정보 세팅
+  const handleTrainer = (trainer) => {
+    setReserv({ ...reserv, trainerName: trainer.trainerName });
+    setReserv({ ...reserv, trainerIdx: trainer.trainerIdx });
   }
 
   //수량 클릭 시 해당하는 메뉴명을 지정
@@ -103,7 +111,7 @@ function Reservation() {
     setShop(location.state);
   }, []);
 
-  //test
+  //debug
   useEffect(() => {
     console.log(reserv);
   }, [reserv]);
@@ -119,7 +127,7 @@ function Reservation() {
               <ReservTrainer
                 key={index}
                 trainer={trainer}
-                setReserv={(e) => setReserv({ ...reserv, trainerIdx: Number(e.target.value) })}
+                handleTrainer={handleTrainer}
               />
             )
           })}
