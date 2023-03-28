@@ -30,7 +30,7 @@ function ShopSlider({ images }) {
             <SliderDiv key={index}>
               <img
                 className="slider-img"
-                src={`http://localhost:7777/resources/data/${image}`}
+                src={`${process.env.REACT_APP_IMG_URL}/resources/data/${image}`}
                 alt="..."
               />
             </SliderDiv>

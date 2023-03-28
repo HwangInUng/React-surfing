@@ -14,13 +14,13 @@ function ClientShop() {
   const [clicked, setClicked] = useState("");
 
   const getShopList = () => {
-    axios.get('/api/client/shops')
-    .then((res) => {
-      setShops(res.data);
-      console.log(res.data);
-    }).catch((err) => {
-      alert(err.response.data.detail);
-    })
+    axios.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/shops`)
+      .then((res) => {
+        setShops(res.data);
+        console.log(res.data);
+      }).catch((err) => {
+        alert(err.response.data.detail);
+      })
   }
   //로드와 동시에 전체리스트 출력
   useEffect(() => {
@@ -41,11 +41,15 @@ function ClientShop() {
         {/* 상단 지역명 */}
         <ShopTitle />
         {/* 카테고리 영역 */}
-        <ShopCategory data={buttonData} clicked={clicked} onClick={(e) => setClicked(e.target.value)} />
+        <ShopCategory
+          data={buttonData}
+          clicked={clicked}
+          onClick={(e) => setClicked(e.target.value)}
+        />
         {/* 서핑샵 리스트 영역 */}
         {shops && shops.map((shop, index) => {
           return (
-            <ShopList key={index} shop={shop}/>
+            <ShopList key={index} shop={shop} />
           )
         })}
       </ClientContainer>

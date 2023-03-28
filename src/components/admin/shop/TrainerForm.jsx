@@ -45,7 +45,7 @@ function TrainerForm({ shopIdx, setRegist }) {
       formData.append("profile", file);
 
       //비동기 요청
-      axios.post('/api/trainer', formData, {
+      axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/trainer`, formData, {
         //multipart 데이터 전달 시 설정
         headers: {
           'Content-Type': 'multipart/form-data'

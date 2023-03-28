@@ -13,6 +13,7 @@ import MemberProfile from "../components/client/my/MemberProfile";
 import Reservation from "../components/client/shop/reservation/Reservation";
 import Payment from "../components/client/shop/payment/Payment";
 import TossCallback from "../components/client/shop/payment/TossCallback";
+import ReservDetail from "../components/client/shop/ReservDetail";
 
 /*
   -client 화면을 구성할 대표 view
@@ -30,6 +31,7 @@ function Client() {
         <Route path="/shop/reservation" element={<Reservation />} />
         <Route path="/shop/payment" element={<Payment />} />
         <Route path="/shop/payment/success" element={<TossCallback />} />
+        <Route path="/shop/reservation/detail" element={<ReservDetail />} />
 
         {/* 게시물 페이지 */}
         <Route path="/board" element={<ClientBoard />} />

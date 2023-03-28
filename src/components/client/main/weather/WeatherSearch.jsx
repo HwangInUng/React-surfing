@@ -27,9 +27,9 @@ function WeatherSearch({ open, setOpen, setSelectSpot }) {
   const [townList, setTownList] = useState([]);
   //town 선택 시 조회할 spot을 담을 state
   const [spotList, setSpotList] = useState([]);
-  //localselect에서 담은 local value를 저장할 state
+  //localselect에서 선택한 local value를 저장할 state
   const [local, setLocal] = useState("");
-  //townselect에서 담은 town value를 저장할 state
+  //townselect에서 선택한 town value를 저장할 state
   const [town, setTown] = useState("");
   //spot을 담을 state
   const [spot, setSpot] = useState({
@@ -42,24 +42,30 @@ function WeatherSearch({ open, setOpen, setSelectSpot }) {
   });
   useEffect(() => { //로드 시 localList 초기화
     const getLocalList = async () => {
-      const response = await client.get(`/api/client/spot-local`);
+      const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/spot-local`);
       setLocalList(response.data);
     }
     getLocalList();
   }, []);
   useEffect(() => { //local을 선택 시 townList 호출
     const getTownList = async () => {
-      const response = await client.get(`/api/client/spot-town/${local}`);
+      const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/spot-town/${local}`);
       setTownList(response.data);
     }
-    getTownList(local);
+    
+    if(local !== ""){
+      getTownList(local);
+    }
   }, [local]);
   useEffect(() => { //town을 선택 시 spotList 호출
     const getSpotList = async () => {
-      const response = await client.get(`/api/client/spot/${town}`);
+      const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/spot/${town}`);
       setSpotList(response.data);
     }
-    getSpotList();
+
+    if(town !== ""){
+      getSpotList();
+    }
   }, [town]);
   //spotBt 클릭 시 모달창이 닫히고, 해당 정보 전달
   const selectSpot = (spot) => {

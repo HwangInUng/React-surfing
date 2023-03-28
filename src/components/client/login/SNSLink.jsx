@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import LoginGoogle from "./LoginGoogle";
 
 const SNSBox = styled.div`
   width: 40%;

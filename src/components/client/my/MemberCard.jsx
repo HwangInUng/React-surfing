@@ -43,15 +43,19 @@ const MemberBox = styled.div`
   }
 `;
 
-function MemberCard({member}) {
+function MemberCard({ member }) {
   const profileImage = member.profileImage;
   return (
     <MemberBox className="flex">
       <div className="member flex">
-        <img src={"http://localhost:7777/resources/data/" + profileImage} alt=".." className="profile-img" />
-          <div>
-            <label className="name">{member.memberName}</label>
-          </div>
+        <img
+          src={`${process.env.REACT_APP_IMG_URL}/resources/data/${profileImage}`}
+          alt=".."
+          className="profile-img"
+        />
+        <div>
+          <label className="name">{member.memberName}</label>
+        </div>
       </div>
       <div className="edit flex">
         <a href="/my/edit">프로필 수정</a>

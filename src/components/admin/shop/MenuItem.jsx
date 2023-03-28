@@ -55,7 +55,7 @@ function MenuItem({ shopIdx }) {
 
   const removeMenu = (menuIdx) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      axios.delete(`/api/menu/${menuIdx}`)
+      axios.delete(`${process.env.REACT_APP_REQUEST_URL}/api/menu/${menuIdx}`)
         .then((res) => {
           alert(res.data.msg);
           getMenus();
@@ -74,7 +74,7 @@ function MenuItem({ shopIdx }) {
         return (
           <MenuBox key={index}>
             <div className="info-box">
-              <img src={`http://localhost:7777/resources/data/${menu.menuImage}`} alt=".." className="menu-img" />
+              <img src={`${process.env.REACT_APP_IMG_URL}/resources/data/${menu.menuImage}`} alt=".." className="menu-img" />
               <div>
                 <div>
                   <label className="name">{menu.menuName}</label>

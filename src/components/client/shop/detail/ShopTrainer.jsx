@@ -27,7 +27,11 @@ const TrainerBox = styled.div`
 function ShopTrainer({ trainer }) {
   return (
     <TrainerBox>
-      <img src={`http://localhost:7777/resources/data/${trainer.trainerImage}`} alt=".." className="profile-img" />
+      <img
+        src={`${process.env.REACT_APP_IMG_URL}/resources/data/${trainer.trainerImage}`}
+        alt=".."
+        className="profile-img"
+      />
       <div>
         <div>
           <label className="name">{trainer.trainerName}</label>

@@ -48,7 +48,7 @@ function Admin() {
     동시에 매장정보 획득
     -------------------------------------------*/
 
-    accessClient.get(`/api/admin/${businessIdx}`)
+    accessClient.get(`${process.env.REACT_APP_REQUEST_URL}/api/admin/${businessIdx}`)
       .then((res) => {
         setShop(res.data);
         console.log(res.data);

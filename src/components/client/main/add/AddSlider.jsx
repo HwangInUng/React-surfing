@@ -27,13 +27,13 @@ function AddSlider() {
     <>
       <Slider {...settings}>
         <SliderDiv>
-          <img className="slider-img" src="./img/add/add1.jpg" alt="..." />
+          <img className="slider-img" src="/img/add/add1.jpg" alt="..." />
         </SliderDiv>
         <SliderDiv>
-          <img className="slider-img" src="./img/add/add2.jpg" alt="..." />
+          <img className="slider-img" src="/img/add/add2.jpg" alt="..." />
         </SliderDiv>
         <SliderDiv>
-          <img className="slider-img" src="./img/add/add3.jpg" alt="..." />
+          <img className="slider-img" src="/img/add/add3.jpg" alt="..." />
         </SliderDiv>
       </Slider>
     </>

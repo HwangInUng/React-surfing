@@ -35,11 +35,15 @@ const MenuBox = styled.div`
   }
 `;
 
-function ShopMenu({menu}) {
+function ShopMenu({ menu }) {
   return (
     <MenuBox>
       <div className="info-box">
-        <img src={`http://localhost:7777/resources/data/${menu.menuImage}`} alt=".." className="menu-img" />
+        <img
+          src={`${process.env.REACT_APP_IMG_URL}/resources/data/${menu.menuImage}`}
+          alt=".."
+          className="menu-img"
+        />
         <div>
           <div>
             <label className="name">{menu.menuName}</label>

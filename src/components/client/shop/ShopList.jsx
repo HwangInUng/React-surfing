@@ -54,9 +54,13 @@ function ShopList({ shop, src }) {
     <ListContainer>
       <ListImageBox>
         <a href={`/shop/detail?shopIdx=${shop.shopIdx}`} className="shop-img">
-          <img src={`http://localhost:7777/resources/data/${shop.shopImage}`} alt=".." className="shop-img" />
+          <img
+            src={`${process.env.REACT_APP_IMG_URL}/resources/data/${shop.shopImage}`}
+            alt=".."
+            className="shop-img"
+          />
         </a>
-        <img src="./img/profile.jpg" alt=".." className="review-img" />
+        <img src="/img/profile.jpg" alt=".." className="review-img" />
       </ListImageBox>
       <div>
         <ListLabel className="title">{shop.shopName}</ListLabel>

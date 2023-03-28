@@ -2,6 +2,7 @@ import { loadTossPayments } from "@tosspayments/payment-sdk";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { accessClient } from "../../../../App";
 import Bt from "../../../common/Bt";
 import ClientContainer from "../../../common/ClientContainer";
 import Input from "../../../common/Input";
@@ -49,25 +50,40 @@ function Payment() {
   //페이 연동 client_key
   const client_id = process.env.REACT_APP_TOSS_CLIENT_ID;
   const location = useLocation();
+  const orderName = () => {
+    const count = location.state.menu.length;
+    const firstMenu = location.state.menu[0];
+    return (count > 1 ? `${firstMenu} 외 ${count}건` : firstMenu)
+  }
   //요청메세지 state
   const [rsvMsg, setRsvMsg] = useState("");
   //예약정보 state
-  const [reservation, setReservation] = useState(location.state);
+  const [reserv, setReserv] = useState(location.state);
 
-  //페이호출 메서드
+  //예약정보 등록 메소드
+  const handleReservation = (subject) => {
+    accessClient.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/reserv`, reserv)
+    .then((res) => {
+      console.log(res.data);
+      //예약번호를 로컬 스토리지에 임시저장 후 callback에서 호출
+      localStorage.setItem("rsvIdx", res.data.rsvIdx);
+      handlePayment(subject);
+    })
+  }
+
+  //페이호출 메소드
   const handlePayment = (subject) => {
     const random = new Date().getTime() + Math.random();
     const randomId = btoa(random);
-    console.log(randomId);
 
     //시간판단 후 가능하면 가상계좌도 연동 필요
     if (subject === "카드") { //간편결제 함수 실행
       loadTossPayments(client_id).then(tossPayments => {
         tossPayments.requestPayment(subject, {
-          amount: 1000,
+          amount: reserv.amount,
           orderId: `${randomId}`, //문자열 처리를 위한 ``사용
-          orderName: '입문강습 외 1건', //결제 이름
-          customerName: '테스트', //판매자, 판매처 이름
+          orderName: orderName(), //결제 이름(여러건일 경우 복수처리)
+          customerName: 'surfing', //판매자, 판매처 이름
           successUrl: 'http://localhost:3000/shop/payment/success',
           failUrl: 'http://localhost:3000/shop/payment/fail',
         })
@@ -84,6 +100,10 @@ function Payment() {
       return;
     }
   }, [rsvMsg]);
+
+  useEffect(() => {
+    console.log(reserv);
+  }, [reserv]);
   return (
     <>
       <Topbar />
@@ -94,15 +114,15 @@ function Payment() {
           <div className="info-input">
             <Input
               type="text"
-              value="유저이름"
-              readOnly={true}
+              placeholder="예약자명을 입력하세요."
+              onBlur={(e) => setReserv({...reserv, rsvName: e.target.value})}
               width="50%"
               mb="5px"
             />
             <Input
               type="text"
-              value="01091716860"
-              readOnly={true}
+              onBlur={(e) => setReserv({...reserv, rsvPhone: e.target.value})}
+              placeholder="핸드폰번호를 입력하세요."
               width="50%"
             />
           </div>
@@ -118,6 +138,7 @@ function Payment() {
               placeholder="요청하실 메세지를 50자 이내로 입력해주세요."
               value={rsvMsg}
               onChange={(e) => setRsvMsg(e.target.value)}
+              onBlur={(e) => setReserv({...reserv, rsvMsg: e.target.value})}
             />
           </div>
         </ContentBox>
@@ -130,21 +151,21 @@ function Payment() {
             <div>
               <label className="info-label">날짜/시간</label>
               <label className="info-point">
-                {reservation.rsvDate + " / " + reservation.rsvTime + ":00"}
+                {reserv.rsvDate + " / " + reserv.rsvTime + ":00"}
               </label>
             </div>
             <div>
               <label className="info-label">서핑샵/강사</label>
               <label className="info-point">
-                {reservation.shopName + " / " + reservation.trainerName}
+                {reserv.shop.shopName + " / " + reserv.trainer.trainerName}
               </label>
             </div>
             <div>
               <label className="info-label">선택상품</label>
               <label className="info-point">
-                {reservation.menu.length === 1 ?
-                  reservation.menu[0] :
-                  reservation.menu[0] + " 외 " + reservation.length + "건"
+                {reserv.menu.length === 1 ?
+                  reserv.menu[0] :
+                  reserv.menu[0] + " 외 " + reserv.menu.length + "건"
                 }
               </label>
             </div>
@@ -155,7 +176,7 @@ function Payment() {
         <div className="flex">
           {/* 강습 및 상품의 금액 x count */}
           <PriceLabel>
-            총 금액 : {reservation.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+            총 금액 : {reserv.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
           </PriceLabel>
           <div>
             <Bt
@@ -163,7 +184,7 @@ function Payment() {
               font="1.5rem"
               color="#f0a779"
               width="150px"
-              onClick={() => handlePayment("카드")}
+              onClick={() => handleReservation("카드")}
             />
           </div>
         </div>

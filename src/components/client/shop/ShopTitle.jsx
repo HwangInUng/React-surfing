@@ -33,7 +33,7 @@ function ShopTitle() {
           강원도 양양군
           <img
             className="title-img"
-            src="./img/location/pin.png"
+            src="/img/location/pin.png"
             onClick={() => setOpenPost((current) => !current)}
           />
         </label>
@@ -41,7 +41,7 @@ function ShopTitle() {
       <TitleBox>
         <img
           className="title-img"
-          src="./img/location/map.png"
+          src="/img/location/map.png"
           onClick={() => setOpenMap((current) => !current)}
         />
       </TitleBox>

@@ -35,9 +35,9 @@ let menuNames = [];
 function Reservation() {
   const navicate = useNavigate();
   const location = useLocation();
+  const shop = location.state;
   const times = ['10', '13', '15']; //예약시간
   const [clicked, setClicked] = useState(""); //time버튼 논리값
-  const [shop, setShop] = useState({}); //서핑샵 정보 객체
   const [selectedDate, setSelectedDate] = useState(new Date()); //날짜 선택 시 변경될 state
 
   //서버에 전송할 예약정보 객체
@@ -45,10 +45,14 @@ function Reservation() {
     rsvDate: "", //예약날짜 
     rsvTime: "", //예약시간
     menu: menuNames, //예약 상품명
-    trainerIdx: 0, //선택된 강사번호
-    trainerName: "",
-    shopName: shop.shopName, //매장이름
-    shopIdx: shop.shopIdx, //매장 번호
+    trainer: {
+      trainerIdx: 0, //선택된 강사번호
+      trainerName: ""
+    },
+    shop: {
+      shopName: shop.shopName, //매장이름
+      shopIdx: shop.shopIdx //매장 번호
+    },
     amount: price, //총금액
   });
 
@@ -69,8 +73,12 @@ function Reservation() {
 
   //강사 정보 세팅
   const handleTrainer = (trainer) => {
-    setReserv({ ...reserv, trainerName: trainer.trainerName });
-    setReserv({ ...reserv, trainerIdx: trainer.trainerIdx });
+    setReserv({
+      ...reserv, trainer: {
+        trainerIdx: trainer.trainerIdx,
+        trainerName: trainer.trainerName
+      }
+    });
   }
 
   //수량 클릭 시 해당하는 메뉴명을 지정
@@ -98,18 +106,13 @@ function Reservation() {
 
   //결제페이지 이동(토큰 체크 및 예약정보 객체 전달)
   const movePayment = () => {
-    accessClient.get(`/api/client/token/payment`)
+    accessClient.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/payment`)
       .then(() => {
         navicate(`/shop/payment`, { state: reserv });
       }).catch((err) => {
         alert(err.response.data.detail);
       });
   }
-
-  //최초 로드 시 예약에 사용될 샵 정보를 획득
-  useEffect(() => {
-    setShop(location.state);
-  }, []);
 
   //debug
   useEffect(() => {
@@ -136,7 +139,7 @@ function Reservation() {
 
         {/* 상품 영역 */}
         <ContentBox>
-          <label className="content-title">강습</label>
+          <label className="content-title">강습 및 렌탈</label>
           {shop.menuList && shop.menuList.map((menu, index) => {
             return (
               <ReservMenu

@@ -77,7 +77,7 @@ const InnerImg = styled.img`
 
 function Weather() {
   // 이미지 변수
-  const imgSrc = "./img/weather/";
+  const imgSrc = "/img/weather/";
   const ext = ".png";
 
   // 당일 이후 주간 날씨 데이터 state
@@ -94,7 +94,7 @@ function Weather() {
   });
   
   const getWeather = async () => {
-    const response = await client.post("/api/client/weather", selectSpot);
+    const response = await client.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/weather`, selectSpot);
     console.log(response.data);
     handleWeatherData(response.data);
   }
@@ -211,7 +211,7 @@ function Weather() {
         <label>
           {title}
           <img
-            src="./img/location/pin.png"
+            src="/img/location/pin.png"
             className="inner-img"
             alt="..."
             onClick={() => setOpen((current) => !current)}
@@ -231,11 +231,11 @@ function Weather() {
               </div>
               <div>
                 <div className="left-inner around">
-                  <InnerImg src="./img/weather/wave.png" width={"3rem"} height={"3rem"} alt="..." />
+                  <InnerImg src={`${imgSrc}/wave.png`} width={"3rem"} height={"3rem"} alt="..." />
                   <InnerLabel size={"1.5rem"}>{weather.wav + "m"}</InnerLabel>
                 </div>
                 <div className="left-inner around">
-                  <InnerImg src="./img/weather/wind.png" width={"3rem"} height={"3rem"} alt="..." />
+                  <InnerImg src={`${imgSrc}/wind.png`} width={"3rem"} height={"3rem"} alt="..." />
                   <InnerLabel size={"1.5rem"}>{weather.vec + " " + weather.wsd + "m/s"}</InnerLabel>
                 </div>
               </div>

@@ -12,7 +12,7 @@ function ClientMy() {
   const [member, setMember] = useState({});
 
   useEffect(() => {
-    accessClient.get('/api/client/token/mypage')
+    accessClient.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/mypage`)
     .then((res) => {
       //접속한 멤버 정보 추출
       const accessMember = res.data;

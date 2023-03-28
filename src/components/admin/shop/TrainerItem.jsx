@@ -42,7 +42,7 @@ function TrainerItem({ shopIdx }) {
   const [trainers, setTrainers] = useState([]);
 
   const getTrainers = () => {
-    axios.get(`/api/trainer/${shopIdx}`)
+    axios.get(`${process.env.REACT_APP_REQUEST_URL}/api/trainer/${shopIdx}`)
       .then((res) => {
         setTrainers(res.data);
       })
@@ -50,7 +50,7 @@ function TrainerItem({ shopIdx }) {
 
   const removeTrainer = (trainerIdx) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      axios.delete(`/api/trainer/${trainerIdx}`)
+      axios.delete(`${process.env.REACT_APP_REQUEST_URL}/api/trainer/${trainerIdx}`)
         .then((res) => {
           alert(res.data.msg);
           getTrainers();
@@ -69,7 +69,7 @@ function TrainerItem({ shopIdx }) {
         return (
           <TrainerBox key={index}>
             <div className="info-box">
-              <img src={`http://localhost:7777/resources/data/${trainer.trainerImage}`} alt=".." className="trainer-img" />
+              <img src={`${process.env.REACT_APP_IMG_URL}/resources/data/${trainer.trainerImage}`} alt=".." className="trainer-img" />
               <div>
                 <div>
                   <label className="name">{trainer.trainerName}</label>

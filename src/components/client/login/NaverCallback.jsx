@@ -9,7 +9,7 @@ function NaverCallback() {
     console.log(code);
     console.log(state);
 
-    axios.post('/api/client/login/oauth/naver', {
+    axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/login/oauth/naver`, {
       authorizationCode: code,
       state: state
     }).then((response) => {

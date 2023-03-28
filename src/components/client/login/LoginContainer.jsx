@@ -42,7 +42,7 @@ function LoginContainer() {
 
   const handleLogin = () => {
     if (memberId !== "" && memberPass !== "") {
-      client.post('/api/client/login/member', {
+      client.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/login/member`, {
         memberId: memberId,
         memberPass: memberPass
       }).then((response) => {

@@ -28,7 +28,12 @@ function Loading() {
   }, [opacity]);
   return (
     <LoadingContainer>
-      <img className="loading-img" src="./img/loading.png" alt=".." opacity={opacity}/>
+      <img
+        className="loading-img"
+        src="/img/loading.png"
+        alt=".."
+        opacity={opacity}
+      />
     </LoadingContainer>
   )
 }

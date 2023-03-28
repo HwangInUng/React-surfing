@@ -148,7 +148,7 @@ function ClientJoin() {
       alert("이메일을 입력하세요.");
       return;
     }
-    const response = await client.get(`/api/client/join/email/${email}/`);
+    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/email/${email}/`);
     alert(response.data.msg);
   }
 
@@ -159,7 +159,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await client.get(`/api/client/join/email-auth/${emailCode}`);
+    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/email-auth/${emailCode}`);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setEmailCheck(true);
@@ -173,7 +173,7 @@ function ClientJoin() {
       return;
     }
     console.log(phone);
-    const response = await client.get(`/api/client/join/sms/${phone}`);
+    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms/${phone}`);
     alert(response.data.msg);
     setSmsInfo("");
   }
@@ -185,7 +185,7 @@ function ClientJoin() {
       return;
     }
 
-    const response = await client.get(`/api/client/join/sms-auth/${smsCode}`);
+    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms-auth/${smsCode}`);
     alert(response.data.msg);
     if (response.data.code === 1) {
       setPhoneCheck(true);
@@ -195,7 +195,7 @@ function ClientJoin() {
   //아이디 중복검사
   const checkId = () => {
     if (memberId !== "") {
-      client.get(`/api/client/join/${memberId}`)
+      client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/${memberId}`)
         .then((response) => {
           setIdInfo(response.data.msg);
           setIdCheck(true);
@@ -223,7 +223,7 @@ function ClientJoin() {
 
 
     //비동기 요청
-    await client.post('/api/client/join/member', formData, {
+    await client.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/member`, formData, {
       //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'

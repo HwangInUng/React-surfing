@@ -57,7 +57,11 @@ function ShopReview() {
         </div>
       </div>
       <div className="right-box">
-        <img src="../../img/logo.png" alt=".." className="review-img" />
+        <img
+          src="/img/logo.png"
+          alt=".."
+          className="review-img"
+        />
       </div>
     </ReviewBox>
   )

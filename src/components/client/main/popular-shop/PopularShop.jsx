@@ -19,7 +19,7 @@ function PopularShop() {
   const [shops, setShops] = useState([]);
   //로드 시 서버로 인기서핑샵 정보 요청
   const getPopularShop = () => {
-    axios.get(`/api/client/main/popular`)
+    axios.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/main/popular`)
     .then((res) => {
       //반환된 인기서핑샵 정보 세팅
       setShops(res.data);

@@ -81,7 +81,7 @@ function ShopDetail() {
 
   //예약페이지 이동 메소드(로그인한 상태여야 접근가능)
   const moveReservation = () => {
-    accessClient.get('/api/client/token/reserv')
+    accessClient.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/reserv`)
       .then(() => {
         navigate('/shop/reservation', { state: shop });
       }).catch((err) => {
@@ -91,7 +91,7 @@ function ShopDetail() {
 
   //세부정보 요청 메소드
   const getShopInfo = (shopIdx) => {
-    axios.get(`/api/client/shop/${shopIdx}`)
+    axios.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/shop/${shopIdx}`)
       .then((res) => {
         setShop(res.data);
         console.log(res.data);
@@ -118,7 +118,11 @@ function ShopDetail() {
             <div>
               <span className="title-box">
                 <label className="shop-title">{shop.shopName}</label>
-                <img src="../../img/location/pin.png" alt="..." className="shop-pin" />
+                <img
+                  src="/img/location/pin.png"
+                  alt="..."
+                  className="shop-pin"
+                />
               </span>
             </div>
             <div>

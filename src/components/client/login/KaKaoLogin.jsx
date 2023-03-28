@@ -10,7 +10,7 @@ function KakaoLogin() {
   const loginKaKao = () => {
     window.location.href = url;
   }
-  return <SNSLink img="./img/login/kakao.png" onClick={loginKaKao} />
+  return <SNSLink img="/img/login/kakao.png" onClick={loginKaKao} />
 }
 
 export default KakaoLogin;

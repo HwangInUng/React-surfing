@@ -39,7 +39,7 @@ function MenuForm({ shopIdx, setRegist }) {
       formData.append("image", file);
 
       //비동기 요청
-      axios.post('/api/menu', formData, {
+      axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/menu`, formData, {
         //multipart 데이터 전달 시 설정
         headers: {
           'Content-Type': 'multipart/form-data'

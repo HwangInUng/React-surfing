@@ -28,7 +28,7 @@ function Main() {
     <Topbar />
     <MainContainer>
       <MainImageDiv>
-        <img src="./img/main.jpg" className="main-image" />
+        <img src="/img/main.jpg" className="main-image" />
       </MainImageDiv>
       <MainContent />
     </MainContainer>
