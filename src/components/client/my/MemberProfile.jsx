@@ -7,7 +7,6 @@ import DaumPost from "../../common/DaumPost";
 import { useState } from "react";
 import { useEffect } from "react";
 import Bt from "../../common/Bt";
-import axios from "axios";
 import {accessClient} from "../../../App";
 
 const InputBox = styled.div`
@@ -180,18 +179,20 @@ function MemberProfile() {
   //회원정보 수정
   const registMember = async () => {
     let formData = new FormData();
-    formData.append("memberPass", memberPass);
-    formData.append("memberName", memberName);
-    formData.append("localAddress", addressObj.areaAddress);
-    formData.append("detailAddress", addressObj.townAddress);
-    formData.append("phoneNo", phone);
-    formData.append("email", email);
+
+    //수정내용이 있는 경우에만 전송 데이터에 포함
+    if(memberPass != "") formData.append("memberPass", memberPass);
+    if(memberName != "") formData.append("memberName", memberName);
+    if(addressObj.areaAddress != "") formData.append("localAddress", addressObj.areaAddress);
+    if(addressObj.townAddress != "") formData.append("detailAddress", addressObj.townAddress);
+    if(phone != "") formData.append("phoneNo", phone);
+    if(email != "") formData.append("email", email);
+    if(image != "")formData.append("image", image);
     console.log(image);
-    formData.append("image", image);
 
 
     //비동기 요청
-    await accessClient.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/member`, formData, {
+    await accessClient.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/member`, formData, {
       //multipart 데이터 전달 시 설정
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -204,12 +205,6 @@ function MemberProfile() {
     }).finally(() => setImage(""));
   }
 
-  //모든 논리값이 true라면 최종 인증 확인
-  useEffect(() => {
-    if (passCheck && emailCheck && phoneCheck && phoneNoCheck) {
-      setTotalCheck(false);
-    }
-  }, [passCheck, emailCheck, phoneCheck, phoneNoCheck]);
   return (
     <>
       <Topbar />
@@ -379,8 +374,7 @@ function MemberProfile() {
           <Bt
             btName="수정하기"
             onClick={registMember}
-            dis={totalCheck}
-            color={totalCheck ? "#7e8080" : trueColor}
+            color={trueColor}
           />
           <Bt
             btName="뒤로가기"

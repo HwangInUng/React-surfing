@@ -46,7 +46,7 @@ const BottomBox = styled.div`
 function ShopItem({ shop, index }) {
   return <Item style={{ left: `${36 * (index)}% ` }}>
     <TopBox>
-      <a href="/shop/detail">
+      <a href={`/shop/detail?shopIdx=${shop.shopIdx}`}>
         <img
           className="shop-img"
           src={`${process.env.REACT_APP_IMG_URL}/resources/data/${shop.shopImage}`}

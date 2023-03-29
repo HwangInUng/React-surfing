@@ -47,7 +47,7 @@ function MenuItem({ shopIdx }) {
   const [menus, setMenus] = useState([]);
 
   const getMenus = () => {
-    axios.get(`/api/menu/${shopIdx}`)
+    axios.get(`${process.env.REACT_APP_REQUEST_URL}/api/menu/${shopIdx}`)
       .then((res) => {
         setMenus(res.data);
       })

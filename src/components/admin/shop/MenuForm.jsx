@@ -37,6 +37,8 @@ function MenuForm({ shopIdx, setRegist }) {
       formData.append("menuDesc", menuDesc);
       console.log(file);
       formData.append("image", file);
+      console.log("전송할 데이터", formData.get("menuName"));
+      console.log("전송할 데이터", formData.get("image"));
 
       //비동기 요청
       axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/menu`, formData, {
@@ -48,7 +50,7 @@ function MenuForm({ shopIdx, setRegist }) {
         alert(response.data.msg);
         setRegist(false);
       }).catch((error) => {
-        alert(error);
+        alert(error.response.data.detail);
       }).finally(() => setFile(""));
     }
   }

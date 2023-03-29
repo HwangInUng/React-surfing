@@ -143,53 +143,68 @@ function ClientJoin() {
   };
 
   // 인증 이메일 발송 요청------------------------------------------------------------------------------
-  const sendEmail = async () => {
+  const sendEmail = () => {
     if (email === "") {
       alert("이메일을 입력하세요.");
       return;
     }
-    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/email/${email}/`);
-    alert(response.data.msg);
+    client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/email/${email}/`)
+      .then((res) => {
+        alert(res.data.msg);
+      }).catch((err) => {
+        alert(err.response.data.detail);
+      });
   }
 
   // 인증번호 확인 요청---------------------------------------------------------------------------------
-  const checkEmail = async () => {
+  const checkEmail = () => {
     if (emailCode === "") {
       alert("인증번호를 입력하세요.");
       return;
     }
-
-    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/email-auth/${emailCode}`);
-    alert(response.data.msg);
-    if (response.data.code === 1) {
-      setEmailCheck(true);
-    }
+    client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/email-auth/${emailCode}`)
+      .then((res) => {
+        alert(res.data.msg);
+        if (res.data.code === 1) {
+          setEmailCheck(true);
+        }
+      }).catch((err) => {
+        alert(err.response);
+      });
   }
 
   // 인증문자 발송 요청
-  const sendSms = async () => {
+  const sendSms = () => {
     if (phone === "") {
       alert("휴대폰 번호를 입력하세요.");
       return;
     }
-    console.log(phone);
-    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms/${phone}`);
-    alert(response.data.msg);
-    setSmsInfo("");
+    client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms/${phone}`)
+      .then((res) => {
+        alert(res.data.msg);
+        setSmsInfo("");
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
   }
 
   // 문자 인증번호 확인
-  const checkSms = async () => {
+  const checkSms = () => {
     if (smsCode === "") {
       alert("인증번호를 입력하세요.");
       return;
     }
-
-    const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms-auth/${smsCode}`);
-    alert(response.data.msg);
-    if (response.data.code === 1) {
-      setPhoneCheck(true);
-    }
+    client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms-auth/${smsCode}`)
+      .then((res) => {
+        alert(res.data.msg);
+        if (res.data.code === 1) {
+          setPhoneCheck(true);
+        }
+      })
+      .catch((err) => {
+        alert(err.response.data.detail);
+      });
   }
 
   //아이디 중복검사

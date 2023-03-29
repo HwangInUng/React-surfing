@@ -84,8 +84,8 @@ function Payment() {
           orderId: `${randomId}`, //문자열 처리를 위한 ``사용
           orderName: orderName(), //결제 이름(여러건일 경우 복수처리)
           customerName: 'surfing', //판매자, 판매처 이름
-          successUrl: 'http://localhost:3000/shop/payment/success',
-          failUrl: 'http://localhost:3000/shop/payment/fail',
+          successUrl: process.env.REACT_APP_TOSS_SUCCESS,
+          failUrl: process.env.REACT_APP_TOSS_FAIL,
         })
       });
     }

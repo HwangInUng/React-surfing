@@ -45,15 +45,15 @@ function LoginContainer() {
       client.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/login/member`, {
         memberId: memberId,
         memberPass: memberPass
-      }).then((response) => {
+      }).then((res) => {
         alert("로그인 성공");
-        const accessToken = response.headers.accesstoken;
+        console.log(res.data);
+        localStorage.setItem("accessToken", res.data);
         /* 발급받은 토큰을 헤더에 담아 서버로 전송할 경우 다음과 같은 사항을 준수
           -Authorization: 'Bearer ${accessToken}'의 형식으로 전송
           -인증 스키마를 붙여 서버에서는 해당 인증요청을 인식, 토큰만 추출하여 인증처리
           -로그인한 시점부터는 axios의 응답헤더에 jwt를 달아서 이동
         */
-        localStorage.setItem("accessToken", accessToken);
 
         window.location.href = "/";
       }).catch((err) => {
