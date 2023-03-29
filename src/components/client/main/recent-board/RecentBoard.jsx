@@ -13,11 +13,11 @@ const RecentDiv = styled.div`
 
 function RecentBoard() {
   const testData = [
-    { name: "게시물1", writer: "작성자1", hit: "230" },
-    { name: "게시물2", writer: "작성자2", hit: "33" },
-    { name: "게시물3", writer: "작성자3", hit: "123" },
-    { name: "게시물4", writer: "작성자4", hit: "64" },
-    { name: "게시물5", writer: "작성자5", hit: "64" },
+    { name: "게시물1", writer: "작성자1", hit: "230", src: "profile.jpg" },
+    { name: "게시물2", writer: "작성자2", hit: "33", src: "test.jpg" },
+    { name: "게시물3", writer: "작성자3", hit: "123", src: "main.jpg" },
+    { name: "게시물4", writer: "작성자4", hit: "64", src: "logo.png" },
+    { name: "게시물5", writer: "작성자5", hit: "64", src: "home.png" },
   ];
   return (
     <RecentDiv>
@@ -25,7 +25,11 @@ function RecentBoard() {
       <VerticalWrapper>
         {testData && testData.map((data, index) => {
           return (
-            <BoardItem key={index} data={data} index={index}></BoardItem>
+            <BoardItem
+              key={index}
+              data={data}
+              index={index}
+            />
           )
         })}
       </VerticalWrapper>

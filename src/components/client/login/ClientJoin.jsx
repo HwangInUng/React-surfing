@@ -173,39 +173,39 @@ function ClientJoin() {
       });
   }
 
-  // 인증문자 발송 요청
-  const sendSms = () => {
-    if (phone === "") {
-      alert("휴대폰 번호를 입력하세요.");
-      return;
-    }
-    client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms/${phone}`)
-      .then((res) => {
-        alert(res.data.msg);
-        setSmsInfo("");
-      })
-      .catch((err) => {
-        alert(err.response.data);
-      });
-  }
+  // 인증문자 발송 요청(요금 정책으로 인한 임시적 기능 미사용)
+  // const sendSms = () => {
+  //   if (phone === "") {
+  //     alert("휴대폰 번호를 입력하세요.");
+  //     return;
+  //   }
+  //   client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms/${phone}`)
+  //     .then((res) => {
+  //       alert(res.data.msg);
+  //       setSmsInfo("");
+  //     })
+  //     .catch((err) => {
+  //       alert(err.response.data);
+  //     });
+  // }
 
-  // 문자 인증번호 확인
-  const checkSms = () => {
-    if (smsCode === "") {
-      alert("인증번호를 입력하세요.");
-      return;
-    }
-    client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms-auth/${smsCode}`)
-      .then((res) => {
-        alert(res.data.msg);
-        if (res.data.code === 1) {
-          setPhoneCheck(true);
-        }
-      })
-      .catch((err) => {
-        alert(err.response.data.detail);
-      });
-  }
+  // // 문자 인증번호 확인
+  // const checkSms = () => {
+  //   if (smsCode === "") {
+  //     alert("인증번호를 입력하세요.");
+  //     return;
+  //   }
+  //   client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/sms-auth/${smsCode}`)
+  //     .then((res) => {
+  //       alert(res.data.msg);
+  //       if (res.data.code === 1) {
+  //         setPhoneCheck(true);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       alert(err.response.data.detail);
+  //     });
+  // }
 
   //아이디 중복검사
   const checkId = () => {
@@ -253,10 +253,10 @@ function ClientJoin() {
 
   //모든 논리값이 true라면 최종 인증 확인
   useEffect(() => {
-    if (idCheck && passCheck && emailCheck && phoneCheck && phoneNoCheck) {
+    if (idCheck && passCheck && emailCheck && phoneNoCheck) {
       setTotalCheck(false);
     }
-  }, [idCheck, passCheck, emailCheck, phoneCheck, phoneNoCheck]);
+  }, [idCheck, passCheck, emailCheck, phoneNoCheck]);
   return (
     <>
       <Topbar />
@@ -400,9 +400,10 @@ function ClientJoin() {
           />
           <Bt
             btName="문자발송"
-            onClick={sendSms}
-            dis={phoneCheck}
-            color={phoneCheck ? "#7e8080" : trueColor}
+            // onClick={sendSms}
+            dis={true}
+            // color={phoneCheck ? "#7e8080" : trueColor}
+            color="#7e8080"
           />
         </InputBox>
         <InputBox>
@@ -421,9 +422,10 @@ function ClientJoin() {
           />
           <Bt
             btName="인증하기"
-            onClick={checkSms}
-            dis={phoneCheck}
-            color={phoneCheck ? "#7e8080" : trueColor}
+            // onClick={checkSms}
+            dis={true}
+            // color={phoneCheck ? "#7e8080" : trueColor}
+            color="#7e8080"
           />
         </InputBox>
         {/* /.핸드폰 인증 영역 */}
@@ -432,7 +434,7 @@ function ClientJoin() {
           <Bt
             btName="회원가입"
             onClick={registMember}
-            // dis={totalCheck}
+            dis={totalCheck}
             color={totalCheck ? "#7e8080" : trueColor}
           />
           <Bt

@@ -11,7 +11,12 @@ function NaverLogin() {
   const loginKaKao = () => {
     window.location.href = url;
   }
-  return <SNSLink img="/img/login/naver.png" onClick={loginKaKao} />
+  return <SNSLink
+    img="/img/login/naver.png"
+    onClick={loginKaKao}
+    back="#03bf19"
+    title="네이버로그인"
+  />
 }
 
 export default NaverLogin;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import ShopSearch from "./ShopSearch";
 
 const TitleContainer = styled.div`
   display: flex;
@@ -23,14 +24,25 @@ const TitleBox = styled.div`
   }
 `;
 
-function ShopTitle() {
+function ShopTitle({ selectSpot, setSelectSpot }) {
+  // 지역 선택창을 띄울 논리값
   const [openPost, setOpenPost] = useState(false);
+  // 차후 맵 API와 연동할 state
   const [openMap, setOpenMap] = useState(false);
+  // 지역명을 출력할 변수
+  const spotName = selectSpot.localName + ' ' + selectSpot.townName + ' ' + selectSpot.spotName;
   return (
     <TitleContainer>
+      {openPost ?
+        <ShopSearch
+          open={openPost}
+          setOpen={setOpenPost}
+          setSelectSpot={setSelectSpot}
+        /> :
+        null}
       <TitleBox>
         <label>
-          강원도 양양군
+          {spotName}
           <img
             className="title-img"
             src="/img/location/pin.png"

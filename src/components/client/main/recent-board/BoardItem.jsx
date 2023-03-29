@@ -45,7 +45,7 @@ const BottomBox = styled.div`
 function BoardItem({ data, index }) {
   return <Item style={{ left: `${36 * (index)}% ` }}>
     <TopBox>
-      <a href="/board"><img className="board-img" src="./img/main.jpg" alt="..."/></a>
+      <a href="/board"><img className="board-img" src={`/img/${data.src}`} alt="..."/></a>
     </TopBox>
     <BottomBox>
       <div className="info-box">
