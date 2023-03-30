@@ -67,21 +67,9 @@ const InfoSub = styled.span`
 
 function Info() {
   const infos = [
-    {
-      title: '총 매출',
-      money: 2500,
-      rate: -10.3,
-    },
-    {
-      title: '강습',
-      money: 1100,
-      rate: -20.2,
-    },
-    {
-      title: '렌탈',
-      money: 1400,
-      rate: +9.9,
-    },
+    { title: '총 매출', money: 2500, rate: -10.3 },
+    { title: '강습', money: 1100, rate: -20.2 },
+    { title: '렌탈', money: 1400, rate: +9.9 },
   ];
   return (
     <InfoContainer>
@@ -95,8 +83,8 @@ function Info() {
               <InfoRate>
                 Trend: {info.rate}
                 {info.rate < 0 ?
-                <TrendingDownIcon className="infoIcon negative"/> :
-                <TrendingUpIcon className="infoIcon"/>
+                  <TrendingDownIcon className="infoIcon negative" /> :
+                  <TrendingUpIcon className="infoIcon" />
                 }
               </InfoRate>
             </InfoResultContainer>

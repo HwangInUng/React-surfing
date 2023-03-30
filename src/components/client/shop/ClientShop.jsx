@@ -51,11 +51,16 @@ function ClientShop() {
     const response = await client.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/shops/${selectSpot.spotName}`);
     console.log(response.data);
     setShops(response.data);
+    if(response.data.length === 0){
+      alert("해당 지역에 등록된 서핑샵이 없습니다.");
+    }
   }
 
   //지역이 선택될 때마다 리스트 최신화
   useEffect(() => {
-    getShopListBySpot();
+    if(selectSpot.spotName !== "전체목록"){
+      getShopListBySpot();
+    }
   }, [selectSpot]);
   return (
     <>
@@ -73,7 +78,7 @@ function ClientShop() {
           onClick={(e) => setClicked(e.target.value)}
         />
         {/* 서핑샵 리스트 영역 */}
-        {shops.length === 0 ? "해당 지역에 등록된 샵이 없습니다." : shops && shops.map((shop, index) => {
+        {shops && shops.map((shop, index) => {
           return (
             <ShopList key={index} shop={shop} />
           )

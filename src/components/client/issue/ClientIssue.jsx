@@ -53,14 +53,14 @@ function ClientIssue() {
   //     });
   // });
 
-  const searchVideo = () => {
-    // getYoutube();
-  }
+  // const searchVideo = () => {
+  //   getYoutube();
+  // }
 
   // 최초 로드시 영상 조회
-  useEffect(() => {
-    // getYoutube();
-  }, []);
+  // useEffect(() => {
+  //   getYoutube();
+  // }, []);
   const navigate = useNavigate();
   useEffect(() => {
     alert("서비스 준비중입니다!!");
@@ -80,7 +80,7 @@ function ClientIssue() {
             btName="검색"
             width="20%"
             font="1.2rem"
-            onClick={searchVideo}
+            // onClick={searchVideo}
           />
         </SeacrchBox>
         <VideoBox></VideoBox>

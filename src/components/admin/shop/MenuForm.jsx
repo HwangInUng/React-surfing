@@ -29,16 +29,14 @@ function MenuForm({ shopIdx, setRegist }) {
   //상품 등록 요청 함수
   const registMenu = () => {
     if (window.confirm("등록하시겠습니까?")) {
-
       let formData = new FormData();
+
       formData.append("shopIdx", shopIdx);
       formData.append("menuName", menuName);
       formData.append("menuPrice", menuPrice);
       formData.append("menuDesc", menuDesc);
       console.log(file);
       formData.append("image", file);
-      console.log("전송할 데이터", formData.get("menuName"));
-      console.log("전송할 데이터", formData.get("image"));
 
       //비동기 요청
       axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/menu`, formData, {

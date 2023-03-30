@@ -9,8 +9,8 @@ function KakaoCallback() {
     //spring 서버로 인증키를 통해 유저정보를 획득하고 로그인 처리 요청
     axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/login/oauth/kakao`, {
       authorizationCode: code
-    }).then((response) => {
-      const accessToken = response.headers.accesstoken;
+    }).then((res) => {
+      const accessToken = res.data;
       //localStorage 저장
       localStorage.setItem("accessToken", accessToken);
       

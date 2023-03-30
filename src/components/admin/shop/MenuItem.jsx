@@ -44,8 +44,10 @@ const MenuBox = styled.div`
 `;
 
 function MenuItem({ shopIdx }) {
+  // 상품 리스트
   const [menus, setMenus] = useState([]);
 
+  // 상품 리스트 호출
   const getMenus = () => {
     axios.get(`${process.env.REACT_APP_REQUEST_URL}/api/menu/${shopIdx}`)
       .then((res) => {
@@ -53,6 +55,7 @@ function MenuItem({ shopIdx }) {
       })
   }
 
+  // 상품 1건 삭제
   const removeMenu = (menuIdx) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       axios.delete(`${process.env.REACT_APP_REQUEST_URL}/api/menu/${menuIdx}`)
@@ -65,6 +68,7 @@ function MenuItem({ shopIdx }) {
     }
   }
 
+  // 로드와 동시에 상품리스트 조회
   useEffect(() => {
     getMenus();
   }, []);

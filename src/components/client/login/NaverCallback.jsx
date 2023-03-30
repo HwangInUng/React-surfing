@@ -12,8 +12,8 @@ function NaverCallback() {
     axios.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/login/oauth/naver`, {
       authorizationCode: code,
       state: state
-    }).then((response) => {
-      const accessToken = response.headers.accesstoken;
+    }).then((res) => {
+      const accessToken = res.data;
       //localStorage 저장
       localStorage.setItem("accessToken", accessToken);
 

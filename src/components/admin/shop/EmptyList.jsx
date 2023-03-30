@@ -26,6 +26,7 @@ const EmptyContainer = styled.div`
   }
 `;
 
+// 매장등록이 되지않은 회원 접속 시 출력
 function EmptyList({ title }) {
   return (
     <EmptyContainer>
