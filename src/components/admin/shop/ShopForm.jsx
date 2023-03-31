@@ -45,6 +45,11 @@ function ShopForm() {
 
   //매장등록 요청 함수
   const registShop = () => {
+    if(files.length === 0){
+      alert("사진을 선택해주세요.");
+      return;
+    }
+
     if (window.confirm("등록하시겠습니까?")) {
       //파라미터 세팅
       let formData = new FormData();

@@ -62,6 +62,13 @@ function Payment() {
 
   //예약정보 등록 메소드
   const handleReservation = (subject) => {
+    for(let info in reserv){
+      if(reserv[info] === "" || rsvMsg === ""){
+        alert("예약자 정보를 입력해주세요.");
+        return;
+      }
+    }
+
     accessClient.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/reserv`, reserv)
     .then((res) => {
       console.log(res.data);

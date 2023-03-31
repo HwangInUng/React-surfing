@@ -35,6 +35,11 @@ function TrainerForm({ shopIdx, setRegist }) {
 
   //강사 등록 요청 함수
   const registTrainer = () => {
+    if(file === ""){
+      alert("사진을 선택해주세요.");
+      return;
+    }
+    
     if (window.confirm("등록하시겠습니까?")) {
       let formData = new FormData();
       formData.append("shopIdx", shopIdx);

@@ -38,6 +38,7 @@ function Reservation() {
   const shop = location.state;
   const times = ['10', '13', '15']; //예약시간
   const [clicked, setClicked] = useState(""); //time버튼 논리값
+  const [check, setCheck] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date()); //날짜 선택 시 변경될 state
 
   //서버에 전송할 예약정보 객체
@@ -79,6 +80,7 @@ function Reservation() {
         trainerName: trainer.trainerName
       }
     });
+    setCheck(trainer.trainerIdx);
   }
 
   //수량 클릭 시 해당하는 메뉴명을 지정
@@ -106,6 +108,13 @@ function Reservation() {
 
   //결제페이지 이동(토큰 체크 및 예약정보 객체 전달)
   const movePayment = () => {
+    //정보가 선택되지 않은 경우를 위한 조건판단
+    for(let info in reserv){
+      if(reserv[info] === "" || reserv[info] === 0){
+        alert("선택하지 않은 정보가 있습니다.");
+        return;
+      }
+    }
     accessClient.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/payment`)
       .then(() => {
         navicate(`/shop/payment`, { state: reserv });
@@ -131,6 +140,7 @@ function Reservation() {
                 key={index}
                 trainer={trainer}
                 handleTrainer={handleTrainer}
+                check={check}
               />
             )
           })}

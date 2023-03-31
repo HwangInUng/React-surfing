@@ -28,6 +28,11 @@ function MenuForm({ shopIdx, setRegist }) {
 
   //상품 등록 요청 함수
   const registMenu = () => {
+    if(file === ""){
+      alert("사진을 선택해주세요.");
+      return;
+    }
+
     if (window.confirm("등록하시겠습니까?")) {
       let formData = new FormData();
 

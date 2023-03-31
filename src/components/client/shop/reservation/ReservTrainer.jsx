@@ -12,15 +12,16 @@ const TrainerBox = styled.div`
   }
 `;
 
-function ReservTrainer({ trainer, handleTrainer }) {
+function ReservTrainer({ trainer, handleTrainer, check }) {
   return (
     <TrainerBox>
       <ShopTrainer trainer={trainer} />
       <input
         type="checkbox"
         className="check"
-        onClick={() => handleTrainer(trainer)}
+        onChange={() => handleTrainer(trainer)}
         value={trainer.trainerIdx}
+        checked={check === trainer.trainerIdx ? true : false}
       />
     </TrainerBox>
   )

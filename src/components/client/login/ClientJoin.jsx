@@ -225,6 +225,12 @@ function ClientJoin() {
 
   //회원등록
   const registMember = async () => {
+    //이미지를 선택하지 않은 경우 등록 불가
+    if(image === ""){
+      alert("프로필 사진을 선택해주세요.");
+      return;
+    }
+
     let formData = new FormData();
     formData.append("memberId", memberId);
     formData.append("memberPass", memberPass);
@@ -235,7 +241,6 @@ function ClientJoin() {
     formData.append("email", email);
     console.log(image);
     formData.append("image", image);
-
 
     //비동기 요청
     await client.post(`${process.env.REACT_APP_REQUEST_URL}/api/client/join/member`, formData, {
