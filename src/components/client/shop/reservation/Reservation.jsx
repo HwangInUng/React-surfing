@@ -109,12 +109,13 @@ function Reservation() {
   //결제페이지 이동(토큰 체크 및 예약정보 객체 전달)
   const movePayment = () => {
     //정보가 선택되지 않은 경우를 위한 조건판단
-    for(let info in reserv){
-      if(reserv[info] === "" || reserv[info] === 0){
+    for (let info in reserv) {
+      if (reserv[info] === "" || reserv[info] === 0) {
         alert("선택하지 않은 정보가 있습니다.");
         return;
       }
     }
+    
     accessClient.get(`${process.env.REACT_APP_REQUEST_URL}/api/client/token/payment`)
       .then(() => {
         navicate(`/shop/payment`, { state: reserv });

@@ -14,6 +14,7 @@ import Reservation from "../components/client/shop/reservation/Reservation";
 import Payment from "../components/client/shop/payment/Payment";
 import TossCallback from "../components/client/shop/payment/TossCallback";
 import ReservDetail from "../components/client/shop/ReservDetail";
+import RegistShop from "../components/client/my/RegistShop";
 
 /*
   -client 화면을 구성할 대표 view
@@ -42,6 +43,7 @@ function Client() {
         {/* 마이 페이지 */}
         <Route path="/my" element={<ClientMy />} />
         <Route path="/my/edit" element={<MemberProfile />} />
+        <Route path="/my/regist-shop" element={<RegistShop />} />
 
         {/* 로그인 페이지 */}
         <Route path="/login" element={<ClientLogin />} />

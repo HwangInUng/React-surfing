@@ -5,7 +5,6 @@ import Topbar from "../main/topbar/Topbar";
 import Input from "../../common/Input";
 import DaumPost from "../../common/DaumPost";
 import { useState } from "react";
-import { useEffect } from "react";
 import Bt from "../../common/Bt";
 import {accessClient} from "../../../App";
 

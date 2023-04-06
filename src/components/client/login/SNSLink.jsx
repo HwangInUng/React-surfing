@@ -23,13 +23,17 @@ const SNSBox = styled.div`
     color: ${props => props.back === "#03bf19" ? "white" : "black"};
 
     > label{
+      text-align: center;
+      width: 100%;
       font-size: 1.4rem;
       font-weight: 500;
+      cursor: pointer;
     }
   }
   .sns-img {
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 `;
 
@@ -40,7 +44,7 @@ function SNSLink({ img, back, title, onClick }) {
         <img className="sns-img" src={img} alt="..." onClick={onClick} />
       </div>
       <div className="title-box">
-        <label>{title}</label>
+        <label onClick={onClick}>{title}</label>
       </div>
     </SNSBox>
   )

@@ -16,7 +16,7 @@ function BottomMenu({adminPage}) {
     {
       title: '고객센터',
       sub: ['입점신청', '매장관리', '공지사항'],
-      link: ['...', '/admin', '...'] //각 페이지별 to 속성의 경로를 지정
+      link: ['/my/regist-shop', '/admin', '...'] //각 페이지별 to 속성의 경로를 지정
     },
   ];
   return (
