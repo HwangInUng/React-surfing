@@ -70,6 +70,7 @@ function ClientShop() {
         <ShopTitle
           selectSpot={selectSpot}
           setSelectSpot={setSelectSpot}
+          shops={shops}
         />
         {/* 카테고리 영역 */}
         <ShopCategory

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import ShopSearch from "./ShopSearch";
+import ShopLocation from "./ShopLocation";
 
 const TitleContainer = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const TitleBox = styled.div`
   }
 `;
 
-function ShopTitle({ selectSpot, setSelectSpot }) {
+function ShopTitle({ selectSpot, setSelectSpot, shops }) {
   // 지역 선택창을 띄울 논리값
   const [openPost, setOpenPost] = useState(false);
   // 차후 맵 API와 연동할 state
@@ -51,6 +52,14 @@ function ShopTitle({ selectSpot, setSelectSpot }) {
         </label>
       </TitleBox>
       <TitleBox>
+        {openMap ?
+          <ShopLocation
+            open={openMap}
+            setOpen={setOpenMap}
+            selectSpot={selectSpot}
+            shops={shops}
+          /> :
+          null}
         <img
           className="title-img"
           src="/img/location/map.png"
